@@ -1,6 +1,6 @@
 ---
 title: Golang-匿名函数与闭包
-auhtor: Payne
+author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]

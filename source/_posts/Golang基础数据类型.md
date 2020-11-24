@@ -1,6 +1,6 @@
 ---
 title: Golang基础数据类型
-auhtor: Payne
+author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]

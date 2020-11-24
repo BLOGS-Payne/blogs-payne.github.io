@@ -1,6 +1,6 @@
 ---
 title: Golang-自定义类型
-auhtor: Payne
+author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]

@@ -1,6 +1,6 @@
 ---
 title: Golang-Array
-auhtor: Payne
+author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]

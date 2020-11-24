@@ -1,6 +1,6 @@
 ---
 title: Golang基础指令
-auhtor: Payne
+author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]

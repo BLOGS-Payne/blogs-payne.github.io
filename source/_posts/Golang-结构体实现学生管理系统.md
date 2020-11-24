@@ -1,6 +1,6 @@
 ---
 title: Golang-结构体实现学生管理系统
-auhtor: Payne
+author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]

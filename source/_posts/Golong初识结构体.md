@@ -1,6 +1,6 @@
 ---
-title: Golong初识结构体
-auhtor: Payne
+title: Golang初识结构体
+author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]

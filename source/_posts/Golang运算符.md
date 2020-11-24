@@ -4,7 +4,7 @@ tags: ["Go"]
 categories:
 - ["Go"]
 date: 2020-11-21 22:10:19
-auhtor: Payne
+author: Payne
 ---
 > 本章目标：
 >

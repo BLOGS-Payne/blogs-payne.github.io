@@ -4,7 +4,7 @@ tags: ["Go"]
 categories:
 - ["Go"]
 date: 2020-11-21 22:10:19
-auhtor: Payne
+author: Payne
 ---
 在上篇数据类型-Array中写到**因为数组的长度是固定的并且数组长度属于类型的一部分**,所以数组有很多的局限性
 <!--more-->

@@ -1,6 +1,6 @@
 ---
 title: Golang-Defer详解
-auhtor: Payne
+author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]

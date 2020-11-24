@@ -1,6 +1,6 @@
 ---
 title: Golang指针-pointer
-auhtor: Payne
+author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]

@@ -1,6 +1,6 @@
 ---
 title: Golang函数初探
-auhtor: Payne
+author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]

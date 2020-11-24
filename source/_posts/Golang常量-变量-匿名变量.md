@@ -1,6 +1,6 @@
 ---
 title: Golang常量-变量-匿名变量
-auhtor: Payne
+author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]

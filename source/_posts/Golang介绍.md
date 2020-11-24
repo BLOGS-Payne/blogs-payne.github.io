@@ -4,7 +4,7 @@ tags: ["Go"]
 categories:
 - ["Go"]
 date: 2020-11-21 21:52:58
-auhtor: payne
+author: payne
 ---
 
 
