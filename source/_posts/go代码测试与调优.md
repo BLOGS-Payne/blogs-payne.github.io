@@ -1,10 +1,10 @@
 ---
-title: go代码测试
+title: go代码测试与调优
 author: Payne
 tags: ["Go"]
 categories:
 - ["Go"]
-  date: 2021-02-18 20:43:26
+date: 2021-04-14 00:54:33
 ---
 在了解golang的测试之前，先了解一下go语言自带的测试工具-go test
 
