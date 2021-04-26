@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Go 语言开发包 国外：https:&#x2F;&#x2F;golang.org&#x2F;dl&#x2F; 国内(推荐)： https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F; 编辑器  Golang:https:&#x2F;&#x2F;www.jetbrains.com&#x2F;go&#x2F;  Visual Studio Code: https:&#x2F;&#x2F;code.visualstudio.com&#x2F;    搭建 Go 语言开发环境，需要先下载 Go 语言开发包。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang介绍">
+<meta property="og:url" content="http://example.com/2020/11/21/Golang%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="吴志鹏｜Payne-Wu">
+<meta property="og:description" content="Go 语言开发包 国外：https:&#x2F;&#x2F;golang.org&#x2F;dl&#x2F; 国内(推荐)： https:&#x2F;&#x2F;golang.google.cn&#x2F;dl&#x2F; 编辑器  Golang:https:&#x2F;&#x2F;www.jetbrains.com&#x2F;go&#x2F;  Visual Studio Code: https:&#x2F;&#x2F;code.visualstudio.com&#x2F;    搭建 Go 语言开发环境，需要先下载 Go 语言开发包。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfvrumlwpj31fk0m70x2.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfvxbp6hmj317i0d21b8.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfw129kelj31qe03c0uw.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfvdmu9zsj31au0u0ap5.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfwha3s32j31fk0kw77n.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfwhx99dij30uu0huwfx.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfxc8ujjej30y80lcgok.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfxc5nin1j30y80pw0xy.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfxc0dxgxg30xq0ppngg.gif">
+<meta property="article:published_time" content="2020-11-21T14:10:19.000Z">
+<meta property="article:modified_time" content="2020-11-24T02:55:36.226Z">
+<meta property="article:author" content="吴志鹏">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfvrumlwpj31fk0m70x2.jpg">
+
+<link rel="canonical" href="http://example.com/2020/11/21/Golang%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Golang介绍 | 吴志鹏｜Payne-Wu</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴志鹏｜Payne-Wu</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Talk is free，please state clearly </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Payne-Wu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/21/Golang%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon/android-chrome-512x512.png">
+      <meta itemprop="name" content="吴志鹏">
+      <meta itemprop="description" content="Talk is free，please state clearly">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴志鹏｜Payne-Wu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Golang介绍
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-21 22:10:19" itemprop="dateCreated datePublished" datetime="2020-11-21T22:10:19+08:00">2020-11-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-24 10:55:36" itemprop="dateModified" datetime="2020-11-24T10:55:36+08:00">2020-11-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/11/21/Golang%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/21/Golang%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>Go 语言开发包</p>
+<p>国外：<a target="_blank" rel="noopener" href="https://golang.org/dl/">https://golang.org/dl/</a></p>
+<p>国内(推荐)： <a target="_blank" rel="noopener" href="https://golang.google.cn/dl/">https://golang.google.cn/dl/</a></p>
+<p>编辑器</p>
+<ul>
+<li>Golang:<a target="_blank" rel="noopener" href="https://www.jetbrains.com/go/">https://www.jetbrains.com/go/</a> </li>
+<li>Visual Studio Code: <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a> </li>
+</ul>
+</blockquote>
+<p>搭建 Go 语言开发环境，需要先下载 Go 语言开发包。<br><a id="more"></a></p>
+<h3 id="查看操作系统及版本"><a href="#查看操作系统及版本" class="headerlink" title="查看操作系统及版本"></a>查看操作系统及版本</h3><p>Windows：<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfvrumlwpj31fk0m70x2.jpg" alt=""></p>
+<p>Mac:</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfvxbp6hmj317i0d21b8.jpg" alt=""></p>
+<p>Linux:</p>
+<p>终端输入<code>uname -a</code>,示例如下</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfw129kelj31qe03c0uw.jpg" alt=""><br><!--more--></p>
+<h3 id="Golang语言开发包"><a href="#Golang语言开发包" class="headerlink" title="Golang语言开发包"></a>Golang语言开发包</h3><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfvdmu9zsj31au0u0ap5.jpg" alt="Golang开发包"></p>
+<p>MSI 安装的方式比较简单推荐使用</p>
+<p>Windows 系统上推荐使用这种方式。现在的操作系统基本上都是 64 位的，所以选择 64 位的 go1.15.windows-amd64.msi 下载即可，如果操作系统是 32 位的，选择 go1.15.windows-386.msi 进行下载。</p>
+<p>下载后双击该 MSI 安装文件，按照提示一步步地安装即可。在默认情况下，Go 语言开发工具包会被安装到 c:\Go 目录，你也可以在安装过程中选择自己想要安装的目录。</p>
+<p>假设安装到 c:\Go 目录，安装程序会自动把 c:\Go\bin 添加到你的 PATH 环境变量中，如果没有的话，你可以通过系统 -&gt; 控制面板 -&gt; 高级 -&gt; 环境变量选项来手动添加。示例如下</p>
+<ul>
+<li>进入</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfwha3s32j31fk0kw77n.jpg" alt=""></p>
+<ul>
+<li>配置</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfwhx99dij30uu0huwfx.jpg" alt=""></p>
+<h3 id="macOS-下安装"><a href="#macOS-下安装" class="headerlink" title="macOS 下安装"></a>macOS 下安装</h3><p>如果你的操作系统是 macOS，可以采用 PKG 安装包。下载 <code>go1.15.darwin-amd64.pkg</code> 后，双击按照提示安装即可。安装成功后，路径<code>/usr/local/go/bin</code> 应该已经被添加到了 PATH 环境变量中。</p>
+<p>如果没有的话，你可以手动添加，把如下内容添加到 /etc/profile 或者 $HOME/.profile 文件保存即可。命令如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/<span class="built_in">local</span>/go/bin</span><br></pre></td></tr></table></figure>
+<p>BrewHome安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># brewHome安装</span></span><br><span class="line">brew install golang</span><br></pre></td></tr></table></figure>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ul>
+<li>保护管理工具安装</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum(Centos)</span></span><br><span class="line">sudo yum -y update <span class="comment"># 更新yum</span></span><br><span class="line">sudo yum install -y golang</span><br><span class="line"><span class="comment"># apt(ubantu)</span></span><br><span class="line">sudo apt -y update</span><br><span class="line">sudo apt install -y golang</span><br></pre></td></tr></table></figure>
+<ul>
+<li>压缩包安装(安装前请查看操作系统版本)</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># amd 版本</span></span><br><span class="line">wget https://golang.google.cn/dl/go1.15.4.linux-amd64.tar.gz</span><br><span class="line"><span class="comment"># arm版本</span></span><br><span class="line">https://golang.google.cn/dl/go1.15.4.linux-arm64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压(amd)</span></span><br><span class="line">sudo tar -C /usr/<span class="built_in">local</span>/ -xzvf go1.15.4.linux-amd64.tar.gz</span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">sudo tar -C /usr/<span class="built_in">local</span>/ -xzvf go1.15.4.linux-arm64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 环境变量配置</span></span><br><span class="line"><span class="comment"># sudo vim /etc/profile</span></span><br><span class="line"> <span class="built_in">export</span> GOROOT=/usr/<span class="built_in">local</span>/go</span><br><span class="line"> <span class="built_in">export</span> GOPATH=/home/bruce/go</span><br><span class="line"> <span class="built_in">export</span> GOBIN=<span class="variable">$GOPATH</span>/bin</span><br><span class="line"> <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GOROOT</span>/bin</span><br><span class="line"> <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GOPATH</span>/bin</span><br><span class="line"><span class="comment"># 环境变量生效</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>GOROOT</code>设置golang开发包的安装位置，我们解压到了<code>/usr/local/</code>目录，该目录下的<code>go/</code>文件夹一定是go的环境的根目录，就是打开<code>go</code>目录后别再有一个<code>go/</code>目录。</p>
+<p><code>GOBIN</code>目录是执行 <code>go install</code> 后生成可执行文件的目录</p>
+<p><code>GOPATH</code>是我们的工作目录，一般我们设置到用户目录下，这个要根据你电脑的实际情况去配置。在介绍一下go的工作目录结构。在我们设置的工作目录下有3个子目录</p>
+</blockquote>
+<h2 id="测试安装"><a href="#测试安装" class="headerlink" title="测试安装"></a>测试安装</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 任意目录下输入go version</span></span><br><span class="line">go version go1.15.2 darwin/amd64</span><br><span class="line"><span class="comment"># 查看环境配置</span></span><br><span class="line">go env</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># go env</span></span><br><span class="line">GO111MODULE=<span class="string">&quot;on&quot;</span></span><br><span class="line">GOARCH=<span class="string">&quot;amd64&quot;</span></span><br><span class="line">GOBIN=<span class="string">&quot;&quot;</span></span><br><span class="line">GOCACHE=<span class="string">&quot;/Users/stringle-004/Library/Caches/go-build&quot;</span></span><br><span class="line">GOENV=<span class="string">&quot;/Users/stringle-004/Library/Application Support/go/env&quot;</span></span><br><span class="line">GOEXE=<span class="string">&quot;&quot;</span></span><br><span class="line">GOFLAGS=<span class="string">&quot;&quot;</span></span><br><span class="line">GOHOSTARCH=<span class="string">&quot;amd64&quot;</span></span><br><span class="line">GOHOSTOS=<span class="string">&quot;darwin&quot;</span></span><br><span class="line">GOINSECURE=<span class="string">&quot;&quot;</span></span><br><span class="line">GOMODCACHE=<span class="string">&quot;/Users/stringle-004/go/pkg/mod&quot;</span></span><br><span class="line">GONOPROXY=<span class="string">&quot;&quot;</span></span><br><span class="line">GONOSUMDB=<span class="string">&quot;&quot;</span></span><br><span class="line">GOOS=<span class="string">&quot;darwin&quot;</span></span><br><span class="line">GOPATH=<span class="string">&quot;/Users/stringle-004/go&quot;</span></span><br><span class="line">GOPRIVATE=<span class="string">&quot;&quot;</span></span><br><span class="line">GOPROXY=<span class="string">&quot;https://goproxy.cn,direct&quot;</span></span><br><span class="line">GOROOT=<span class="string">&quot;/usr/local/go&quot;</span>		<span class="comment"># golang开发包的安装位置</span></span><br><span class="line">GOSUMDB=<span class="string">&quot;sum.golang.org&quot;</span></span><br><span class="line">GOTMPDIR=<span class="string">&quot;&quot;</span></span><br><span class="line">GOTOOLDIR=<span class="string">&quot;/usr/local/go/pkg/tool/darwin_amd64&quot;</span></span><br><span class="line">GCCGO=<span class="string">&quot;gccgo&quot;</span></span><br><span class="line">AR=<span class="string">&quot;ar&quot;</span></span><br><span class="line">CC=<span class="string">&quot;clang&quot;</span></span><br><span class="line">CXX=<span class="string">&quot;clang++&quot;</span></span><br><span class="line">CGO_ENABLED=<span class="string">&quot;1&quot;</span></span><br><span class="line">GOMOD=<span class="string">&quot;/Users/stringle-004/go/src/github.com/payne/awesomeProject/go.mod&quot;</span></span><br><span class="line">CGO_CFLAGS=<span class="string">&quot;-g -O2&quot;</span></span><br><span class="line">CGO_CPPFLAGS=<span class="string">&quot;&quot;</span></span><br><span class="line">CGO_CXXFLAGS=<span class="string">&quot;-g -O2&quot;</span></span><br><span class="line">CGO_FFLAGS=<span class="string">&quot;-g -O2&quot;</span></span><br><span class="line">CGO_LDFLAGS=<span class="string">&quot;-g -O2&quot;</span></span><br><span class="line">PKG_CONFIG=<span class="string">&quot;pkg-config&quot;</span></span><br><span class="line">GOGCCFLAGS=<span class="string">&quot;-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=/var/folders/sb/__n99hm13ms08lkk2lv5pxj40000gn/T/go-build659271527=/tmp/go-build -gno-record-gcc-switches -fno-common&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="GOPROXY"><a href="#GOPROXY" class="headerlink" title="GOPROXY"></a>GOPROXY</h3><p>Go1.14版本之后，都推荐使用<code>go mod</code>模式来管理依赖环境了，也不再强制我们把代码必须写在<code>GOPATH</code>下面的src目录了，你可以在你电脑的任意位置编写go代码。（网上有些教程适用于1.11版本之前。）</p>
+<p>默认GoPROXY配置是：<code>GOPROXY=https://proxy.golang.org,direct</code>，由于国内访问不到<code>https://proxy.golang.org</code>，所以我们需要换一个PROXY，这里推荐使用<code>https://goproxy.io</code>或<code>https://goproxy.cn</code>。</p>
+<p>可以执行下面的命令修改GOPROXY：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
+<h2 id="跨平台编译"><a href="#跨平台编译" class="headerlink" title="跨平台编译"></a>跨平台编译</h2><p>Go 语言开发工具包的另一强大功能就是可以跨平台编译。什么是跨平台编译呢？</p>
+<p>就是在 macOS 开发，可以编译 Linux、Window 等平台上的可执行程序，这样你开发的程序，就可以在这些平台上运行。也就是说，你可以选择喜欢的操作系统做开发，并跨平台编译成需要发布平台的可执行程序即可。</p>
+<p>Go 语言通过两个环境变量来控制跨平台编译，它们分别是 <code>GOOS</code> 和 <code>GOARCH</code> 。</p>
+<ul>
+<li><p>GOOS：代表要编译的目标操作系统，常见的有 Linux、Windows、Darwin 等。</p>
+</li>
+<li><p>GOARCH：代表要编译的目标处理器架构，常见的有 386、AMD64、ARM64 等。</p>
+</li>
+</ul>
+<p>这样通过组合不同的 GOOS 和 GOARCH，就可以编译出不同的可执行程序。比如我现在的操作系统是 macOS AMD64 的，我想编译出 Linux AMD64 的可执行程序，只需要执行 go build 命令即可，如以下代码所示：</p>
+<p>关于 GOOS 和 GOARCH 更多的组合，参考官方文档的 $GOOS and $GOARCH 这一节即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GOOS&#x3D;linux GOARCH&#x3D;amd64 go build &#x2F;Users&#x2F;stringle-004&#x2F;go&#x2F;main.go</span><br></pre></td></tr></table></figure>
+<p>关于 GOOS 和 GOARCH 更多的组合，参考<a target="_blank" rel="noopener" href="https://golang.org/doc/install/source#environment">官方文档</a>的 $GOOS and $GOARCH 这一节即可</p>
+<h2 id="Go-编辑器"><a href="#Go-编辑器" class="headerlink" title="Go 编辑器"></a>Go 编辑器</h2><p>第一款是 Visual Studio Code + Go 扩展插件，可以让你非常高效地开发，通过<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">官方网站</a>下载所对应操作系统版本的Visual Studio Code。</p>
+<ul>
+<li>安装：略（进入官网，下载安装即可）</li>
+<li>Visual Studio Code + Go设置</li>
+</ul>
+<h4 id="安装中文简体插件"><a href="#安装中文简体插件" class="headerlink" title="安装中文简体插件"></a>安装中文简体插件</h4><p>点击左侧菜单栏最后一项<code>管理扩展</code>，在<code>搜索框</code>中输入<code>chinese</code> ，选中结果列表第一项，点击<code>install</code>安装。</p>
+<p>安装完毕后右下角会提示<code>重启VS Code</code>，重启之后你的VS Code就显示中文啦！</p>
+<p><code>VSCode</code>主界面介绍：</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfxc8ujjej30y80lcgok.jpg" alt=""></p>
+<h4 id="安装go扩展"><a href="#安装go扩展" class="headerlink" title="安装go扩展"></a>安装go扩展</h4><p>现在我们要为我们的VS Code编辑器安装<code>Go</code>扩展插件，让它支持Go语言开发。</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfxc5nin1j30y80pw0xy.jpg" alt=""></p>
+<h4 id="安装中文简体插件-1"><a href="#安装中文简体插件-1" class="headerlink" title="安装中文简体插件"></a>安装中文简体插件</h4><p>点击左侧菜单栏最后一项<code>管理扩展</code>，在<code>搜索框</code>中输入<code>chinese</code> ，选中结果列表第一项，点击<code>install</code>安装。</p>
+<p>安装完毕后右下角会提示<code>重启VS Code</code>，重启之后你的VS Code就显示中文啦！</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfxc0dxgxg30xq0ppngg.gif" alt=""></p>
+<p>第二款是老牌 IDE 公司 JetBrains 推出的 Goland，所有插件已经全部集成，更容易上手，并且功能强大，新手老手都适合，你可以通过官方网站 <a target="_blank" rel="noopener" href="https://www.jetbrains.com/go/">https://www.jetbrains.com/go/</a> 下载使用。</p>
+<h2 id="第一个Golang程序"><a href="#第一个Golang程序" class="headerlink" title="第一个Golang程序"></a>第一个Golang程序</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package main			<span class="comment"># 可执行文件必须为package main开头</span></span><br><span class="line"></span><br><span class="line">import <span class="string">&quot;fmt&quot;</span>			<span class="comment"># 导入“fmt”包，用于打印（fmt.Print（打印）、fmt.Println（换行打印）、fmt.Printf(格式化打印)等）</span></span><br><span class="line"></span><br><span class="line">func <span class="function"><span class="title">main</span></span>() &#123;			<span class="comment"># 主函数main</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;你好，我叫payne&quot;</span>)		<span class="comment"># 输入</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 你好，我叫payne</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Go/" rel="tag"># Go</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/21/Golang%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="prev" title="Golang运算符">
+      <i class="fa fa-chevron-left"></i> Golang运算符
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/21/Golang%E6%8C%87%E9%92%88-pointer/" rel="next" title="Golang指针-pointer">
+      Golang指针-pointer <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%8F%8A%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">查看操作系统及版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Golang%E8%AF%AD%E8%A8%80%E5%BC%80%E5%8F%91%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">Golang语言开发包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS-%E4%B8%8B%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">macOS 下安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux"><span class="nav-number">4.</span> <span class="nav-text">Linux</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%AE%89%E8%A3%85"><span class="nav-number"></span> <span class="nav-text">测试安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GOPROXY"><span class="nav-number">1.</span> <span class="nav-text">GOPROXY</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%BC%96%E8%AF%91"><span class="nav-number"></span> <span class="nav-text">跨平台编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Go-%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-number"></span> <span class="nav-text">Go 编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%B8%AD%E6%96%87%E7%AE%80%E4%BD%93%E6%8F%92%E4%BB%B6"><span class="nav-number">0.1.</span> <span class="nav-text">安装中文简体插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85go%E6%89%A9%E5%B1%95"><span class="nav-number">0.2.</span> <span class="nav-text">安装go扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%B8%AD%E6%96%87%E7%AE%80%E4%BD%93%E6%8F%92%E4%BB%B6-1"><span class="nav-number">0.3.</span> <span class="nav-text">安装中文简体插件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AAGolang%E7%A8%8B%E5%BA%8F"><span class="nav-number"></span> <span class="nav-text">第一个Golang程序</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="吴志鹏"
+      src="/images/favicon/android-chrome-512x512.png">
+  <p class="site-author-name" itemprop="name">吴志鹏</p>
+  <div class="site-description" itemprop="description">Talk is free，please state clearly</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Payne-Wu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Payne-Wu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wuzhipeng1289690157@gmail.com" title="E-Mail → mailto:wuzhipeng1289690157@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/wu-zhi-peng-72-78" title="ZhiHu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;wu-zhi-peng-72-78" rel="noopener" target="_blank"><i class="fa fa-magic fa-fw"></i>ZhiHu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6987234483" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;6987234483" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴志鹏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">373k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:39</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'v5yI1sEaxpTl6gCkO0dApNOH-gzGzoHsz',
+      appKey     : 'ugl27izkUCvh7RIyvo7kcFCv',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":true}});</script></body>
+</html>

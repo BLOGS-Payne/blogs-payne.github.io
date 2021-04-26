@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="还记得那是在2018年的十月的某个日子，虽早已入秋，但夏日的炎热却丝毫不减退散。那时的我正捧着一本SQL Server程序设计的白蓝皮书与九栋315的狗子们，匆匆的走向j1-402进行了我们人生中第一次SQL数据库的学习，时光总是戏人，现实总是玩笑。当初的几个伙伴都走向了各行各业，而唯有我编程课，问啥啥不会，写啥啥就废的我进入了IT行业。说来实在嘲讽，缅怀那些我错过的编程课，致那些年说过无数次“让">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql,何必在忆-基础篇">
+<meta property="og:url" content="http://example.com/2021/01/11/sql-%E4%BD%95%E5%BF%85%E5%9C%A8%E5%BF%86-%E5%9F%BA%E7%A1%80%E7%AF%87/index.html">
+<meta property="og:site_name" content="吴志鹏｜Payne-Wu">
+<meta property="og:description" content="还记得那是在2018年的十月的某个日子，虽早已入秋，但夏日的炎热却丝毫不减退散。那时的我正捧着一本SQL Server程序设计的白蓝皮书与九栋315的狗子们，匆匆的走向j1-402进行了我们人生中第一次SQL数据库的学习，时光总是戏人，现实总是玩笑。当初的几个伙伴都走向了各行各业，而唯有我编程课，问啥啥不会，写啥啥就废的我进入了IT行业。说来实在嘲讽，缅怀那些我错过的编程课，致那些年说过无数次“让">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gmd63x1tzoj311o0u0go0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gmd64lw40rj313c0kegn5.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gmd66b11g5j313o0piabh.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008eGmZEgy1gmfo1pre7wj31hy0u0afz.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008eGmZEgy1gmgl5sg1n2j30rq0ic3yp.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008eGmZEgy1gmgmsbglbmj30ey09it8s.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008eGmZEgy1gmgmx1cum6j30ey09eq30.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008eGmZEgy1gmgn1b1f0bj30f009ct8s.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008eGmZEgy1gmhjljoy2gj30j20643zc.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008eGmZEgy1gmhk5wso0sj31080ak76b.jpg">
+<meta property="article:published_time" content="2021-01-11T08:21:48.000Z">
+<meta property="article:modified_time" content="2021-01-11T08:22:58.781Z">
+<meta property="article:author" content="吴志鹏">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gmd63x1tzoj311o0u0go0.jpg">
+
+<link rel="canonical" href="http://example.com/2021/01/11/sql-%E4%BD%95%E5%BF%85%E5%9C%A8%E5%BF%86-%E5%9F%BA%E7%A1%80%E7%AF%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>sql,何必在忆-基础篇 | 吴志鹏｜Payne-Wu</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴志鹏｜Payne-Wu</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Talk is free，please state clearly </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Payne-Wu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/11/sql-%E4%BD%95%E5%BF%85%E5%9C%A8%E5%BF%86-%E5%9F%BA%E7%A1%80%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon/android-chrome-512x512.png">
+      <meta itemprop="name" content="吴志鹏">
+      <meta itemprop="description" content="Talk is free，please state clearly">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴志鹏｜Payne-Wu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          sql,何必在忆-基础篇
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-11 16:21:48 / 修改时间：16:22:58" itemprop="dateCreated datePublished" datetime="2021-01-11T16:21:48+08:00">2021-01-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/01/11/sql-%E4%BD%95%E5%BF%85%E5%9C%A8%E5%BF%86-%E5%9F%BA%E7%A1%80%E7%AF%87/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/11/sql-%E4%BD%95%E5%BF%85%E5%9C%A8%E5%BF%86-%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>还记得那是在2018年的十月的某个日子，虽早已入秋，但夏日的炎热却丝毫不减退散。那时的我正捧着一本<code>SQL Server程序设计</code>的白蓝皮书与九栋315的狗子们，匆匆的走向<code>j1-402</code>进行了我们人生中第一次<code>SQL数据库的学习</code>，时光总是戏人，现实总是玩笑。当初的几个伙伴都走向了各行各业，而唯有我编程课，问啥啥不会，写啥啥就废的我进入了IT行业。说来实在嘲讽，缅怀那些我错过的编程课，致那些年说过无数次“让我学<code>SQL</code>,根本不可能”，我承认我打脸了。正如此章的title一般，“SQL语句， 何必在忆？”</p>
+<p>很久之前就学了SQL，然而又忘记，今天正式系统的性的回顾一下，温故而知新。可以为师矣<br><a id="more"></a></p>
+<h2 id="表属性"><a href="#表属性" class="headerlink" title="表属性"></a>表属性</h2><h3 id="表的属性"><a href="#表的属性" class="headerlink" title="表的属性"></a>表的属性</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">存储引擎:</span><br><span class="line">InnoDB（默认的）</span><br><span class="line">字符集和排序规则:</span><br><span class="line">utf8</span><br><span class="line">utf8mb4</span><br></pre></td></tr></table></figure>
+<h3 id="列的属性"><a href="#列的属性" class="headerlink" title="列的属性"></a>列的属性</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">约束(一般建表时添加):</span><br><span class="line">primary key ：主键约束</span><br><span class="line">设置为主键的列，此列的值必须非空且唯一，主键在一个表中只能有一个，但是可以有多个列一起构成。 作为聚簇索引</span><br><span class="line">not null      ：非空约束</span><br><span class="line">列值不能为空，也是表设计的规范，尽可能将所有的列设置为非空。可以设置默认值为0</span><br><span class="line">unique key ：唯一键</span><br><span class="line">列值不能重复</span><br><span class="line">unsigned ：无符号</span><br><span class="line">针对数字列，非负数。</span><br><span class="line"></span><br><span class="line">其他属性:</span><br><span class="line">key :索引</span><br><span class="line">可以在某列上建立索引，来优化查询,一般是根据需要后添加</span><br><span class="line">default           :默认值</span><br><span class="line">列中，没有录入值时，会自动使用default的值填充</span><br><span class="line">auto_increment:自增长</span><br><span class="line">针对数字列，顺序的自动填充数据（默认是从1开始，将来可以设定起始点和偏移量）</span><br><span class="line">comment : 注释</span><br></pre></td></tr></table></figure>
+<h3 id="sql-mode"><a href="#sql-mode" class="headerlink" title="sql_mode"></a>sql_mode</h3><p>作用：影响sql执行行为，规范SQL语句的书写方式(例如除数不能为0)</p>
+<p>可以使用select @sql_mode查看(各版本有所出入)</p>
+<h3 id="字符集-charset-及校对规则-Collation"><a href="#字符集-charset-及校对规则-Collation" class="headerlink" title="字符集(charset)及校对规则(Collation)"></a>字符集(charset)及校对规则(Collation)</h3><h4 id="字符集："><a href="#字符集：" class="headerlink" title="字符集："></a>字符集：</h4><ul>
+<li>utf8：最大存储长度，单个字符最多3字节</li>
+<li>utf8mb4：最大存储长度，单个字符最多4字节</li>
+</ul>
+<p>常用于建库建表时</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create database dbname charset utf8mb4;</span><br><span class="line"># 查看数据库的字符集合</span><br><span class="line">show create database dbname;</span><br></pre></td></tr></table></figure>
+<h4 id="校对规则"><a href="#校对规则" class="headerlink" title="校对规则"></a>校对规则</h4><p>每种字符集，有多种校对规则(排序)，例如常见的ASCII编码表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show collation;</span><br></pre></td></tr></table></figure>
+<p>作用：影响排序的操作</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="text类型"><a href="#text类型" class="headerlink" title="text类型"></a>text类型</h4><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gmd63x1tzoj311o0u0go0.jpg" alt=""></p>
+<h4 id="Number类型"><a href="#Number类型" class="headerlink" title="Number类型"></a>Number类型</h4><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gmd64lw40rj313c0kegn5.jpg" alt=""></p>
+<p><code>*</code>:这些整数类型拥有额外的选项 UNSIGNED。通常，整数可以是负数或正数。如果添加 UNSIGNED 属性，那么范围将从 0 开始，而不是某个负数。</p>
+<h4 id="Date类型"><a href="#Date类型" class="headerlink" title="Date类型"></a>Date类型</h4><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gmd66b11g5j313o0piabh.jpg" alt=""></p>
+<p><code>*</code>即便 DATETIME 和 TIMESTAMP 返回相同的格式，它们的工作方式很不同。在 INSERT 或 UPDATE 查询中，TIMESTAMP 自动把自身设置为当前的日期和时间。TIMESTAMP 也接受不同的格式，比如 YYYYMMDDHHMMSS、YYMMDDHHMMSS、YYYYMMDD 或 YYMMDD。</p>
+<h2 id="什么是SQL语句"><a href="#什么是SQL语句" class="headerlink" title="什么是SQL语句"></a>什么是SQL语句</h2><p>SQL语句是结构化查询语言(Structured Query Language)的简称,是一种特殊目的的编程语言，是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统。</p>
+<h2 id="SQL语句的类型"><a href="#SQL语句的类型" class="headerlink" title="SQL语句的类型"></a>SQL语句的类型</h2><p>数据查询语言（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/DQL">DQL</a>:Data Query Language）：其语句，也称为“数据检索<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/语句">语句</a>”，用以从表中获得数据，确定数据怎样在应用程序给出。保留字<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/SELECT/10735068">SELECT</a>是DQL（也是所有SQL）用得最多的动词，其他DQL常用的保留字有WHERE，ORDER BY，GROUP BY和HAVING。这些DQL保留字常与其它类型的SQL语句一起使用。</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/数据操作语言">数据操作语言</a>（DML：Data Manipulation Language）：其语句包括动词<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/INSERT">INSERT</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/UPDATE">UPDATE</a>和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/DELETE">DELETE</a>。它们分别用于添加、修改和删除。</p>
+<p>事务控制语言（TCL）：它的语句能确保被DML语句影响的表的所有行及时得以更新。包括COMMIT（提交）命令、SAVEPOINT（保存点）命令、ROLLBACK（回滚）命令。</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/数据控制语言">数据控制语言</a>（DCL）：它的语句通过GRANT或REVOKE实现权限控制，确定单个用户和用户组对<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/数据库对象">数据库对象</a>的访问。某些RDBMS可用GRANT或REVOKE控制对<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/表单">表单</a>个列的访问。</p>
+<p>数据定义语言（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/DDL/21997">DDL</a>）：其语句包括动词CREATE,ALTER和DROP。在数据库中创建新表或修改、删除表（CREATE TABLE 或 DROP TABLE）；为表加入索引等。</p>
+<p>指针控制语言（CCL）：它的语句，像DECLARE CURSOR，FETCH INTO和UPDATE WHERE CURRENT用于对一个或多个表单独行的操作。</p>
+<p>比较常用的有<code>DDL(数据定义语言)</code>`DCL(数据控制语言)<code>\</code>DML(数据操作语言)<code>\</code>DQL(数据查询语言)`</p>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><h3 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">?         (\?) Synonym for &#96;help&#39;.           # 帮助信息                                                                                </span><br><span class="line">clear     (\c) Clear the current input statement.  清空此行sql                                                                         </span><br><span class="line">connect   (\r) Reconnect to the server. Optional arguments are db and host.                                                  </span><br><span class="line">delimiter (\d) Set statement delimiter.                                                                                      </span><br><span class="line">edit      (\e) Edit command with $EDITOR.                                                                                    </span><br><span class="line">ego       (\G) Send command to mysql server, display result vertically. 格式化输出</span><br><span class="line">exit      (\q) Exit mysql. Same as quit.	退出登陆 ctrl(control) + d </span><br><span class="line">go        (\g) Send command to mysql server.</span><br><span class="line">help      (\h) Display this help.</span><br><span class="line">nopager   (\n) Disable pager, print to stdout.</span><br><span class="line">tee       (\T) Set outfile [to_outfile]. Append everything into given outfile. # 记录日志（语句+结果） eg:tee &#x2F;tmp&#x2F;mysql.log</span><br><span class="line">notee     (\t) Don&#39;t write into outfile. 不记录日志</span><br><span class="line">pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.</span><br><span class="line">print     (\p) Print current command.</span><br><span class="line">prompt    (\R) Change your mysql prompt.</span><br><span class="line">quit      (\q) Quit mysql.</span><br><span class="line">rehash    (\#) Rebuild completion hash.</span><br><span class="line">source    (\.) Execute an SQL script file. Takes a file name as an argument. 导入脚步，相当于 &lt;</span><br><span class="line">status    (\s) Get status information from the server.</span><br><span class="line">system    (\!) Execute a system shell command.</span><br><span class="line">use       (\u) Use another database. Takes database name as argument.</span><br><span class="line">charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.</span><br><span class="line">warnings  (\W) Show warnings after every statement.</span><br><span class="line">nowarning (\w) Don&#39;t show warnings after every statement.</span><br><span class="line">resetconnection(\x) Clean session context.</span><br></pre></td></tr></table></figure>
+<h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><h4 id="DDL-数据定义语言"><a href="#DDL-数据定义语言" class="headerlink" title="DDL 数据定义语言"></a>DDL 数据定义语言</h4><p>在日常中DDL多用于库、表的管理.</p>
+<p><strong>库名与库属性</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 增</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> dbname</span><br><span class="line">eg: <span class="keyword">create</span> <span class="keyword">database</span> dbname <span class="keyword">charset</span> utf8mb4</span><br><span class="line"><span class="comment">## 删</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> dbname</span><br><span class="line"><span class="comment">## 改 (从小到大改， utf8 -&gt; utf8mb4, 严格超集)</span></span><br><span class="line"><span class="keyword">alter</span>  <span class="keyword">database</span> dbname 将修改的属性名 将要修改的属性值</span><br><span class="line"><span class="comment">## 查</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建库规范：<br>1.库名不能有大写字母,不能太长(&lt;30字符) 多平台兼容性问题<br>2.建库要加字符集<br>3.库名不能有数字开头<br>4.库名要和业务相关</p>
+</blockquote>
+<p><strong>表</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 增加</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tableName(</span><br><span class="line">列<span class="number">1</span>  属性（数据类型、约束、其他属性） ，</span><br><span class="line">列<span class="number">2</span>  属性，</span><br><span class="line">列<span class="number">3</span>  属性</span><br><span class="line">)</span><br><span class="line">eg:</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student(</span><br><span class="line"><span class="keyword">id</span>      <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">&#x27;学号&#x27;</span>,</span><br><span class="line">sname   <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;姓名&#x27;</span>,</span><br><span class="line">sage    <span class="built_in">TINYINT</span> <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;年龄&#x27;</span>,</span><br><span class="line">sgender ENUM(<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;f&#x27;</span>,<span class="string">&#x27;n&#x27;</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;n&#x27;</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;性别&#x27;</span> ,</span><br><span class="line">sfz     <span class="built_in">CHAR</span>(<span class="number">18</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">UNIQUE</span>  <span class="keyword">COMMENT</span> <span class="string">&#x27;身份证&#x27;</span>,</span><br><span class="line">intime  <span class="built_in">TIMESTAMP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NOW</span>() <span class="keyword">COMMENT</span> <span class="string">&#x27;入学时间&#x27;</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">INNODB</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span> <span class="string">&#x27;学生表&#x27;</span>;</span><br><span class="line"></span><br><span class="line">id INT NOT NULL PRIMARY KEY AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">&#x27;全局id&#x27;</span>, </span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> TableName2 <span class="keyword">LIKE</span> TableName1;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除表</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> tableName</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName <span class="keyword">ADD</span>(<span class="keyword">DROP</span>) 属性（数据类型、约束、其他属性）</span><br><span class="line">eg:</span><br><span class="line"><span class="comment"># 在stuent表中添加qq列</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">ADD</span> qq <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">UNIQUE</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;qq&#x27;</span>;</span><br><span class="line"><span class="comment"># 在sname后加微信列</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">ADD</span> wechat <span class="built_in">VARCHAR</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">UNIQUE</span>  <span class="keyword">COMMENT</span> <span class="string">&#x27;微信号&#x27;</span> <span class="keyword">AFTER</span> sname ;</span><br><span class="line"><span class="comment"># 在id列前加一个新列num</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">ADD</span> <span class="keyword">num</span> <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">&#x27;数字&#x27;</span> <span class="keyword">FIRST</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除列 </span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> stu <span class="keyword">DROP</span> <span class="keyword">num</span>;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> stu <span class="keyword">DROP</span> qq;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> stu <span class="keyword">DROP</span> wechat;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将sgender 改为 sg 数据类型改为 CHAR 类型</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">change</span> sgender sg <span class="built_in">CHAR</span>(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;n&#x27;</span> ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">用的时候，一定要注意：</span><br><span class="line">修改数据类型，修改字段位置  <span class="comment">---用modify</span></span><br><span class="line">修改名字 <span class="comment">--就用change</span></span><br><span class="line"><span class="comment"># 范围大用change，小用modify。</span></span><br><span class="line"><span class="comment"># 均需要加入类型，限制</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>表名小写</li>
+<li>不能是数字开头</li>
+<li>注意字符集和存储引擎</li>
+<li>表名和业务有关</li>
+<li>选择合适的数据类型，简短的、长度合适的数据类型</li>
+<li>每个列都要有注释</li>
+<li>每个列设置为非空，无法保证非空，用0来填充。</li>
+<li>必须有主键</li>
+</ol>
+</blockquote>
+<h4 id="DCL-数据控制语言"><a href="#DCL-数据控制语言" class="headerlink" title="DCL 数据控制语言"></a>DCL 数据控制语言</h4><p>控制就是操作权限，而在DCL之中，主要有两个语法：GRANT,REVOKE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 用户管理</span><br><span class="line">create user xxx@&quot;白名单&quot; indentified by &quot;password&quot;</span><br><span class="line">drop user</span><br><span class="line">alter user</span><br><span class="line">select user,host from mysql.user;</span><br><span class="line"># 权限</span><br><span class="line">## 查看所有权限列表</span><br><span class="line">show privileges;</span><br><span class="line">all </span><br><span class="line">with grant option</span><br><span class="line"></span><br><span class="line"># 查看用户权限</span><br><span class="line">show grant UserName@&quot;白名单&quot;</span><br><span class="line">select * from mysql.user\G; </span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmfo1pre7wj31hy0u0afz.jpg" alt=""></p>
+<p><strong>DCL</strong></p>
+<p>授权</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grant 权限 on 对象 to 用户 identified by “密码”</span><br><span class="line"># mysql 8.0+:(中文表示，可自定制)</span><br><span class="line">create user 用户 identified by “密码”</span><br><span class="line">grant 权限1，权限2，权限3... on 对象 to 用户 identified by “密码”</span><br></pre></td></tr></table></figure>
+<p>权限:<br>    ALL: 管理员(不包含“    Grant option”，给他人授权)<br>    权限1，权限2，权限3…： 普通人员(开发人员)<br>    Grant option</p>
+<p>对象范围:  库，表</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">“.”</th>
+<th style="text-align:center">—-&gt; chmod  -R 755 /</th>
+<th style="text-align:center">管理员</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">userName.*</td>
+<td style="text-align:center">—-&gt; chmod  -R 755 userName/</td>
+<td style="text-align:center">普通用户</td>
+</tr>
+<tr>
+<td style="text-align:center">userName.t1</td>
+<td style="text-align:center">—-&gt; chmod  -R 755 userName/t1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 授权</span><br><span class="line">grant create update, select ... on 库名.表的范围[*(所有), 表名1] to userName@“白名单”</span><br></pre></td></tr></table></figure>
+<p>Mysql授权表</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">user</th>
+<th style="text-align:center"><em>.</em></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">db</td>
+<td style="text-align:center">db.*</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">Tables_priv</td>
+<td style="text-align:center">db.table</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">Colums</td>
+<td style="text-align:center">列</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">Procs_priv</td>
+<td style="text-align:center">存储过程中的权限</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>回收权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">revoke 权限 on 库 from 用户@“白名单”</span><br><span class="line"># 具体eg如上</span><br></pre></td></tr></table></figure>
+<p>拓展，忘记root密码了该怎么办？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 需知</span><br><span class="line"># --skip-grant-tables 跳过授权表</span><br><span class="line"># --skip-network  关闭TCP&#x2F;IP连接</span><br><span class="line"></span><br><span class="line"># 1.关闭数据库(任选其一)</span><br><span class="line">service mysqld stop</span><br><span class="line">&#x2F;etc&#x2F;init.d&#x2F;mysqld stop</span><br><span class="line">pkill mysqld</span><br><span class="line"></span><br><span class="line"># 2.跳过验证(任选其一)</span><br><span class="line">service mysqld start --skip-grant-tables</span><br><span class="line">service mysqld restart --skip-grant-tables</span><br><span class="line">mysql_safe --skip-grant-tables &amp;</span><br><span class="line"></span><br><span class="line"># 3.禁止远程连接</span><br><span class="line">service mysqld start --skip-grant-tables --skip-network </span><br><span class="line">service mysqld restart --skip-grant-tables --skip-network</span><br><span class="line"></span><br><span class="line"># 4.修改密码</span><br><span class="line">## 4.1手动加载授权表</span><br><span class="line">flush privileges</span><br><span class="line">## 4.2修改密码</span><br><span class="line">alter user root@&quot;localhost&quot; indentified by &quot;new Passwd&quot;</span><br><span class="line"></span><br><span class="line"># 5.重启数据库</span><br><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
+<p><strong>原理探究</strong></p>
+<p>说到这个，那就不得不从mysql的<code>server</code>层说起了，mysql的架构图如下(仅关键部分)</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmgl5sg1n2j30rq0ic3yp.jpg" alt=""></p>
+<p>当我们忘记密码的时候,改怎么办呢？</p>
+<p>这就对于我们平时对于mysql的模型有所考察了，如果你知道mysql的他内部到底是如何运行的,那么只需要在合适的地方，按照我们所想的给他“绕道而行”，是否就可以绕过这个密码验证了呢？答案是当然可以的。</p>
+<p>首先我们介绍一下上面这副图中执行流程，当我们启动mysql服务的时候，系统会自动帮我们做一下这些事儿</p>
+<ol>
+<li>首先提供可连接的协议，也就是提供服务</li>
+<li>打开用户与密码校验，以处理将要连接的客户</li>
+<li>验证成功，分配独立的连接线程</li>
+</ol>
+<p>如果我们需要跳过密码校验,那么只需要做以下几件事。</p>
+<ol>
+<li>让系统重启</li>
+<li>在重启的过程中停掉用户与密码校验</li>
+</ol>
+<p>这样我们就可以连接了，但是还不够。尽然已经停掉了。此时的我们无法修改密码.(跳过验证，而不是把验证功能移除了)</p>
+<p>那么我们此时还需要把验证功能加载进来，然后对验证的表进行修改。</p>
+<h4 id="DML-数据操作语言"><a href="#DML-数据操作语言" class="headerlink" title="DML 数据操作语言"></a>DML 数据操作语言</h4><p>这个也是我们日常中用的最多的地方，应为建库表，改权限，改密码。修改等等什么的并不是每次都要嘛.这个也很好理解</p>
+<blockquote>
+<p>DML 数据操作语言 对表中的数据行进行增、删、改</p>
+</blockquote>
+<p><strong>insert</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法</span></span><br><span class="line">单行数据</span><br><span class="line">INSERT INTO tableName(key1, key2, key3..) VALUES(value1, value2,value3...) [SELECT * FROM tableName]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 多行数据</span></span><br><span class="line">INSERT INTO tableName(key1, key2, key3..) VALUES \</span><br><span class="line">(value1, value2,value3...)</span><br><span class="line">(value1, value2,value3...)</span><br><span class="line">(value1, value2,value3...);</span><br><span class="line">...</span><br><span class="line">[SELECT * FROM tableName]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>插入时, key1,key2,key3 必须与value1，value2， value3 数量一致</p>
+<p>插入对应字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO tableName(key1, key3..) VALUES(value1, value3...) [SELECT * FROM tableName]</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>update</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 更新前我们一般都会先查表内数据</span><br><span class="line"># 查询出对应表已存在所有行</span><br><span class="line">DESC tableName;</span><br><span class="line"># 查询对应表已存在数据</span><br><span class="line">SELECT * FROM tableName;	# * 可替换成字段名，查对应字段</span><br><span class="line"></span><br><span class="line"># 更新数据</span><br><span class="line">UPDATE student SET 字段名&#x3D;&#39;新值&#39; [WHERE 限定条件];</span><br></pre></td></tr></table></figure>
+<p>Eg:</p>
+<p>创建一张新的student表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 建表</span><br><span class="line">CREATE TABLE &#96;student&#96; (</span><br><span class="line"> &#96;id&#96; int NOT NULL AUTO_INCREMENT COMMENT &#39;学号&#39;,</span><br><span class="line"> &#96;sname&#96; varchar(255) CHARACTER SET utf8 NOT NULL COMMENT &#39;姓名&#39;,</span><br><span class="line"> &#96;sage&#96; tinyint unsigned NOT NULL DEFAULT &#39;0&#39; COMMENT &#39;年龄&#39;,</span><br><span class="line"> &#96;intime&#96; timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &#39;入学时间&#39;,</span><br><span class="line"> PRIMARY KEY (&#96;id&#96;)</span><br><span class="line">) ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8mb4 COLLATE&#x3D;utf8mb4_0900_ai_ci COMMENT&#x3D;&#39;学生表&#39;</span><br><span class="line"></span><br><span class="line"># 插入演示数据</span><br><span class="line">INSERT INTO student(sname,sage) VALUES(&quot;赵一&quot;, 1),</span><br><span class="line">(&quot;王二&quot;, 2),</span><br><span class="line">(&quot;张三&quot;, 3),</span><br><span class="line">(&quot;李四&quot;, 4);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>数据库</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmgmsbglbmj30ey09it8s.jpg" alt=""></p>
+<p>需求一:</p>
+<p>李四改名为“里斯”;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UPDATE student SET sname&#x3D;&quot;里斯&quot; WHERE sname &#x3D; &quot;李四&quot;;</span><br><span class="line"></span><br><span class="line"># 或者</span><br><span class="line">UPDATE student SET sname&#x3D;&quot;里斯&quot; WHERE id&#x3D;4;</span><br><span class="line">UPDATE student SET sname&#x3D;&quot;里斯&quot; WHERE sage&#x3D;4;</span><br></pre></td></tr></table></figure>
+<p>修改后，如下所示</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmgmx1cum6j30ey09eq30.jpg" alt=""></p>
+<p>需求二:</p>
+<p>将所有表内成员的年龄+10;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPDATE student SET sage&#x3D;sage + 10</span><br><span class="line"># UPDATE student SET sage+&#x3D;10(错误写法,开发时候用的什么sage ++， sage +&#x3D;，在这里都不允许)</span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmgn1b1f0bj30f009ct8s.jpg" alt=""></p>
+<p>需求三:将所有表内成员的年龄+10,除了里斯</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE student SET sage&#x3D;sage + 10 WHERE sname !&#x3D; &quot;里斯&quot;;</span><br><span class="line"># 当然也可以这样写;</span><br><span class="line">UPDATE student SET sage&#x3D;sage + 10 WHERE sname &#x3D; &quot;赵一&quot; OR sname &#x3D; &quot;王二&quot; OR sname&#x3D;&quot;张三&quot; ;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>AND: 执行均满足</p>
+<p>OR: 满足其一执行</p>
+<p>where 见下文</p>
+</blockquote>
+<p><strong>delete</strong></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 删除指定数据</span><br><span class="line">DELETE FROM tableName  [WHERE <span class="keyword">id</span>=<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"># 清空标中所有数据</span><br><span class="line">DELETE FROM student;</span><br><span class="line">truncate table student;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>区别:<br>delete: DML操作, 是逻辑性质删除,逐行进行删除,速度慢.<br>truncate: DDL操作,对与表段中的数据页进行清空,速度快.</p>
+</blockquote>
+<p>伪删除：用update来替代delete，最终保证业务中查不到（select）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.添加状态列</span><br><span class="line">ALTER TABLE stuent ADD state TINYINT NOT NULL DEFAULT 1 ;</span><br><span class="line">SELECT * FROM stuent;</span><br><span class="line">2. UPDATE 替代 DELETE</span><br><span class="line">UPDATE stuent SET state&#x3D;0 WHERE id&#x3D;6;</span><br><span class="line">3. 业务语句查询</span><br><span class="line">SELECT * FROM stu WHERE state&#x3D;1;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>拓展</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM student;</span><br><span class="line">DROP TABLE student;</span><br><span class="line">truncate table student;</span><br></pre></td></tr></table></figure>
+<p>以上三条删除语句有何区别？</p>
+<p>同：三者都是删除语句，均可删除</p>
+<p>异:</p>
+<p>DELETE FROM student:</p>
+<p>逻辑上<code>逐行</code>删除，数据过多，操作很慢</p>
+<p>并没有真正的从磁盘上删除，知识在磁盘上打上标记，磁盘空间不立即释放。HWM高位线不会降低</p>
+<p>DROP TABLE student;</p>
+<p>将表结构(元数据)和数据行，物理层次删除</p>
+<p>truncate truncate table student;</p>
+<p>清空表段中的所有数据页，物理层次删除全表数据，磁盘空间立即释放。HWM高位线降低</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmhjljoy2gj30j20643zc.jpg" alt=""></p>
+</blockquote>
+<h4 id="DQL-数据查询语言"><a href="#DQL-数据查询语言" class="headerlink" title="DQL 数据查询语言"></a>DQL 数据查询语言</h4><p>show类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br><span class="line">show CREATE DATABASE databaseName;</span><br><span class="line"></span><br><span class="line">show table;</span><br><span class="line">show CREATE TABLE table;</span><br><span class="line"></span><br><span class="line">desc tableName;</span><br></pre></td></tr></table></figure>
+<p><strong>select类</strong> </p>
+<blockquote>
+<p>获取表中的数据行</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># <span class="selector-tag">select</span> @<span class="keyword">@xxx</span> 查看系统参数</span><br><span class="line">SELECT @@port;</span><br><span class="line"><span class="selector-tag">SELECT</span> @<span class="keyword">@basedir</span>;</span><br><span class="line"><span class="selector-tag">SELECT</span> @<span class="keyword">@datadir</span>;</span><br><span class="line"><span class="selector-tag">SELECT</span> @<span class="keyword">@socket</span>;</span><br><span class="line"><span class="selector-tag">SELECT</span> @<span class="keyword">@server_id</span>;</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">select</span> 函数</span><br><span class="line"><span class="selector-tag">SELECT</span> <span class="selector-tag">NOW</span>();</span><br><span class="line"><span class="selector-tag">SELECT</span> <span class="selector-tag">DATABASE</span>();</span><br><span class="line"><span class="selector-tag">SELECT</span> <span class="selector-tag">USER</span>();</span><br><span class="line"><span class="selector-tag">SELECT</span> <span class="selector-tag">CONCAT</span>(&quot;<span class="selector-tag">hello</span> <span class="selector-tag">world</span>&quot;);</span><br><span class="line"><span class="selector-tag">SELECT</span> <span class="selector-tag">CONCAT</span>(<span class="selector-tag">USER</span>,&quot;@&quot;,HOST) FROM mysql.user;</span><br><span class="line"><span class="selector-tag">SELECT</span> <span class="selector-tag">GROUP_CONCAT</span>(<span class="selector-tag">USER</span>,&quot;@&quot;,HOST) FROM mysql.user;</span><br></pre></td></tr></table></figure>
+<p>手册 <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/sql-function-reference.html">https://dev.mysql.com/doc/refman/8.0/en/sql-function-reference.html</a></p>
+<p>select配合子句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">FROM 表1，表2...,</span><br><span class="line">WHERE 过滤条件1，过滤条件2，过滤条件3 ...</span><br><span class="line">GROUP BY 条件列1，条件列2，条件列3 ...</span><br><span class="line">	# selct_list 列名</span><br><span class="line">HAVING 过滤条件1，过滤条件2，过滤条件3 ...</span><br><span class="line">ORDER BY 条件列1，条件列2，条件列3 ...</span><br><span class="line">LIMIT 限制条件;</span><br></pre></td></tr></table></figure>
+<p><strong>单表子句-from</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列1,列2 FROM 表</span><br><span class="line">SELECT  *  FROM 表</span><br><span class="line"></span><br><span class="line"># EG</span><br><span class="line"># 查询student中所有的数据(不要对大表进行操作)</span><br><span class="line">SELECT * FROM stu ;</span><br><span class="line"># 查询stu表中,学生姓名和入学时间</span><br><span class="line">SELECT sname , intime FROM stuent;</span><br></pre></td></tr></table></figure>
+<p><strong>单表子句-where</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SELECT col1,col2 FROM TABLE WHERE colN 条件;</span><br><span class="line"># where 操作符(&gt;、&lt;、&gt;&#x3D;、 &lt;&#x3D;、 &lt;&gt;、in、like、and、or)</span><br><span class="line">SELECT col1,col2 FROM TABLE WHERE &#x3D; 条件;</span><br><span class="line"></span><br><span class="line"># where 模糊查询</span><br><span class="line">SELECT * FROM city WHERE district LIKE &#39;guang%&#39;;    </span><br><span class="line">%  : 表示任意0个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示。</span><br><span class="line">_  : 表示任意单个字符。匹配单个任意字符，它常用来限制表达式的字符长度语句</span><br><span class="line">[] : 表示括号内所列字符中的一个（类似正则表达式）。指定一个字符、字符串或范围，要求所匹配对象为它们中的任一个。</span><br><span class="line"></span><br><span class="line"># where配合between...and...</span><br><span class="line">SELECT * FROM city  WHERE population &gt;1000000 AND population &lt;2000000;</span><br><span class="line">SELECT * FROM city  WHERE population BETWEEN 1000000 AND 2000000;</span><br></pre></td></tr></table></figure>
+<p> <strong>group by</strong></p>
+<p>根据 by后面的条件进行分组，方便统计，by后面跟一个列或多个列</p>
+<p>未分组分组列，使用聚合函数</p>
+<p>聚合函数</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">**<span class="built_in">max</span>()**      ：最大值</span><br><span class="line">**<span class="built_in">min</span>()**      ：最小值</span><br><span class="line">**avg()**      ：平均值</span><br><span class="line">**sum()**      ：总和</span><br><span class="line">**<span class="built_in">count</span>()**    ：个数</span><br><span class="line">group_concat() : 列转行</span><br></pre></td></tr></table></figure>
+<p><strong>HAVING</strong></p>
+<p>需要在group by 之后，在做判断过滤使用(类似于where)</p>
+<p><strong>order by</strong></p>
+<blockquote>
+<p>实现先排序，by后添加条件列(默认从小到大)</p>
+<p>逆序：后加DESC</p>
+</blockquote>
+<p><strong>distinct：去重复</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT countrycode FROM city ;</span><br><span class="line"><span class="function">SELECT <span class="title">DISTINCT</span><span class="params">(countrycode)</span> FROM city  </span>;</span><br></pre></td></tr></table></figure>
+<p>联合查询- union all</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-- 中国或美国城市信息</span><br><span class="line"></span><br><span class="line">SELECT * FROM city </span><br><span class="line"><span class="function">WHERE countrycode <span class="title">IN</span> (<span class="params"><span class="string">&#x27;CHN&#x27;</span> ,<span class="string">&#x27;USA&#x27;</span></span>)</span>;</span><br><span class="line"></span><br><span class="line">SELECT * FROM city WHERE countrycode=<span class="string">&#x27;CHN&#x27;</span></span><br><span class="line">UNION ALL</span><br><span class="line">SELECT * FROM city WHERE countrycode=<span class="string">&#x27;USA&#x27;</span></span><br><span class="line"></span><br><span class="line">说明:一般情况下,我们会将 IN 或者 OR 语句 改写成 UNION ALL,来提高性能</span><br><span class="line">UNION     去重复</span><br><span class="line">UNION ALL 不去重复</span><br></pre></td></tr></table></figure>
+<p><strong>LIMIT 限制条件</strong></p>
+<p>限制查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">FROM</span> 表名 <span class="keyword">LIMIT</span> 限制条件</span><br><span class="line">eg:</span><br><span class="line"><span class="comment">--- 只输出前1000条</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">FROM</span> 表名 <span class="keyword">LIMIT</span> <span class="number">1000</span></span><br><span class="line"><span class="comment">--- 只输出前1000-2000条</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">FROM</span> 表名 <span class="keyword">LIMIT</span> <span class="number">1000</span>, <span class="number">2000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">FROM</span> 表名 <span class="keyword">LIMIT</span> <span class="number">1000</span>, <span class="number">2000</span></span><br><span class="line">相当于</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">FROM</span> 表名 <span class="keyword">LIMIT</span> <span class="number">2000</span> <span class="keyword">OFFSET</span> <span class="number">1000</span></span><br></pre></td></tr></table></figure>
+<p><strong>join 多表连接查询</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmhk5wso0sj31080ak76b.jpg" alt=""></p>
+<p><strong>内连接</strong></p>
+<p>查询li4家的地址</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> A.name,B.address <span class="keyword">FROM</span></span><br><span class="line">A <span class="keyword">JOIN</span>  B</span><br><span class="line"><span class="keyword">ON</span> A.id=B.id	<span class="comment">--- 关联列</span></span><br><span class="line"><span class="keyword">WHERE</span> A.name=<span class="string">&#x27;li4&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--- 相当于</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> A.name,B.address <span class="keyword">FROM</span></span><br><span class="line">A <span class="keyword">JOIN</span>  B</span><br><span class="line"><span class="keyword">ON</span> A.id=B.id</span><br><span class="line"><span class="keyword">WHERE</span> A.name=<span class="string">&#x27;li4&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><strong>外连接</strong></p>
+<p>驱动表建议使用 数据少的表 为驱动表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> A.name,B.address <span class="keyword">FROM</span></span><br><span class="line">A <span class="keyword">JOIN</span>  B</span><br><span class="line"><span class="keyword">ON</span> A.id=B.id	<span class="comment">--- 关联列</span></span><br><span class="line"><span class="keyword">WHERE</span> A.name=<span class="string">&#x27;li4&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--- 相当于</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> A.name,B.address <span class="keyword">FROM</span></span><br><span class="line">A <span class="keyword">left</span> <span class="keyword">JOIN</span>  B</span><br><span class="line"><span class="keyword">ON</span> A.id=B.id</span><br><span class="line"><span class="keyword">WHERE</span> A.name=<span class="string">&#x27;li4&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">---  A left JOIN  B 其中a位驱动表</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/03/%E6%89%A7%E8%A1%8C%E4%B8%80%E6%9D%A1SQL%EF%BC%8C%E8%BF%99%E4%B9%8B%E9%97%B4%E5%88%B0%E5%BA%95%E5%8F%91%E7%94%9F%E4%BA%86%E5%95%A5%EF%BC%9F/" rel="prev" title="执行一条SQL，这之间到底发生了啥？">
+      <i class="fa fa-chevron-left"></i> 执行一条SQL，这之间到底发生了啥？
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/12/Supervisor-%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86%E6%9B%B4%E5%8A%A0%E5%BE%97%E5%BF%83%E5%BA%94%E6%89%8B/" rel="next" title="Supervisor-程序管理更加得心应手">
+      Supervisor-程序管理更加得心应手 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E5%B1%9E%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">表属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">表的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%97%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">列的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sql-mode"><span class="nav-number">1.3.</span> <span class="nav-text">sql_mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86-charset-%E5%8F%8A%E6%A0%A1%E5%AF%B9%E8%A7%84%E5%88%99-Collation"><span class="nav-number">1.4.</span> <span class="nav-text">字符集(charset)及校对规则(Collation)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">字符集：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%A1%E5%AF%B9%E8%A7%84%E5%88%99"><span class="nav-number">1.4.2.</span> <span class="nav-text">校对规则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#text%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.1.</span> <span class="nav-text">text类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Number%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.2.</span> <span class="nav-text">Number类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Date%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.3.</span> <span class="nav-text">Date类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSQL%E8%AF%AD%E5%8F%A5"><span class="nav-number">2.</span> <span class="nav-text">什么是SQL语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E8%AF%AD%E5%8F%A5%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">SQL语句的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">4.</span> <span class="nav-text">SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Client"><span class="nav-number">4.1.</span> <span class="nav-text">Client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server"><span class="nav-number">4.2.</span> <span class="nav-text">server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DDL-%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80"><span class="nav-number">4.2.1.</span> <span class="nav-text">DDL 数据定义语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DCL-%E6%95%B0%E6%8D%AE%E6%8E%A7%E5%88%B6%E8%AF%AD%E8%A8%80"><span class="nav-number">4.2.2.</span> <span class="nav-text">DCL 数据控制语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DML-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E8%A8%80"><span class="nav-number">4.2.3.</span> <span class="nav-text">DML 数据操作语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DQL-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80"><span class="nav-number">4.2.4.</span> <span class="nav-text">DQL 数据查询语言</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="吴志鹏"
+      src="/images/favicon/android-chrome-512x512.png">
+  <p class="site-author-name" itemprop="name">吴志鹏</p>
+  <div class="site-description" itemprop="description">Talk is free，please state clearly</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Payne-Wu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Payne-Wu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wuzhipeng1289690157@gmail.com" title="E-Mail → mailto:wuzhipeng1289690157@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/wu-zhi-peng-72-78" title="ZhiHu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;wu-zhi-peng-72-78" rel="noopener" target="_blank"><i class="fa fa-magic fa-fw"></i>ZhiHu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6987234483" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;6987234483" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴志鹏</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">373k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:39</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'v5yI1sEaxpTl6gCkO0dApNOH-gzGzoHsz',
+      appKey     : 'ugl27izkUCvh7RIyvo7kcFCv',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":true}});</script></body>
+</html>
