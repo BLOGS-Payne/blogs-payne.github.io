@@ -7,17 +7,11 @@ categories:
 date: 2020-12-22 00:34:28
 ---
 
-## Referer
-
-[pipenv官方文档](https://docs.pipenv.org/)
-
-[pipenv pypi](https://pypi.org/project/pipenv/)
-
 ## 什么是虚拟环境？
 
 - 由[百度百科](https://cuiqingcai.com/[https://baike.baidu.com/item/虚拟环境/6529153?fr=aladdin](https://baike.baidu.com/item/虚拟环境/6529153?fr=aladdin) ) 得知： 以专利的实时动态程序行为修饰与模拟算法，直接利用本机的 OS，模拟出自带与本机相容 OS 的虚拟机（Vista 下可模拟 Vista、XP，Windows 7 下则可模拟 Windows 7、Vista、XP），也称为 “虚拟环境”
 - 功能： 每一个环境都相当于一个新的 Python 环境。你可以在这个新的环境里安装库，运行代码等
-
+<!--more-->
 ## 为什么需要使用虚拟环境？
 
 - 众所周知 Python 的强大在于其兼容性，其强大的社区等。正因为第三方库多，层次不齐造成了许多的第三方库并不兼容
@@ -25,7 +19,7 @@ date: 2020-12-22 00:34:28
 - 虚拟环境中进行了隔离，更方便我们部署上线
 
 ## 什么时候需要使用虚拟环境？
-<!--more-->
+
 **例如：**
 
 - 项目依赖版本不同时 
@@ -478,8 +472,14 @@ pipenv shell
 # 即可重新进入虚拟环境
 ```
 
-3. 创建虚拟环境需注意
-
+3. 创建虚拟环境需注意 
    pipenv 并不支持嵌套的虚拟环境，默认使用此文件的父级目录中的pipfile
-
+   
    > 比如：在projectfile中有文件src-1，pipfile, src-2,如果进入src-1 中执行`pipenv install`or`pipenv --python 3.8`or `pipenv  tree`,中任何一个命令都会优先使用projectfile/pipfile
+   >
+
+## Referer
+
+[pipenv官方文档](https://docs.pipenv.org/)
+
+[pipenv pypi](https://pypi.org/project/pipenv/)
