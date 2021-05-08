@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Book List</title>
+    <url>/2021/05/09/Book-List/</url>
+    <content><![CDATA[<h2 id="图书清单"><a href="#图书清单" class="headerlink" title="图书清单"></a>图书清单</h2><h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><h4 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库:"></a>关系型数据库:</h4><h5 id="My-SQL"><a href="#My-SQL" class="headerlink" title="My SQL"></a>My SQL</h5><p><strong>SQL必知必会</strong></p>
+<p><strong>SQL入门经典</strong></p>
+<p><strong>高性能的MySQL</strong></p>
+<h4 id="非关系性数据库："><a href="#非关系性数据库：" class="headerlink" title="非关系性数据库："></a>非关系性数据库：</h4><h5 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h5><h5 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h5><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><h4 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h4><p><strong>Elasticsearch</strong></p>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h4><p><strong>Think Python</strong></p>
+<p><strong>Head First Python</strong></p>
+<p><strong>Learn Python The Hard Way</strong></p>
+<p><strong>Python学习手册</strong></p>
+<p><strong>Python编程：从入门到实战</strong></p>
+<p><strong>Python编程：入门到实践</strong></p>
+<h4 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h4><p><strong>Python Cookbook</strong></p>
+<p><strong>Python源码剖析</strong></p>
+<p><strong>流畅的Python</strong></p>
+<p><strong>编写高质量代码：改善Python程序的91个建议</strong></p>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><h3 id="GoLang"><a href="#GoLang" class="headerlink" title="GoLang"></a>GoLang</h3><h3 id="网络爬虫"><a href="#网络爬虫" class="headerlink" title="网络爬虫"></a>网络爬虫</h3><p>Python 网络爬虫从入门到实践</p>
+<p>Python3网络爬虫开发实战</p>
+<p>Python3反爬虫原理与绕过实战</p>
+<h4 id="进阶-1"><a href="#进阶-1" class="headerlink" title="进阶"></a>进阶</h4><p>Android安全攻防权威指南</p>
+<p>Android应用安全和逆向分析</p>
+<p>Android软件安全权威指南</p>
+<p>IDA PRO 权威指南</p>
+<h3 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h3><h4 id="通识类"><a href="#通识类" class="headerlink" title="通识类"></a>通识类</h4><blockquote>
+<p>认识数据分析</p>
+<p>构建数据分析思维</p>
+<p>练就数据分析能力</p>
+</blockquote>
+<p><strong>深入浅出数据分析</strong></p>
+<p><strong>精益数据分析</strong></p>
+<p><strong>数学之美</strong></p>
+<h4 id="统计学"><a href="#统计学" class="headerlink" title="统计学"></a>统计学</h4><p><strong>统计学</strong></p>
+<p><strong>深入浅出统计学</strong></p>
+<p><strong>赤裸裸的统计学</strong></p>
+<p><strong>统计学七支柱</strong></p>
+<h4 id="实践类"><a href="#实践类" class="headerlink" title="实践类"></a>实践类</h4><blockquote>
+<p>what do?</p>
+<p>How do?</p>
+<p>Why do?</p>
+</blockquote>
+<h5 id="Excel"><a href="#Excel" class="headerlink" title="Excel"></a>Excel</h5><p><strong>谁说菜鸟不会数据分析</strong></p>
+<p><strong>Excel数据分析思维、技术、与实践</strong></p>
+<p><strong>对比Excel轻松学习数据分析</strong></p>
+<h5 id="Python-1"><a href="#Python-1" class="headerlink" title="Python"></a>Python</h5><p><strong>Python数据分析</strong></p>
+<p><strong>利用Python进行数据分析</strong></p>
+<p><strong>Python金融大数据分析</strong></p>
+<p><strong>Python数据分析实战</strong></p>
+<h5 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h5><p><strong>用图表说话</strong></p>
+<p><strong>Excel图表之道</strong></p>
+<h4 id="数据分析技术的应用"><a href="#数据分析技术的应用" class="headerlink" title="数据分析技术的应用"></a>数据分析技术的应用</h4><p><strong>Python数据分析与数据化运营</strong></p>
+<blockquote>
+<p><strong>一句话点评：</strong>数据分析的领域、方向比较多，这本主要介绍的是互联网非常重要的会员、商品、流量、内容方面的数据化运营。</p>
+</blockquote>
+<p><strong>豆瓣简介：</strong>这是一部从实战角度讲解如何利用Python进行数据分析、挖掘和数据化运营的著作，不仅对数据分析的关键技术和技巧进行了总结，更重要的是对会员、商品、流量、内容4个主题的数据化运营进行了系统讲解。</p>
+<p>作者是国内一线数据分析师和大数据专家，在数据分析和数据化运营领域有近10年的经验，在业内颇具知名度和影响力。本书不仅得到了宋星、黄成明、宫鑫等14位资深专家的好评和推荐，还得到了天善智能、中国统计网等多个数据科学相关机构的支持和高度认可。</p>
+<p><strong>数据挖掘与数据化运营实战</strong></p>
+<blockquote>
+<p><strong>一句话点评：</strong>看数据化实战方面的书，基本就要看国内大厂是怎么做的，作者是阿里巴巴商业智能部数据分析专家，从事数据库营销和数据化运营分析多年。</p>
+</blockquote>
+<p><strong>豆瓣简介：</strong>《数据挖掘与数据化运营实战:思路、方法、技巧与应用》是目前有关数据挖掘在数据化运营实践领域比较全面和系统的著作，也是诸多数据挖掘书籍中为数不多的穿插大量真实的实践应用案例和场景的著作，更是创造性地针对数据化运营中不同分析挖掘课题类型，推出一一对应的分析思路集锦和相应的分析技巧集成，为读者提供“菜单化”实战锦囊的著作。</p>
+<p>作者结合自己数据化运营实践中大量的项目经验，用通俗易懂的“非技术”语言和大量活泼生动的案例，围绕数据分析挖掘中的思路、方法、技巧与应用，全方位整理、总结、分享，帮助读者深刻领会和掌握“以业务为核心，以思路为重点，以分析技术为辅佐”的数据挖掘实践应用宝典。</p>
+<p><strong>社交网站的数据挖掘与分析</strong></p>
+<blockquote>
+<p><strong>一句话点评：</strong>数据分析、数据挖掘、数据抓取等在社交网络方面的应用。</p>
+</blockquote>
+<p><strong>豆瓣简介：</strong>Matthew A. Russell Digital Reasoning Systems公司首席技术官（CTO）、Zaffra公司负责人。作为一名计算机科学家，他热衷于数据挖掘、开源软件开发和创造技术以扩展人类智能。</p>
+<h3 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h3><h4 id="入门-1"><a href="#入门-1" class="headerlink" title="入门"></a>入门</h4><p>深度学习的数学</p>
+<p>深度学习入门</p>
+<p>Python深度学习</p>
+<h3 id="运维"><a href="#运维" class="headerlink" title="运维"></a>运维</h3><p>Python自动化运维</p>
+<p>Docker</p>
+<p>Kubernetes</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>持续更新…</p>
+]]></content>
+      <categories>
+        <category>Book</category>
+      </categories>
+      <tags>
+        <tag>Book</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Golang-Array</title>
     <url>/2020/11/21/Golang-Array/</url>
     <content><![CDATA[<h2 id="Array-数组-的介绍"><a href="#Array-数组-的介绍" class="headerlink" title="Array(数组)的介绍"></a>Array(数组)的介绍</h2><p>数组是同一种数据类型元素的集合。 在Go语言中，数组从声明时就确定，使用时可以修改数组成员，但是数组大小不可变化。 基本语法：<br><a id="more"></a></p>
