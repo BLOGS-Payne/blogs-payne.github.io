@@ -84,34 +84,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Golang-Array</title>
-    <url>/2020/11/21/Golang-Array/</url>
-    <content><![CDATA[<h2 id="Array-数组-的介绍"><a href="#Array-数组-的介绍" class="headerlink" title="Array(数组)的介绍"></a>Array(数组)的介绍</h2><p>数组是同一种数据类型元素的集合。 在Go语言中，数组从声明时就确定，使用时可以修改数组成员，但是数组大小不可变化。 基本语法：<br><a id="more"></a></p>
-<blockquote>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> 数组变量名 [数组数量]数组类型</span><br></pre></td></tr></table></figure>
-<p>//数组的长度必须是常量，并且长度是数组类型的一部分。<br>// 一旦定义，长度不能变。 [1]int和[2]int是不同的两种类型。<br>数组可以通过下标进行访问，下标是从0开始，最后一个元素下标是：len-1，访问越界（下标在合法范围之外），则触发访问越界，会panic。</p>
-<p>例如：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">	<span class="keyword">var</span> a [<span class="number">1</span>]<span class="keyword">int</span></span><br><span class="line">	<span class="keyword">var</span> b [<span class="number">2</span>]<span class="keyword">int</span></span><br><span class="line">	a = b </span><br><span class="line"><span class="comment">//  cannot use b (type [2]int) as type [1]int in assignment</span></span><br><span class="line"><span class="comment">//不可以这样做，因为此时a和b是不同的类型</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="Array-数组-的定义"><a href="#Array-数组-的定义" class="headerlink" title="Array(数组)的定义"></a>Array(数组)的定义</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	definitionPart1()</span><br><span class="line">	definitionPart2()</span><br><span class="line">	definitionPart3()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化列表来设置数组元素的值。</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">definitionPart1</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> testArray [<span class="number">3</span>]<span class="keyword">int</span>                        <span class="comment">//数组会初始化为int类型的零值</span></span><br><span class="line">	<span class="keyword">var</span> numArray = [<span class="number">3</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;              <span class="comment">//使用指定的初始值完成初始化</span></span><br><span class="line">	<span class="keyword">var</span> cityArray = [<span class="number">3</span>]<span class="keyword">string</span>&#123;<span class="string">&quot;北京&quot;</span>, <span class="string">&quot;上海&quot;</span>, <span class="string">&quot;深圳&quot;</span>&#125; <span class="comment">//使用指定的初始值完成初始化</span></span><br><span class="line">	fmt.Println(testArray)                      <span class="comment">//[0 0 0]</span></span><br><span class="line">	fmt.Println(numArray)                       <span class="comment">//[1 2 0]</span></span><br><span class="line">	fmt.Println(cityArray)                      <span class="comment">//[北京 上海 深圳]</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 按照上面的方法每次都要确保提供的初始值和数组长度一致，一般情况下我们可以让编译器根据初始值的个数自行推断数组的长度，</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">definitionPart2</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> testArray [<span class="number">3</span>]<span class="keyword">int</span></span><br><span class="line">	<span class="keyword">var</span> numArray = [<span class="number">3</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">	<span class="keyword">var</span> cityArray = [...]<span class="keyword">string</span>&#123;<span class="string">&quot;北京&quot;</span>, <span class="string">&quot;上海&quot;</span>, <span class="string">&quot;深圳&quot;</span>&#125;</span><br><span class="line">	fmt.Println(testArray)                          <span class="comment">//[0 0 0]</span></span><br><span class="line">	fmt.Println(numArray)                           <span class="comment">//[1 2]</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;type of numArray:%T\n&quot;</span>, numArray)   <span class="comment">//type of numArray:[2]int</span></span><br><span class="line">	fmt.Println(cityArray)                          <span class="comment">//[北京 上海 深圳]</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;type of cityArray:%T\n&quot;</span>, cityArray) <span class="comment">//type of cityArray:[3]string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用指定索引值的方式来初始化数组</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">definitionPart3</span><span class="params">()</span> <span class="params">()</span></span> &#123;</span><br><span class="line">	a := [...]<span class="keyword">int</span>&#123;<span class="number">1</span>: <span class="number">1</span>, <span class="number">3</span>: <span class="number">5</span>&#125;</span><br><span class="line">	fmt.Println(a)                  <span class="comment">// [0 1 0 5]</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;type of a:%T\n&quot;</span>, a) <span class="comment">//type of a:[4]int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Array-数组-的定义遍历"><a href="#Array-数组-的定义遍历" class="headerlink" title="Array(数组)的定义遍历"></a>Array(数组)的定义遍历</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a = [...]<span class="keyword">string</span>&#123;<span class="string">&quot;北京&quot;</span>, <span class="string">&quot;上海&quot;</span>, <span class="string">&quot;广州&quot;</span>, <span class="string">&quot;深圳&quot;</span>&#125;</span><br><span class="line">	<span class="comment">// 方法1：for循环遍历</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(a); i++ &#123;</span><br><span class="line">		fmt.Println(a[i])</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 方法2：for range遍历</span></span><br><span class="line">	<span class="keyword">for</span> index, value := <span class="keyword">range</span> a &#123;</span><br><span class="line">		fmt.Println(index, value)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="多维数组-嵌套数组"><a href="#多维数组-嵌套数组" class="headerlink" title="多维数组(嵌套数组)"></a>多维数组(嵌套数组)</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := [<span class="number">4</span>][<span class="number">2</span>]<span class="keyword">string</span>&#123;</span><br><span class="line">    <span class="string">&quot;长沙&quot;</span>,</span><br><span class="line">		&#123;<span class="string">&quot;北京&quot;</span>, <span class="string">&quot;上海&quot;</span>&#125;,</span><br><span class="line">		&#123;<span class="string">&quot;广州&quot;</span>, <span class="string">&quot;深圳&quot;</span>&#125;,</span><br><span class="line">		&#123;<span class="string">&quot;成都&quot;</span>, <span class="string">&quot;重庆&quot;</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(a) <span class="comment">//[[北京 上海] [广州 深圳] [成都 重庆]]</span></span><br><span class="line">	fmt.Println(a[<span class="number">2</span>][<span class="number">1</span>]) <span class="comment">//支持索引取值:重庆</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="数组是值类型"><a href="#数组是值类型" class="headerlink" title="数组是值类型"></a>数组是值类型</h2><p>数组是值类型，赋值和传参会复制整个数组。因此改变副本的值，不会改变本身的值。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">modifyArray</span><span class="params">(x [3]<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	x[<span class="number">0</span>] = <span class="number">100</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">modifyArray2</span><span class="params">(x [3][2]<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	x[<span class="number">2</span>][<span class="number">0</span>] = <span class="number">100</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := [<span class="number">3</span>]<span class="keyword">int</span>&#123;<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>&#125;</span><br><span class="line">	modifyArray(a) <span class="comment">//在modify中修改的是a的副本x</span></span><br><span class="line">	fmt.Println(a) <span class="comment">//[10 20 30]</span></span><br><span class="line">	b := [<span class="number">3</span>][<span class="number">2</span>]<span class="keyword">int</span>&#123;</span><br><span class="line">		&#123;<span class="number">1</span>, <span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>, <span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>, <span class="number">1</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	modifyArray2(b) <span class="comment">//在modify中修改的是b的副本x</span></span><br><span class="line">	fmt.Println(b)  <span class="comment">//[[1 1] [1 1] [1 1]]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong></p>
-<ol>
-<li>数组支持 “==“、”!=” 操作符，因为内存总是被初始化过的。</li>
-<li><code>[n]*T</code>表示指针数组，<code>*[n]T</code>表示数组指针</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Go</category>
-      </categories>
-      <tags>
-        <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Golang-Defer详解</title>
     <url>/2020/11/21/Golang-Defer%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<h2 id="defer触发时机"><a href="#defer触发时机" class="headerlink" title="defer触发时机"></a>defer触发时机</h2><blockquote>
@@ -144,6 +116,34 @@
 <blockquote>
 <p>在开头的时候，我们说过defer是在return调用之后才执行的。 这里需要明确的是defer代码块的作用域仍然在函数之内，结合上面的函数也就是说，defer的作用域仍然在c函数之内。因此defer仍然可以读取c函数内的变量(如果无法读取函数内变量，那又如何进行变量清除呢…)。<br>当执行return 1 之后，i的值就是1. 此时此刻，defer代码块开始执行，对i进行自增操作。 因此输出2.</p>
 </blockquote>
+]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Golang-Array</title>
+    <url>/2020/11/21/Golang-Array/</url>
+    <content><![CDATA[<h2 id="Array-数组-的介绍"><a href="#Array-数组-的介绍" class="headerlink" title="Array(数组)的介绍"></a>Array(数组)的介绍</h2><p>数组是同一种数据类型元素的集合。 在Go语言中，数组从声明时就确定，使用时可以修改数组成员，但是数组大小不可变化。 基本语法：<br><a id="more"></a></p>
+<blockquote>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> 数组变量名 [数组数量]数组类型</span><br></pre></td></tr></table></figure>
+<p>//数组的长度必须是常量，并且长度是数组类型的一部分。<br>// 一旦定义，长度不能变。 [1]int和[2]int是不同的两种类型。<br>数组可以通过下标进行访问，下标是从0开始，最后一个元素下标是：len-1，访问越界（下标在合法范围之外），则触发访问越界，会panic。</p>
+<p>例如：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">	<span class="keyword">var</span> a [<span class="number">1</span>]<span class="keyword">int</span></span><br><span class="line">	<span class="keyword">var</span> b [<span class="number">2</span>]<span class="keyword">int</span></span><br><span class="line">	a = b </span><br><span class="line"><span class="comment">//  cannot use b (type [2]int) as type [1]int in assignment</span></span><br><span class="line"><span class="comment">//不可以这样做，因为此时a和b是不同的类型</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Array-数组-的定义"><a href="#Array-数组-的定义" class="headerlink" title="Array(数组)的定义"></a>Array(数组)的定义</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	definitionPart1()</span><br><span class="line">	definitionPart2()</span><br><span class="line">	definitionPart3()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化列表来设置数组元素的值。</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">definitionPart1</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> testArray [<span class="number">3</span>]<span class="keyword">int</span>                        <span class="comment">//数组会初始化为int类型的零值</span></span><br><span class="line">	<span class="keyword">var</span> numArray = [<span class="number">3</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;              <span class="comment">//使用指定的初始值完成初始化</span></span><br><span class="line">	<span class="keyword">var</span> cityArray = [<span class="number">3</span>]<span class="keyword">string</span>&#123;<span class="string">&quot;北京&quot;</span>, <span class="string">&quot;上海&quot;</span>, <span class="string">&quot;深圳&quot;</span>&#125; <span class="comment">//使用指定的初始值完成初始化</span></span><br><span class="line">	fmt.Println(testArray)                      <span class="comment">//[0 0 0]</span></span><br><span class="line">	fmt.Println(numArray)                       <span class="comment">//[1 2 0]</span></span><br><span class="line">	fmt.Println(cityArray)                      <span class="comment">//[北京 上海 深圳]</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 按照上面的方法每次都要确保提供的初始值和数组长度一致，一般情况下我们可以让编译器根据初始值的个数自行推断数组的长度，</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">definitionPart2</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> testArray [<span class="number">3</span>]<span class="keyword">int</span></span><br><span class="line">	<span class="keyword">var</span> numArray = [<span class="number">3</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">	<span class="keyword">var</span> cityArray = [...]<span class="keyword">string</span>&#123;<span class="string">&quot;北京&quot;</span>, <span class="string">&quot;上海&quot;</span>, <span class="string">&quot;深圳&quot;</span>&#125;</span><br><span class="line">	fmt.Println(testArray)                          <span class="comment">//[0 0 0]</span></span><br><span class="line">	fmt.Println(numArray)                           <span class="comment">//[1 2]</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;type of numArray:%T\n&quot;</span>, numArray)   <span class="comment">//type of numArray:[2]int</span></span><br><span class="line">	fmt.Println(cityArray)                          <span class="comment">//[北京 上海 深圳]</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;type of cityArray:%T\n&quot;</span>, cityArray) <span class="comment">//type of cityArray:[3]string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用指定索引值的方式来初始化数组</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">definitionPart3</span><span class="params">()</span> <span class="params">()</span></span> &#123;</span><br><span class="line">	a := [...]<span class="keyword">int</span>&#123;<span class="number">1</span>: <span class="number">1</span>, <span class="number">3</span>: <span class="number">5</span>&#125;</span><br><span class="line">	fmt.Println(a)                  <span class="comment">// [0 1 0 5]</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;type of a:%T\n&quot;</span>, a) <span class="comment">//type of a:[4]int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Array-数组-的定义遍历"><a href="#Array-数组-的定义遍历" class="headerlink" title="Array(数组)的定义遍历"></a>Array(数组)的定义遍历</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a = [...]<span class="keyword">string</span>&#123;<span class="string">&quot;北京&quot;</span>, <span class="string">&quot;上海&quot;</span>, <span class="string">&quot;广州&quot;</span>, <span class="string">&quot;深圳&quot;</span>&#125;</span><br><span class="line">	<span class="comment">// 方法1：for循环遍历</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(a); i++ &#123;</span><br><span class="line">		fmt.Println(a[i])</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 方法2：for range遍历</span></span><br><span class="line">	<span class="keyword">for</span> index, value := <span class="keyword">range</span> a &#123;</span><br><span class="line">		fmt.Println(index, value)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多维数组-嵌套数组"><a href="#多维数组-嵌套数组" class="headerlink" title="多维数组(嵌套数组)"></a>多维数组(嵌套数组)</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := [<span class="number">4</span>][<span class="number">2</span>]<span class="keyword">string</span>&#123;</span><br><span class="line">    <span class="string">&quot;长沙&quot;</span>,</span><br><span class="line">		&#123;<span class="string">&quot;北京&quot;</span>, <span class="string">&quot;上海&quot;</span>&#125;,</span><br><span class="line">		&#123;<span class="string">&quot;广州&quot;</span>, <span class="string">&quot;深圳&quot;</span>&#125;,</span><br><span class="line">		&#123;<span class="string">&quot;成都&quot;</span>, <span class="string">&quot;重庆&quot;</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(a) <span class="comment">//[[北京 上海] [广州 深圳] [成都 重庆]]</span></span><br><span class="line">	fmt.Println(a[<span class="number">2</span>][<span class="number">1</span>]) <span class="comment">//支持索引取值:重庆</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数组是值类型"><a href="#数组是值类型" class="headerlink" title="数组是值类型"></a>数组是值类型</h2><p>数组是值类型，赋值和传参会复制整个数组。因此改变副本的值，不会改变本身的值。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">modifyArray</span><span class="params">(x [3]<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	x[<span class="number">0</span>] = <span class="number">100</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">modifyArray2</span><span class="params">(x [3][2]<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	x[<span class="number">2</span>][<span class="number">0</span>] = <span class="number">100</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := [<span class="number">3</span>]<span class="keyword">int</span>&#123;<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>&#125;</span><br><span class="line">	modifyArray(a) <span class="comment">//在modify中修改的是a的副本x</span></span><br><span class="line">	fmt.Println(a) <span class="comment">//[10 20 30]</span></span><br><span class="line">	b := [<span class="number">3</span>][<span class="number">2</span>]<span class="keyword">int</span>&#123;</span><br><span class="line">		&#123;<span class="number">1</span>, <span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>, <span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>, <span class="number">1</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	modifyArray2(b) <span class="comment">//在modify中修改的是b的副本x</span></span><br><span class="line">	fmt.Println(b)  <span class="comment">//[[1 1] [1 1] [1 1]]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<ol>
+<li>数组支持 “==“、”!=” 操作符，因为内存总是被初始化过的。</li>
+<li><code>[n]*T</code>表示指针数组，<code>*[n]T</code>表示数组指针</li>
+</ol>
 ]]></content>
       <categories>
         <category>Go</category>
@@ -2122,63 +2122,6 @@
       </tags>
   </entry>
   <entry>
-    <title>docker 底层原理探究</title>
-    <url>/2021/01/24/docker-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</url>
-    <content><![CDATA[<p>Docker is written in the <a href="https://golang.org/">Go programming language</a> and takes advantage of several features of the Linux kernel to deliver its functionality.<br><a id="more"></a><br>Docker用<code>Go编程语言</code>编写，并利用Linux内核的多个功能来实现其功能。</p>
-<h2 id="Namespaces-命名空间"><a href="#Namespaces-命名空间" class="headerlink" title="Namespaces(命名空间)"></a>Namespaces(命名空间)</h2><p>Docker uses a technology called <code>namespaces</code> to provide the isolated workspace called the <em>container</em>. When you run a container, Docker creates a set of <em>namespaces</em> for that container.</p>
-<blockquote>
-<p>Docker使用<code>命名空间</code>的技术实现容器(虚拟)独立的工作区</p>
-</blockquote>
-<p><strong>理解<code>Namespaces</code></strong></p>
-<p><strong>Namespaces</strong>,可以理解为虚拟化隔离</p>
-<p>当我们在系统上运行程序时，系统会为我们分配<code>pid</code>,<code>net</code>,<code>ipc</code>,<code>mnt</code>,<code>uts</code>等资源，当我们在Linux中运行时这些都是全局的。</p>
-<p>当我们使用命名空间即可实现隔离的机制，每个分配<code>pid</code>,<code>net</code>,<code>ipc</code>,<code>mnt</code>,<code>uts</code>都是独立的，这样我们就可以实现权限管理等</p>
-<p>These namespaces provide a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace.</p>
-<p>Docker Engine uses namespaces such as the following on Linux:</p>
-<ul>
-<li><strong>The <code>pid</code> namespace:</strong> Process isolation (PID: Process ID).</li>
-<li><strong>The <code>net</code> namespace:</strong> Managing network interfaces (NET: Networking).</li>
-<li><strong>The <code>ipc</code> namespace:</strong> Managing access to IPC resources (IPC: InterProcess Communication).</li>
-<li><strong>The <code>mnt</code> namespace:</strong> Managing filesystem mount points (MNT: Mount).</li>
-<li><strong>The <code>uts</code> namespace:</strong> Isolating kernel and version identifiers. (UTS: Unix Timesharing System).</li>
-</ul>
-<p><strong>进程ID（pid）</strong></p>
-<p>进程的<code>PID</code>命名空间提供与一组独立的从其他命名空间进程ID（PID）的处理。PID名称空间是嵌套的，这意味着在创建新进程时，它将为每个名称空间从当前名称空间到初始PID名称空间都有一个PID。因此，初始PID名称空间能够查看所有进程，尽管与其他名称空间看到的PID不同。</p>
-<p>在PID名称空间中创建的第一个进程被分配了编号为1的进程，并获得与常规进程相同的大多数特殊处理，最值得注意的是，名称空间内的<code>孤立进程</code>。这也意味着此PID 1进程的终止将立即终止其PID名称空间中的所有进程以及所有后代。</p>
-<p><strong>网络（网络）</strong></p>
-<p>网络名称空间可虚拟化<code>网络堆栈</code>。创建时，网络名称空间仅包含<code>回送</code>接口。</p>
-<p>每个<code>网络接口</code>（物理或虚拟）都存在于1个名称空间中，并且可以在名称空间之间移动。</p>
-<p>每个名称空间都有一组专用的<code>P地址</code>，自己的<code>路由表</code>，<code>套接字</code>列表，连接跟踪表，防火墙和其他与网络相关的资源。</p>
-<p>销毁网络名称空间会破坏其中的任何虚拟接口，并将其中的任何物理接口移回到初始网络名称空间。</p>
-<p><strong>进程间通信（ipc）</strong></p>
-<p>IPC名称空间将进程与<code>SysV</code>样式的进程间通信隔离开。这样可以防止不同IPC名称空间中的进程使用例如SHM系列功能在两个进程之间建立一定范围的共享内存。相反，每个进程将能够对共享内存区域使用相同的标识符，并产生两个这样的不同区域。</p>
-<p><strong>挂载（mnt）</strong></p>
-<p>安装名称空间控制安装点。创建后，会将当前安装名称空间中的安装复制到新的名称空间，但是之后创建的安装点不会在名称空间之间传播（使用共享子树，可以在名称空间之间传播安装点。</p>
-<p>用于创建这种类型的新名称空间的克隆标志是CLONE_NEWNS-“ NEW NameSpace”的缩写。该术语不是描述性的（因为它没有告诉您要创建哪种类型的名称空间），因为挂载名称空间是第一类名称空间，设计人员并不预期会有其他名称空间。</p>
-<p><strong>UTS (UNIX <a href="https://en.wikipedia.org/wiki/Time-sharing">Time-Sharing</a>)</strong> </p>
-<p>命名空间允许单个系统对不同的进程使用不同的主机名和域名。</p>
-<h2 id="Control-groups"><a href="#Control-groups" class="headerlink" title="Control groups"></a>Control groups</h2><p>Docker Engine on Linux also relies on another technology called <em>control groups</em> (<code>cgroups</code>). A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.</p>
-<blockquote>
-<p>Linux上的Docker引擎还依赖另一种称为<em>控制组</em>（<code>cgroups</code>）的技术。cgroup将应用程序限制为一组特定的资源。控制组允许Docker引擎将可用的硬件资源共享给容器，并可以选择性地实施限制和约束。例如，可以限制特定容器的可用内存。</p>
-</blockquote>
-<h2 id="Union-file-systems"><a href="#Union-file-systems" class="headerlink" title="Union file systems"></a>Union file systems</h2><p>Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker Engine uses UnionFS to provide the building blocks for containers. Docker Engine can use multiple UnionFS variants, including AUFS, btrfs, vfs, and DeviceMapper.</p>
-<blockquote>
-<p>Union文件系统（UnionFS）是通过<code>创建层</code>来操作的文件系统，使它们非常轻量级和快速。Docker引擎使用UnionFS为容器提供构建块。Docker引擎可以使用多种UnionFS变体，包括AUFS、btrfs、vfs和DeviceMapper。</p>
-</blockquote>
-<h2 id="Container-format"><a href="#Container-format" class="headerlink" title="Container format"></a>Container format</h2><p>Docker Engine combines the namespaces, control groups, and UnionFS into a wrapper called a container format. The default container format is <code>libcontainer</code>. In the future, Docker may support other container formats by integrating with technologies such as BSD Jails or Solaris Zones.</p>
-<blockquote>
-<p>Docker引擎将名称空间、控制组和UnionFS组合成一个称为容器格式的包装器。默认容器格式为“libcontainer”。将来，Docker可以通过集成BSD监狱或Solaris区域等技术来支持其他容器格式。</p>
-</blockquote>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>docker使用go语言编写，基于<strong>Namespaces</strong>进行虚拟化隔离，Control groups进行对资源的限制，联合文件Union file systems来快速构建（可复用的镜像层），</p>
-]]></content>
-      <categories>
-        <category>容器编排</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker部署控制</title>
     <url>/2020/12/13/docker%E9%83%A8%E7%BD%B2%E6%8E%A7%E5%88%B6/</url>
     <content><![CDATA[<h2 id="Docker-swarm部署控制"><a href="#Docker-swarm部署控制" class="headerlink" title="Docker swarm部署控制"></a>Docker swarm部署控制</h2><p>还记得我之前写过一片文章叫做<a href="https://mp.weixin.qq.com/s?__biz=Mzg2MzM4NTg3MA==&amp;tempkey=MTA5MF9RcFZ5c1B4QTFmSnZHd2Qxa3hMNWhpLXFoOEJYWVBBaUZyME1sRmVBQnR1QWN3V3FUZ1hfa1BnemdtOWpLY1o0RTlzVnE2OUtRblZPS1ZDV2pDSk9QU3BadDUzLTNJa3RHYmxFQXNqMjQyQ1dSNUlrcDdfTG1scDRTWVg2UDdiLTI5eWo4dE9HSHI4TlVKOVltZEdtVzZObW9NT19GN2I5eF9YbzdBfn4%3D&amp;chksm=4e78226b790fab7d1fb0283f8b6294c40456df7aebf58d947412ed03d0c3fc3aa188de79f130#rd">《Docker快速部署项目，极速搭建分布式》</a>，在那里讲述了如何去使用docker swarm，如何构建自己的私人镜像仓库。随着最近的业务量的增长，机子加多。对于docker swarm管理难度有上升的趋势。主要的问题有以下几个</p>
@@ -2295,6 +2238,63 @@
       </tags>
   </entry>
   <entry>
+    <title>docker 底层原理探究</title>
+    <url>/2021/01/24/docker-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</url>
+    <content><![CDATA[<p>Docker is written in the <a href="https://golang.org/">Go programming language</a> and takes advantage of several features of the Linux kernel to deliver its functionality.<br><a id="more"></a><br>Docker用<code>Go编程语言</code>编写，并利用Linux内核的多个功能来实现其功能。</p>
+<h2 id="Namespaces-命名空间"><a href="#Namespaces-命名空间" class="headerlink" title="Namespaces(命名空间)"></a>Namespaces(命名空间)</h2><p>Docker uses a technology called <code>namespaces</code> to provide the isolated workspace called the <em>container</em>. When you run a container, Docker creates a set of <em>namespaces</em> for that container.</p>
+<blockquote>
+<p>Docker使用<code>命名空间</code>的技术实现容器(虚拟)独立的工作区</p>
+</blockquote>
+<p><strong>理解<code>Namespaces</code></strong></p>
+<p><strong>Namespaces</strong>,可以理解为虚拟化隔离</p>
+<p>当我们在系统上运行程序时，系统会为我们分配<code>pid</code>,<code>net</code>,<code>ipc</code>,<code>mnt</code>,<code>uts</code>等资源，当我们在Linux中运行时这些都是全局的。</p>
+<p>当我们使用命名空间即可实现隔离的机制，每个分配<code>pid</code>,<code>net</code>,<code>ipc</code>,<code>mnt</code>,<code>uts</code>都是独立的，这样我们就可以实现权限管理等</p>
+<p>These namespaces provide a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace.</p>
+<p>Docker Engine uses namespaces such as the following on Linux:</p>
+<ul>
+<li><strong>The <code>pid</code> namespace:</strong> Process isolation (PID: Process ID).</li>
+<li><strong>The <code>net</code> namespace:</strong> Managing network interfaces (NET: Networking).</li>
+<li><strong>The <code>ipc</code> namespace:</strong> Managing access to IPC resources (IPC: InterProcess Communication).</li>
+<li><strong>The <code>mnt</code> namespace:</strong> Managing filesystem mount points (MNT: Mount).</li>
+<li><strong>The <code>uts</code> namespace:</strong> Isolating kernel and version identifiers. (UTS: Unix Timesharing System).</li>
+</ul>
+<p><strong>进程ID（pid）</strong></p>
+<p>进程的<code>PID</code>命名空间提供与一组独立的从其他命名空间进程ID（PID）的处理。PID名称空间是嵌套的，这意味着在创建新进程时，它将为每个名称空间从当前名称空间到初始PID名称空间都有一个PID。因此，初始PID名称空间能够查看所有进程，尽管与其他名称空间看到的PID不同。</p>
+<p>在PID名称空间中创建的第一个进程被分配了编号为1的进程，并获得与常规进程相同的大多数特殊处理，最值得注意的是，名称空间内的<code>孤立进程</code>。这也意味着此PID 1进程的终止将立即终止其PID名称空间中的所有进程以及所有后代。</p>
+<p><strong>网络（网络）</strong></p>
+<p>网络名称空间可虚拟化<code>网络堆栈</code>。创建时，网络名称空间仅包含<code>回送</code>接口。</p>
+<p>每个<code>网络接口</code>（物理或虚拟）都存在于1个名称空间中，并且可以在名称空间之间移动。</p>
+<p>每个名称空间都有一组专用的<code>P地址</code>，自己的<code>路由表</code>，<code>套接字</code>列表，连接跟踪表，防火墙和其他与网络相关的资源。</p>
+<p>销毁网络名称空间会破坏其中的任何虚拟接口，并将其中的任何物理接口移回到初始网络名称空间。</p>
+<p><strong>进程间通信（ipc）</strong></p>
+<p>IPC名称空间将进程与<code>SysV</code>样式的进程间通信隔离开。这样可以防止不同IPC名称空间中的进程使用例如SHM系列功能在两个进程之间建立一定范围的共享内存。相反，每个进程将能够对共享内存区域使用相同的标识符，并产生两个这样的不同区域。</p>
+<p><strong>挂载（mnt）</strong></p>
+<p>安装名称空间控制安装点。创建后，会将当前安装名称空间中的安装复制到新的名称空间，但是之后创建的安装点不会在名称空间之间传播（使用共享子树，可以在名称空间之间传播安装点。</p>
+<p>用于创建这种类型的新名称空间的克隆标志是CLONE_NEWNS-“ NEW NameSpace”的缩写。该术语不是描述性的（因为它没有告诉您要创建哪种类型的名称空间），因为挂载名称空间是第一类名称空间，设计人员并不预期会有其他名称空间。</p>
+<p><strong>UTS (UNIX <a href="https://en.wikipedia.org/wiki/Time-sharing">Time-Sharing</a>)</strong> </p>
+<p>命名空间允许单个系统对不同的进程使用不同的主机名和域名。</p>
+<h2 id="Control-groups"><a href="#Control-groups" class="headerlink" title="Control groups"></a>Control groups</h2><p>Docker Engine on Linux also relies on another technology called <em>control groups</em> (<code>cgroups</code>). A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.</p>
+<blockquote>
+<p>Linux上的Docker引擎还依赖另一种称为<em>控制组</em>（<code>cgroups</code>）的技术。cgroup将应用程序限制为一组特定的资源。控制组允许Docker引擎将可用的硬件资源共享给容器，并可以选择性地实施限制和约束。例如，可以限制特定容器的可用内存。</p>
+</blockquote>
+<h2 id="Union-file-systems"><a href="#Union-file-systems" class="headerlink" title="Union file systems"></a>Union file systems</h2><p>Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker Engine uses UnionFS to provide the building blocks for containers. Docker Engine can use multiple UnionFS variants, including AUFS, btrfs, vfs, and DeviceMapper.</p>
+<blockquote>
+<p>Union文件系统（UnionFS）是通过<code>创建层</code>来操作的文件系统，使它们非常轻量级和快速。Docker引擎使用UnionFS为容器提供构建块。Docker引擎可以使用多种UnionFS变体，包括AUFS、btrfs、vfs和DeviceMapper。</p>
+</blockquote>
+<h2 id="Container-format"><a href="#Container-format" class="headerlink" title="Container format"></a>Container format</h2><p>Docker Engine combines the namespaces, control groups, and UnionFS into a wrapper called a container format. The default container format is <code>libcontainer</code>. In the future, Docker may support other container formats by integrating with technologies such as BSD Jails or Solaris Zones.</p>
+<blockquote>
+<p>Docker引擎将名称空间、控制组和UnionFS组合成一个称为容器格式的包装器。默认容器格式为“libcontainer”。将来，Docker可以通过集成BSD监狱或Solaris区域等技术来支持其他容器格式。</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>docker使用go语言编写，基于<strong>Namespaces</strong>进行虚拟化隔离，Control groups进行对资源的限制，联合文件Union file systems来快速构建（可复用的镜像层），</p>
+]]></content>
+      <categories>
+        <category>容器编排</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>golang并发模式</title>
     <url>/2021/02/12/golang%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<p>并发模式并不是一种函数的运用、亦或者实际存在的东西。他是前人对于并发场景的运用总结与经验。他与23中设计模式一样。好啦，话不多说。开干</p>
@@ -2353,6 +2353,84 @@
       </categories>
       <tags>
         <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>golang第三方包发布详细流程</title>
+    <url>/2021/03/31/golang%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85%E5%8F%91%E5%B8%83%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h3 id="发布golang第三方包"><a href="#发布golang第三方包" class="headerlink" title="发布golang第三方包"></a>发布golang第三方包</h3><p>事情是这样的，随着公司的业务的增长。各种重复的工作越来约多。CV久了就想在进一步的那啥，毕竟我懒，不是。我就想着能不能把那些重复cv的干脆写成一个第三方包，进行调用。咱不谈那些啥封装啥的，我也想过，我也做过。但无论咋封装，总不可能跨项目吧,还是需要。。。</p>
+<p>所幸，还是有方法的，来吧，让我们发表第一个golang工具包<br><a id="more"></a></p>
+<h3 id="创建项目仓库"><a href="#创建项目仓库" class="headerlink" title="创建项目仓库"></a>创建项目仓库</h3><p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2ghktr3vj31ml0u0abu.jpg" alt=""></p>
+<ol>
+<li>首先输入仓库的名字，我这里输入simpleExample，用来做演示</li>
+<li>这里选择public，公开。要不并不好拉</li>
+<li>选择需要添加的文件(可选)</li>
+<li>鼠标左键点击create repository创建此仓库</li>
+</ol>
+<p>完成后就有一个名为simpleExample的项目仓库，如下图所示。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2gnbyu4kj32620nm3zq.jpg" alt=""></p>
+<p>如果<code>第三步</code>全都没选的话就是另外一个图了</p>
+<blockquote>
+<p>这一步还是很简单的，毕竟github，全球最大的程序员交友网站不是。2110年了相信大家还是都会用的，是实在不会的，可自行百度，或者Google。</p>
+</blockquote>
+<h3 id="拉取仓库，编辑示例代码"><a href="#拉取仓库，编辑示例代码" class="headerlink" title="拉取仓库，编辑示例代码"></a>拉取仓库，编辑示例代码</h3><p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2gtep6b6j31hs0nigmr.jpg" alt=""></p>
+<p>第一步，鼠标左键点击code</p>
+<p>第二步，点击后面类似于粘贴板的东西，复制https的URL</p>
+<p>然后在cd到GOPATH中使用git，把这个项目clone下来</p>
+<p>例如，我在这里的使用的git命令如下</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Golzaes/simpleExample.git</span><br></pre></td></tr></table></figure>
+<p>执行成功后使用 <code>ls</code>命令查看一下</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2gzfqf28j31f2032weo.jpg" alt=""></p>
+<p>使用编辑器打开<code>simpleExample</code>这个项目文件夹，如下图所示</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2h1zo9gjj31fy0eugm9.jpg" alt=""></p>
+<p><strong>go module初始化</strong></p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+ go mod init &quot;github.com/Golzaes/simpleExample&quot;</span></span><br><span class="line"><span class="deletion">- go mod init &quot;github.com/组织名/项目名&quot; </span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：这里的一定是<code>&quot;github.com/组织名/项目名&quot;</code>这样的格式</p>
+</blockquote>
+<p>创建文件夹与示例代码</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Example/example.go</span></span><br><span class="line"><span class="keyword">package</span> exampleCode</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;math/rand&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ReadNumber create random number</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ReadNumber</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="comment">// random number range</span></span><br><span class="line">	rnr := <span class="number">10</span></span><br><span class="line">	<span class="comment">//  returns, as an int, a non-negative pseudo-random number in [0,n)</span></span><br><span class="line">	<span class="keyword">return</span> rand.Intn(rnr)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意这里的函数名<code>ReadNumber</code>，首字母必须大写！！！</p>
+<p>否则无法再外部调用此函数</p>
+</blockquote>
+<p>来个简单的单元测试</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Example/example_test.go</span></span><br><span class="line"><span class="keyword">package</span> exampleCode</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;testing&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestReadNumber</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	tests := []<span class="keyword">struct</span> &#123;</span><br><span class="line">		name <span class="keyword">string</span></span><br><span class="line">		want <span class="keyword">int</span></span><br><span class="line">	&#125;&#123;</span><br><span class="line">		<span class="comment">// <span class="doctag">TODO:</span> Add test cases.</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="string">&quot;exampleCode1&quot;</span>,</span><br><span class="line">			<span class="number">1</span>,</span><br><span class="line">		&#125;, &#123;</span><br><span class="line">			<span class="string">&quot;exampleCode2&quot;</span>,</span><br><span class="line">			<span class="number">2</span>,</span><br><span class="line">		&#125;, &#123;</span><br><span class="line">			<span class="string">&quot;exampleCode3&quot;</span>,</span><br><span class="line">			<span class="number">3</span>,</span><br><span class="line">		&#125;, &#123;</span><br><span class="line">			<span class="string">&quot;exampleCode4&quot;</span>,</span><br><span class="line">			<span class="number">4</span>,</span><br><span class="line">		&#125;,&#123;</span><br><span class="line">			<span class="string">&quot;exampleCode5&quot;</span>,</span><br><span class="line">			<span class="number">5</span>,</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, tt := <span class="keyword">range</span> tests &#123;</span><br><span class="line">		t.Run(tt.name, <span class="function"><span class="keyword">func</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">			<span class="keyword">if</span> got := ReadNumber(); got != tt.want &#123;</span><br><span class="line">				t.Errorf(<span class="string">&quot;ReadNumber() = %v, want %v&quot;</span>, got, tt.want)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行测试</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2hje5s3pj31m20u0dhw.jpg" alt=""></p>
+<p>有个测试过了，说明我们的代码没有问题，也可以外部调用</p>
+<h3 id="推送与发布代码"><a href="#推送与发布代码" class="headerlink" title="推送与发布代码"></a>推送与发布代码</h3><p>使用以下命令，提交与push</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add exampleCode&#x2F;</span><br><span class="line">git commit -am &quot;add exampleCode&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2hmyx0dlj31ws0u0409.jpg" alt=""></p>
+<p>仔细对比就会发现，这里多了个<code>exampleCode</code>文件夹。到这里我们就已经将代码push到了github，接下来我们发布一个，这样我们可以在另外一个项目中以第三方包的形式使用</p>
+<p>第一步，点击releases下面的create a new releases</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2hsentogj322q0smgn2.jpg" alt=""></p>
+<p>先 填写标签号(常规格式是 x.y.z)例如我的<code>v0.0.1</code>,</p>
+<p>填写发表的标题，一般是项目名</p>
+<p>填写简介</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2hvvs1bsj31pk0u0tal.jpg" alt=""></p>
+<p>然后鼠标左键点击 左下方的<code>publish release</code>，进行发布，发布完成后会自动跳转到如下图所示的发布栏</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2i0che88j323z0u0zl9.jpg" alt=""></p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2i0zg0g6j327e0qm3zw.jpg" alt=""></p>
+<p>至此，发布部分就已经完成了。那么自己来测试一下这个第三方包</p>
+<h3 id="使用发布的第三方包"><a href="#使用发布的第三方包" class="headerlink" title="使用发布的第三方包"></a>使用发布的第三方包</h3><p>新建一个项目、go mod init初始化、创建文件夹就不过多赘述了</p>
+<p>下载我们发布的包</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2i6hgxrnj31ai044t8u.jpg" alt=""></p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get github.com/Golzaes/simpleExample/exampleCode</span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2ibah1b2j31gt0u0my1.jpg" alt=""></p>
+<p>在项目中import 这个包</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>本文从创建仓库开始到发布第三方包后到使用第三方包，这样我们就可以跨项目使用啦。</p>
+<p>如果测试未完成，请重新查阅。尤其是注意点！！！</p>
+]]></content>
+      <categories>
+        <category>Go</category>
+        <category>git</category>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -2474,84 +2552,6 @@
       </categories>
       <tags>
         <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>golang第三方包发布详细流程</title>
-    <url>/2021/03/31/golang%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85%E5%8F%91%E5%B8%83%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<h3 id="发布golang第三方包"><a href="#发布golang第三方包" class="headerlink" title="发布golang第三方包"></a>发布golang第三方包</h3><p>事情是这样的，随着公司的业务的增长。各种重复的工作越来约多。CV久了就想在进一步的那啥，毕竟我懒，不是。我就想着能不能把那些重复cv的干脆写成一个第三方包，进行调用。咱不谈那些啥封装啥的，我也想过，我也做过。但无论咋封装，总不可能跨项目吧,还是需要。。。</p>
-<p>所幸，还是有方法的，来吧，让我们发表第一个golang工具包<br><a id="more"></a></p>
-<h3 id="创建项目仓库"><a href="#创建项目仓库" class="headerlink" title="创建项目仓库"></a>创建项目仓库</h3><p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2ghktr3vj31ml0u0abu.jpg" alt=""></p>
-<ol>
-<li>首先输入仓库的名字，我这里输入simpleExample，用来做演示</li>
-<li>这里选择public，公开。要不并不好拉</li>
-<li>选择需要添加的文件(可选)</li>
-<li>鼠标左键点击create repository创建此仓库</li>
-</ol>
-<p>完成后就有一个名为simpleExample的项目仓库，如下图所示。</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2gnbyu4kj32620nm3zq.jpg" alt=""></p>
-<p>如果<code>第三步</code>全都没选的话就是另外一个图了</p>
-<blockquote>
-<p>这一步还是很简单的，毕竟github，全球最大的程序员交友网站不是。2110年了相信大家还是都会用的，是实在不会的，可自行百度，或者Google。</p>
-</blockquote>
-<h3 id="拉取仓库，编辑示例代码"><a href="#拉取仓库，编辑示例代码" class="headerlink" title="拉取仓库，编辑示例代码"></a>拉取仓库，编辑示例代码</h3><p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2gtep6b6j31hs0nigmr.jpg" alt=""></p>
-<p>第一步，鼠标左键点击code</p>
-<p>第二步，点击后面类似于粘贴板的东西，复制https的URL</p>
-<p>然后在cd到GOPATH中使用git，把这个项目clone下来</p>
-<p>例如，我在这里的使用的git命令如下</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Golzaes/simpleExample.git</span><br></pre></td></tr></table></figure>
-<p>执行成功后使用 <code>ls</code>命令查看一下</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2gzfqf28j31f2032weo.jpg" alt=""></p>
-<p>使用编辑器打开<code>simpleExample</code>这个项目文件夹，如下图所示</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2h1zo9gjj31fy0eugm9.jpg" alt=""></p>
-<p><strong>go module初始化</strong></p>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+ go mod init &quot;github.com/Golzaes/simpleExample&quot;</span></span><br><span class="line"><span class="deletion">- go mod init &quot;github.com/组织名/项目名&quot; </span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：这里的一定是<code>&quot;github.com/组织名/项目名&quot;</code>这样的格式</p>
-</blockquote>
-<p>创建文件夹与示例代码</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Example/example.go</span></span><br><span class="line"><span class="keyword">package</span> exampleCode</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;math/rand&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ReadNumber create random number</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ReadNumber</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="comment">// random number range</span></span><br><span class="line">	rnr := <span class="number">10</span></span><br><span class="line">	<span class="comment">//  returns, as an int, a non-negative pseudo-random number in [0,n)</span></span><br><span class="line">	<span class="keyword">return</span> rand.Intn(rnr)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意这里的函数名<code>ReadNumber</code>，首字母必须大写！！！</p>
-<p>否则无法再外部调用此函数</p>
-</blockquote>
-<p>来个简单的单元测试</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Example/example_test.go</span></span><br><span class="line"><span class="keyword">package</span> exampleCode</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;testing&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestReadNumber</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	tests := []<span class="keyword">struct</span> &#123;</span><br><span class="line">		name <span class="keyword">string</span></span><br><span class="line">		want <span class="keyword">int</span></span><br><span class="line">	&#125;&#123;</span><br><span class="line">		<span class="comment">// <span class="doctag">TODO:</span> Add test cases.</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="string">&quot;exampleCode1&quot;</span>,</span><br><span class="line">			<span class="number">1</span>,</span><br><span class="line">		&#125;, &#123;</span><br><span class="line">			<span class="string">&quot;exampleCode2&quot;</span>,</span><br><span class="line">			<span class="number">2</span>,</span><br><span class="line">		&#125;, &#123;</span><br><span class="line">			<span class="string">&quot;exampleCode3&quot;</span>,</span><br><span class="line">			<span class="number">3</span>,</span><br><span class="line">		&#125;, &#123;</span><br><span class="line">			<span class="string">&quot;exampleCode4&quot;</span>,</span><br><span class="line">			<span class="number">4</span>,</span><br><span class="line">		&#125;,&#123;</span><br><span class="line">			<span class="string">&quot;exampleCode5&quot;</span>,</span><br><span class="line">			<span class="number">5</span>,</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, tt := <span class="keyword">range</span> tests &#123;</span><br><span class="line">		t.Run(tt.name, <span class="function"><span class="keyword">func</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">			<span class="keyword">if</span> got := ReadNumber(); got != tt.want &#123;</span><br><span class="line">				t.Errorf(<span class="string">&quot;ReadNumber() = %v, want %v&quot;</span>, got, tt.want)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行测试</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2hje5s3pj31m20u0dhw.jpg" alt=""></p>
-<p>有个测试过了，说明我们的代码没有问题，也可以外部调用</p>
-<h3 id="推送与发布代码"><a href="#推送与发布代码" class="headerlink" title="推送与发布代码"></a>推送与发布代码</h3><p>使用以下命令，提交与push</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add exampleCode&#x2F;</span><br><span class="line">git commit -am &quot;add exampleCode&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2hmyx0dlj31ws0u0409.jpg" alt=""></p>
-<p>仔细对比就会发现，这里多了个<code>exampleCode</code>文件夹。到这里我们就已经将代码push到了github，接下来我们发布一个，这样我们可以在另外一个项目中以第三方包的形式使用</p>
-<p>第一步，点击releases下面的create a new releases</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2hsentogj322q0smgn2.jpg" alt=""></p>
-<p>先 填写标签号(常规格式是 x.y.z)例如我的<code>v0.0.1</code>,</p>
-<p>填写发表的标题，一般是项目名</p>
-<p>填写简介</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2hvvs1bsj31pk0u0tal.jpg" alt=""></p>
-<p>然后鼠标左键点击 左下方的<code>publish release</code>，进行发布，发布完成后会自动跳转到如下图所示的发布栏</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2i0che88j323z0u0zl9.jpg" alt=""></p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2i0zg0g6j327e0qm3zw.jpg" alt=""></p>
-<p>至此，发布部分就已经完成了。那么自己来测试一下这个第三方包</p>
-<h3 id="使用发布的第三方包"><a href="#使用发布的第三方包" class="headerlink" title="使用发布的第三方包"></a>使用发布的第三方包</h3><p>新建一个项目、go mod init初始化、创建文件夹就不过多赘述了</p>
-<p>下载我们发布的包</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2i6hgxrnj31ai044t8u.jpg" alt=""></p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">go get github.com/Golzaes/simpleExample/exampleCode</span><br></pre></td></tr></table></figure>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp2ibah1b2j31gt0u0my1.jpg" alt=""></p>
-<p>在项目中import 这个包</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>本文从创建仓库开始到发布第三方包后到使用第三方包，这样我们就可以跨项目使用啦。</p>
-<p>如果测试未完成，请重新查阅。尤其是注意点！！！</p>
-]]></content>
-      <categories>
-        <category>Go</category>
-        <category>git</category>
-        <category>github</category>
-      </categories>
-      <tags>
-        <tag>Go</tag>
-        <tag>git</tag>
-        <tag>github</tag>
       </tags>
   </entry>
   <entry>
