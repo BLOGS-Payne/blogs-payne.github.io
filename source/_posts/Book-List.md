@@ -26,9 +26,13 @@ date: 2021-05-09 00:59:11
 
 #### 非关系性数据库：
 
-##### MongoDB
+##### MongoDB：
+
+MongoDB权威指南
 
 ##### Redis
+
+Redis
 
 ### 中间件
 
@@ -70,21 +74,21 @@ date: 2021-05-09 00:59:11
 
 ### 网络爬虫
 
-Python 网络爬虫从入门到实践
+**Python 网络爬虫从入门到实践**
 
-Python3网络爬虫开发实战
+**Python3网络爬虫开发实战**
 
-Python3反爬虫原理与绕过实战
+**Python3反爬虫原理与绕过实战**
 
 #### 进阶
 
-Android安全攻防权威指南
+**Android安全攻防权威指南**
 
-Android应用安全和逆向分析
+**Android应用安全和逆向分析**
 
-Android软件安全权威指南
+**Android软件安全权威指南**
 
-IDA PRO 权威指南
+**IDA PRO 权威指南**
 
 
 
@@ -184,9 +188,9 @@ Python深度学习
 
 Python自动化运维
 
-Docker
+#### Docker
 
-Kubernetes
+#### Kubernetes
 
 ### 测试
 
