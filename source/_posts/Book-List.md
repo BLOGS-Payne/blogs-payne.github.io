@@ -10,6 +10,44 @@ date: 2021-05-09 00:59:11
 <!--more-->
 ### 操作系统
 
+操作系统导论
+
+现代操作系统
+
+操作系统-精髓与设计原理
+
+编译原理
+
+### 计算机网络
+
+#### 入门
+
+计算机网络-谢希仁
+
+网络是怎样连接的
+
+图解http
+
+HTTP权威指南
+
+Wireshark网络分析就是这么简单
+
+Wireshark网络分析的艺术
+
+#### 进阶
+
+计算机网络-自顶向下方法
+
+TCP/IP详解 卷1：协议
+
+TCP/IP详解 卷2：实现
+
+TCP/IP详解 卷3：TCP事务协议、HTTP、NNTP和UNIX域协议
+
+### 算法与数据结构
+
+
+
 ### Linux
 #### 入门
 Linux命令行大全
@@ -190,7 +228,6 @@ Java并发编程实战
 #### 实践类
 
 > what do?	How do?	Why do?
->
 
 ##### Excel
 
@@ -274,9 +311,34 @@ Patten Recongnition and Machine Learning
 
 Python自动化运维
 
+### 云原生
+
 #### Docker
 
+#### 入门
+
+第一本Docker书
+
 #### Kubernetes
+#### 入门
+
+每天五分钟玩转Kubernetes
+
+> 内容简洁实用，核心观点点到即止。适合小白入门。
+
+再也不踩坑的Kubernetes
+
+> 各种环境搭建如Redis集群、RabbitMQ等。适合当工具书
+
+Kubernetes权威指南
+
+> 书是经典，但大而全。入门绝非最好的选择。或许更适合当Kubernetes的百科全书
+
+#### 进阶
+
+Kubernetes进阶实战
+
+Kubernetes网络权威指南
 
 ### 测试
 
