@@ -11,6 +11,18 @@ date: 2021-05-09 00:59:11
 ### 操作系统
 
 ### Linux
+#### 入门
+Linux命令行大全
+Linux 系统命令及Shell脚本
+
+#### 进阶
+精通Linux
+Linux程序设计
+Raspberry Pi入门指南
+
+#### 运维
+高性能Linux服务器运维实战
+跟老男孩学Linux运维
 
 ### 数据库
 
@@ -18,11 +30,18 @@ date: 2021-05-09 00:59:11
 
 ##### My SQL
 
-**SQL必知必会**
+SQL必知必会
 
-**SQL入门经典**
+SQL入门经典
 
-**高性能的MySQL**
+MySQL技术内幕:SQL编程
+
+高性能的MySQL
+
+前金良方:MySQL性能优化金字塔法则
+
+MySQL技术大全
+
 
 #### 非关系性数据库：
 
@@ -30,47 +49,95 @@ date: 2021-05-09 00:59:11
 
 MongoDB权威指南
 
+MongoDB实战
+
+深入学习MongoDB
+
 ##### Redis
 
-Redis
+Redis开发与运维
+
+Redis设计与实现
+
+Redis 深度历险核心原理与应用实践
+
+
 
 ### 中间件
 
 #### Kafka
 
-**Elasticsearch**
+Kafka权威指南
+
+深入理解Kafka：核心设计与实践原理
+
+#### Elasticsearch
+
+Elasticsearch: The Definitive Guide
+
+Elasticsearch in Action
 
 ### Python
 
 #### 入门
 
-**Think Python**
+Think Python
 
-**Head First Python**
+Head First Python
 
-**Learn Python The Hard Way**
+Learn Python The Hard Way
 
-**Python学习手册**
+Python学习手册
 
-**Python编程：从入门到实战**
+Python编程：从入门到实战
 
-**Python编程：入门到实践**
+Python编程：入门到实践
 
 #### 进阶
 
-**Python Cookbook**
+Python Cookbook
 
-**Python源码剖析**
+Python源码剖析
 
-**流畅的Python**
+流畅的Python
 
-**编写高质量代码：改善Python程序的91个建议**
+Python高性能编程
+
+编写高质量代码：改善Python程序的91个建议
 
 ### Java
 
+#### 入门
+
+Java核心技术·卷 I（原书第11版） : 基础知识
+
+Java核心技术·卷 I（原书第11版） : 高级特性
+
+Effective Java
+
+#### 进阶
+
+重学Java设计模式
+
+Java编程思想 
+
+深入理解Java虚拟机
+
+Java并发编程实战
+
+Clean Code
+
+Java并发编程实战
+
 ### Android
 
+第一行代码:Android
+
+打造高质量Android应用
+
 ### GoLang
+
+
 
 ### 网络爬虫
 
@@ -122,11 +189,8 @@ Redis
 
 #### 实践类
 
-> what do?
+> what do?	How do?	Why do?
 >
-> How do?
->
-> Why do?
 
 ##### Excel
 
