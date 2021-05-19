@@ -32,8 +32,22 @@
     <title>Book List</title>
     <url>/2021/05/09/Book-List/</url>
     <content><![CDATA[<h2 id="图书清单"><a href="#图书清单" class="headerlink" title="图书清单"></a>图书清单</h2><a id="more"></a>
-<h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><h4 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h4><p>Linux命令行大全<br>Linux 系统命令及Shell脚本</p>
-<h4 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h4><p>精通Linux<br>Linux程序设计<br>Raspberry Pi入门指南</p>
+<h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><p>操作系统导论</p>
+<p>现代操作系统</p>
+<p>操作系统-精髓与设计原理</p>
+<p>编译原理</p>
+<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><h4 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h4><p>计算机网络-谢希仁</p>
+<p>网络是怎样连接的</p>
+<p>图解http</p>
+<p>HTTP权威指南</p>
+<p>Wireshark网络分析就是这么简单</p>
+<p>Wireshark网络分析的艺术</p>
+<h4 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h4><p>计算机网络-自顶向下方法</p>
+<p>TCP/IP详解 卷1：协议</p>
+<p>TCP/IP详解 卷2：实现</p>
+<p>TCP/IP详解 卷3：TCP事务协议、HTTP、NNTP和UNIX域协议</p>
+<h3 id="算法与数据结构"><a href="#算法与数据结构" class="headerlink" title="算法与数据结构"></a>算法与数据结构</h3><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><h4 id="入门-1"><a href="#入门-1" class="headerlink" title="入门"></a>入门</h4><p>Linux命令行大全<br>Linux 系统命令及Shell脚本</p>
+<h4 id="进阶-1"><a href="#进阶-1" class="headerlink" title="进阶"></a>进阶</h4><p>精通Linux<br>Linux程序设计<br>Raspberry Pi入门指南</p>
 <h4 id="运维"><a href="#运维" class="headerlink" title="运维"></a>运维</h4><p>高性能Linux服务器运维实战<br>跟老男孩学Linux运维</p>
 <h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><h4 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库:"></a>关系型数据库:</h4><h5 id="My-SQL"><a href="#My-SQL" class="headerlink" title="My SQL"></a>My SQL</h5><p>SQL必知必会</p>
 <p>SQL入门经典</p>
@@ -51,21 +65,21 @@
 <p>深入理解Kafka：核心设计与实践原理</p>
 <h4 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a>Elasticsearch</h4><p>Elasticsearch: The Definitive Guide</p>
 <p>Elasticsearch in Action</p>
-<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="入门-1"><a href="#入门-1" class="headerlink" title="入门"></a>入门</h4><p>Think Python</p>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="入门-2"><a href="#入门-2" class="headerlink" title="入门"></a>入门</h4><p>Think Python</p>
 <p>Head First Python</p>
 <p>Learn Python The Hard Way</p>
 <p>Python学习手册</p>
 <p>Python编程：从入门到实战</p>
 <p>Python编程：入门到实践</p>
-<h4 id="进阶-1"><a href="#进阶-1" class="headerlink" title="进阶"></a>进阶</h4><p>Python Cookbook</p>
+<h4 id="进阶-2"><a href="#进阶-2" class="headerlink" title="进阶"></a>进阶</h4><p>Python Cookbook</p>
 <p>Python源码剖析</p>
 <p>流畅的Python</p>
 <p>Python高性能编程</p>
 <p>编写高质量代码：改善Python程序的91个建议</p>
-<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><h4 id="入门-2"><a href="#入门-2" class="headerlink" title="入门"></a>入门</h4><p>Java核心技术·卷 I（原书第11版） : 基础知识</p>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><h4 id="入门-3"><a href="#入门-3" class="headerlink" title="入门"></a>入门</h4><p>Java核心技术·卷 I（原书第11版） : 基础知识</p>
 <p>Java核心技术·卷 I（原书第11版） : 高级特性</p>
 <p>Effective Java</p>
-<h4 id="进阶-2"><a href="#进阶-2" class="headerlink" title="进阶"></a>进阶</h4><p>重学Java设计模式</p>
+<h4 id="进阶-3"><a href="#进阶-3" class="headerlink" title="进阶"></a>进阶</h4><p>重学Java设计模式</p>
 <p>Java编程思想 </p>
 <p>深入理解Java虚拟机</p>
 <p>Java并发编程实战</p>
@@ -76,7 +90,7 @@
 <h3 id="GoLang"><a href="#GoLang" class="headerlink" title="GoLang"></a>GoLang</h3><h3 id="网络爬虫"><a href="#网络爬虫" class="headerlink" title="网络爬虫"></a>网络爬虫</h3><p><strong>Python 网络爬虫从入门到实践</strong></p>
 <p><strong>Python3网络爬虫开发实战</strong></p>
 <p><strong>Python3反爬虫原理与绕过实战</strong></p>
-<h4 id="进阶-3"><a href="#进阶-3" class="headerlink" title="进阶"></a>进阶</h4><p><strong>Android安全攻防权威指南</strong></p>
+<h4 id="进阶-4"><a href="#进阶-4" class="headerlink" title="进阶"></a>进阶</h4><p><strong>Android安全攻防权威指南</strong></p>
 <p><strong>Android应用安全和逆向分析</strong></p>
 <p><strong>Android软件安全权威指南</strong></p>
 <p><strong>IDA PRO 权威指南</strong></p>
@@ -122,53 +136,40 @@
 <p><strong>一句话点评：</strong>数据分析、数据挖掘、数据抓取等在社交网络方面的应用。</p>
 </blockquote>
 <p><strong>豆瓣简介：</strong>Matthew A. Russell Digital Reasoning Systems公司首席技术官（CTO）、Zaffra公司负责人。作为一名计算机科学家，他热衷于数据挖掘、开源软件开发和创造技术以扩展人类智能。</p>
-<h3 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h3><h4 id="入门-3"><a href="#入门-3" class="headerlink" title="入门"></a>入门</h4><p>深度学习的数学</p>
+<h3 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h3><h4 id="入门-4"><a href="#入门-4" class="headerlink" title="入门"></a>入门</h4><p>深度学习的数学</p>
 <p>深度学习入门</p>
 <p>Python深度学习</p>
 <p>深度学习</p>
 <p>动手学习深度学习</p>
-<h4 id="进阶-4"><a href="#进阶-4" class="headerlink" title="进阶"></a>进阶</h4><p>深度学习进阶</p>
+<h4 id="进阶-5"><a href="#进阶-5" class="headerlink" title="进阶"></a>进阶</h4><p>深度学习进阶</p>
 <h3 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h3><p>数据挖掘导论</p>
 <p>机器学习(西瓜书)-周志华</p>
 <p>统计学习方法-李航</p>
 <p>Patten Recongnition and Machine Learning</p>
 <p>统计自然语言处理</p>
 <h3 id="运维-1"><a href="#运维-1" class="headerlink" title="运维"></a>运维</h3><p>Python自动化运维</p>
-<h4 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h4><h4 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h4><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>持续更新…</p>
+<h3 id="云原生"><a href="#云原生" class="headerlink" title="云原生"></a>云原生</h3><h4 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h4><h4 id="入门-5"><a href="#入门-5" class="headerlink" title="入门"></a>入门</h4><p>第一本Docker书</p>
+<h4 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h4><h4 id="入门-6"><a href="#入门-6" class="headerlink" title="入门"></a>入门</h4><p>每天五分钟玩转Kubernetes</p>
+<blockquote>
+<p>内容简洁实用，核心观点点到即止。适合小白入门。</p>
+</blockquote>
+<p>再也不踩坑的Kubernetes</p>
+<blockquote>
+<p>各种环境搭建如Redis集群、RabbitMQ等。适合当工具书</p>
+</blockquote>
+<p>Kubernetes权威指南</p>
+<blockquote>
+<p>书是经典，但大而全。入门绝非最好的选择。或许更适合当Kubernetes的百科全书</p>
+</blockquote>
+<h4 id="进阶-6"><a href="#进阶-6" class="headerlink" title="进阶"></a>进阶</h4><p>Kubernetes进阶实战</p>
+<p>Kubernetes网络权威指南</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>持续更新…</p>
 ]]></content>
       <categories>
         <category>Book</category>
       </categories>
       <tags>
         <tag>Book</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Golang-Map</title>
-    <url>/2020/11/21/Golang-Map/</url>
-    <content><![CDATA[<p>Go语言中提供的映射关系容器为<code>map</code>，其内部使用<code>散列表（hash）</code>实现map</p>
-<p>map是一种无序的基于<code>key-value</code>的数据结构，Go语言中的map是<code>引用类型</code>，必须<code>初始化</code>才能使用。<br><a id="more"></a></p>
-<h2 id="定义Map"><a href="#定义Map" class="headerlink" title="定义Map"></a>定义Map</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 初始化定义</span></span><br><span class="line"><span class="keyword">map</span>[KeyType]ValueType</span><br><span class="line"></span><br><span class="line"><span class="comment">// KeyType:表示键的类型。map可以嵌套map，可以是key 也是是value</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ValueType:表示键对应的值的类型。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">map</span>类型的变量默认初始值为<span class="literal">nil</span>，需要使用<span class="built_in">make</span>()函数来分配内存。语法为：</span><br><span class="line"></span><br><span class="line"><span class="built_in">make</span>(<span class="keyword">map</span>[KeyType]ValueType, [<span class="built_in">cap</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值定义</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">map</span>[KeyType]ValueType&#123;</span><br><span class="line">  key1:value1</span><br><span class="line">  key2:value2</span><br><span class="line">  key4:value3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">a := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>)</span><br><span class="line">a[<span class="string">&quot;name&quot;</span>] = <span class="string">&quot;Payne&quot;</span></span><br><span class="line">a[<span class="string">&quot;sex&quot;</span>] = <span class="string">&quot;male&quot;</span></span><br><span class="line">a[<span class="string">&quot;year&quot;</span>] = <span class="string">&quot;20&quot;</span></span><br><span class="line">fmt.Println(<span class="string">&quot;a:&quot;</span>, a)               <span class="comment">// a: map[name:Payne sex:male year:20]</span></span><br><span class="line">fmt.Println(<span class="string">&quot;a[&#x27;sex&#x27;]:&quot;</span>, a[<span class="string">&quot;sex&quot;</span>]) <span class="comment">// a[&#x27;sex&#x27;]: male</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;Type of a:%T\n&quot;</span>, a)      <span class="comment">// Type of a:map[string]string</span></span><br><span class="line"></span><br><span class="line">b := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;</span><br><span class="line">    <span class="string">&quot;Name&quot;</span>: <span class="string">&quot;Tim&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Sex&quot;</span>:  <span class="string">&quot;male&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Year&quot;</span>: <span class="string">&quot;20&quot;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Println(<span class="string">&quot;b:&quot;</span>, b)               <span class="comment">// b: map[Name:Tim Sex:male Year:20]</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;b[&#x27;sex&#x27;]:&quot;</span>, b[<span class="string">&quot;Sex&quot;</span>]) <span class="comment">// b[&#x27;sex&#x27;]: male</span></span><br><span class="line">    fmt.Printf(<span class="string">&quot;Type of b:%T&quot;</span>, b)   <span class="comment">// Type of b:map[string]string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="判断某个键是否存在"><a href="#判断某个键是否存在" class="headerlink" title="判断某个键是否存在"></a>判断某个键是否存在</h2><p>Go语言中有个判断map中键是否存在的特殊写法，格式如下:</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">value, ok := <span class="keyword">map</span>[key]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 其中 value可以为任意接受值。而 ok 必须写</span></span><br></pre></td></tr></table></figure>
-<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">c := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;</span><br><span class="line"><span class="string">&quot;name1&quot;</span>: <span class="string">&quot;Tom&quot;</span>,</span><br><span class="line"><span class="string">&quot;name2&quot;</span>: <span class="string">&quot;Tim&quot;</span>,</span><br><span class="line"><span class="string">&quot;name3&quot;</span>: <span class="string">&quot;Payne&quot;</span>,</span><br><span class="line"><span class="string">&quot;name4&quot;</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果key存在ok为true,v为对应的值；不存在ok为false,v为值类型的零值</span></span><br><span class="line">value, ok := c[<span class="string">&quot;name1&quot;</span>]</span><br><span class="line">fmt.Println(value, ok)     <span class="comment">// Tom true</span></span><br><span class="line"></span><br><span class="line">value, ok := c[<span class="string">&quot;name5&quot;</span>]</span><br><span class="line">fmt.Println(value, ok)     <span class="comment">// false</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> ok &#123;</span><br><span class="line">    fmt.Println(value) <span class="comment">// Tom</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">fmt.Println(<span class="string">&quot;nil&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="map遍历"><a href="#map遍历" class="headerlink" title="map遍历"></a>map遍历</h2><p>Go语言中使用<code>for range</code>遍历map。</p>
-<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 遍历</span></span><br><span class="line">d := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;</span><br><span class="line"><span class="string">&quot;name1&quot;</span>: <span class="string">&quot;Tom&quot;</span>,</span><br><span class="line"><span class="string">&quot;name2&quot;</span>: <span class="string">&quot;Tim&quot;</span>,</span><br><span class="line"><span class="string">&quot;name3&quot;</span>: <span class="string">&quot;Payne&quot;</span>,</span><br><span class="line"><span class="string">&quot;name4&quot;</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 只遍历key</span></span><br><span class="line"><span class="keyword">for</span> d := <span class="keyword">range</span> d &#123;</span><br><span class="line">fmt.Print(d + <span class="string">&quot;,&quot;</span>)  <span class="comment">// name1,name2,name3,name4,</span></span><br><span class="line">&#125;</span><br><span class="line">fmt.Printf(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"><span class="comment">// 只遍历value</span></span><br><span class="line"><span class="keyword">for</span> _, v := <span class="keyword">range</span> d &#123;</span><br><span class="line">fmt.Print(v + <span class="string">&quot;,&quot;</span>)  <span class="comment">// Tom,Tim,Payne,John,</span></span><br><span class="line">&#125;</span><br><span class="line">fmt.Printf(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"><span class="comment">// 遍历key value</span></span><br><span class="line"><span class="keyword">for</span> k, v := <span class="keyword">range</span> d &#123;</span><br><span class="line">fmt.Print(k, <span class="string">&quot;:&quot;</span>, v, <span class="string">&quot; &quot;</span>)   <span class="comment">// name2:Tim name3:Payne name4:John name1:Tom</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="删除key"><a href="#删除key" class="headerlink" title="删除key"></a>删除key</h2><p>使用<code>delete()</code>内建函数从map中删除一组键值对，<code>delete()</code>函数的格式如下：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="built_in">delete</span>(<span class="keyword">map</span>, key)</span><br><span class="line"><span class="comment">// map:表示要删除键值对的map</span></span><br><span class="line"><span class="comment">// key:表示要删除的键值对</span></span><br></pre></td></tr></table></figure>
-<h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">f := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;</span><br><span class="line"><span class="string">&quot;name1&quot;</span>: <span class="string">&quot;Tom&quot;</span>,</span><br><span class="line"><span class="string">&quot;name2&quot;</span>: <span class="string">&quot;Tim&quot;</span>,</span><br><span class="line"><span class="string">&quot;name3&quot;</span>: <span class="string">&quot;Payne&quot;</span>,</span><br><span class="line"><span class="string">&quot;name4&quot;</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line">v1, ok := f[<span class="string">&quot;name1&quot;</span>]</span><br><span class="line">fmt.Println(v1, ok)  <span class="comment">// Tom true</span></span><br><span class="line"><span class="built_in">delete</span>(f, <span class="string">&quot;name1&quot;</span>)</span><br><span class="line">v2, ok := f[<span class="string">&quot;name1&quot;</span>]</span><br><span class="line">fmt.Println(v2, ok)  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-<h2 id="元素为map类型的切片"><a href="#元素为map类型的切片" class="headerlink" title="元素为map类型的切片"></a>元素为map类型的切片</h2><p>下面的代码演示了切片中的元素为map类型时的操作：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  mapSlice := <span class="built_in">make</span>([]<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>, <span class="number">3</span>)</span><br><span class="line">  <span class="keyword">for</span> index, value := <span class="keyword">range</span> mapSlice &#123;</span><br><span class="line">  fmt.Printf(<span class="string">&quot;index:%d value:%v\n&quot;</span>, index, value)</span><br><span class="line"> &#125;</span><br><span class="line"> fmt.Println(<span class="string">&quot;after init&quot;</span>)</span><br><span class="line"> <span class="comment">// 对切片中的map元素进行初始化</span></span><br><span class="line"> mapSlice[<span class="number">0</span>] = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>, <span class="number">10</span>)</span><br><span class="line"> mapSlice[<span class="number">0</span>][<span class="string">&quot;name&quot;</span>] = <span class="string">&quot;payne&quot;</span></span><br><span class="line"> mapSlice[<span class="number">0</span>][<span class="string">&quot;password&quot;</span>] = <span class="string">&quot;123456&quot;</span></span><br><span class="line"> mapSlice[<span class="number">0</span>][<span class="string">&quot;address&quot;</span>] = <span class="string">&quot;cs&quot;</span></span><br><span class="line"> <span class="keyword">for</span> index, value := <span class="keyword">range</span> mapSlice &#123;</span><br><span class="line"> fmt.Printf(<span class="string">&quot;index:%d value:%v\n&quot;</span>, index, value)</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index:0 value:map[]</span></span><br><span class="line"><span class="comment">// index:1 value:map[]</span></span><br><span class="line"><span class="comment">// index:2 value:map[]</span></span><br><span class="line"><span class="comment">// after init</span></span><br><span class="line"><span class="comment">// index:0 value:map[address:cs name:payne password:123456]</span></span><br><span class="line"><span class="comment">// index:1 value:map[]</span></span><br><span class="line"><span class="comment">// index:2 value:map[]</span></span><br></pre></td></tr></table></figure>
-<h2 id="值为切片类型的map"><a href="#值为切片类型的map" class="headerlink" title="值为切片类型的map"></a>值为切片类型的map</h2><p>下面的代码演示了map中值为切片类型的操作：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  sliceMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>][]<span class="keyword">string</span>, <span class="number">3</span>)</span><br><span class="line"> fmt.Println(sliceMap)</span><br><span class="line"> fmt.Println(<span class="string">&quot;after init&quot;</span>)</span><br><span class="line">key := <span class="string">&quot;中国&quot;</span></span><br><span class="line">value, ok := sliceMap[key]</span><br><span class="line"><span class="keyword">if</span> !ok &#123;</span><br><span class="line">value = <span class="built_in">make</span>([]<span class="keyword">string</span>, <span class="number">0</span>, <span class="number">2</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> value = <span class="built_in">append</span>(value, <span class="string">&quot;北京&quot;</span>, <span class="string">&quot;上海&quot;</span>)</span><br><span class="line"> sliceMap[key] = value</span><br><span class="line">fmt.Println(sliceMap)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// map[]</span></span><br><span class="line"><span class="comment">// after init</span></span><br><span class="line"><span class="comment">// map[中国:[北京 上海]]</span></span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>可以map理解为key-value的容器，里面可包含基本数据类型\Map,不包含Array。包含sclice</p>
-]]></content>
-      <categories>
-        <category>Go</category>
-      </categories>
-      <tags>
-        <tag>Go</tag>
       </tags>
   </entry>
   <entry>
@@ -204,6 +205,34 @@
 <blockquote>
 <p>在开头的时候，我们说过defer是在return调用之后才执行的。 这里需要明确的是defer代码块的作用域仍然在函数之内，结合上面的函数也就是说，defer的作用域仍然在c函数之内。因此defer仍然可以读取c函数内的变量(如果无法读取函数内变量，那又如何进行变量清除呢…)。<br>当执行return 1 之后，i的值就是1. 此时此刻，defer代码块开始执行，对i进行自增操作。 因此输出2.</p>
 </blockquote>
+]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Golang-Map</title>
+    <url>/2020/11/21/Golang-Map/</url>
+    <content><![CDATA[<p>Go语言中提供的映射关系容器为<code>map</code>，其内部使用<code>散列表（hash）</code>实现map</p>
+<p>map是一种无序的基于<code>key-value</code>的数据结构，Go语言中的map是<code>引用类型</code>，必须<code>初始化</code>才能使用。<br><a id="more"></a></p>
+<h2 id="定义Map"><a href="#定义Map" class="headerlink" title="定义Map"></a>定义Map</h2><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 初始化定义</span></span><br><span class="line"><span class="keyword">map</span>[KeyType]ValueType</span><br><span class="line"></span><br><span class="line"><span class="comment">// KeyType:表示键的类型。map可以嵌套map，可以是key 也是是value</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ValueType:表示键对应的值的类型。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">map</span>类型的变量默认初始值为<span class="literal">nil</span>，需要使用<span class="built_in">make</span>()函数来分配内存。语法为：</span><br><span class="line"></span><br><span class="line"><span class="built_in">make</span>(<span class="keyword">map</span>[KeyType]ValueType, [<span class="built_in">cap</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值定义</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">map</span>[KeyType]ValueType&#123;</span><br><span class="line">  key1:value1</span><br><span class="line">  key2:value2</span><br><span class="line">  key4:value3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">a := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>)</span><br><span class="line">a[<span class="string">&quot;name&quot;</span>] = <span class="string">&quot;Payne&quot;</span></span><br><span class="line">a[<span class="string">&quot;sex&quot;</span>] = <span class="string">&quot;male&quot;</span></span><br><span class="line">a[<span class="string">&quot;year&quot;</span>] = <span class="string">&quot;20&quot;</span></span><br><span class="line">fmt.Println(<span class="string">&quot;a:&quot;</span>, a)               <span class="comment">// a: map[name:Payne sex:male year:20]</span></span><br><span class="line">fmt.Println(<span class="string">&quot;a[&#x27;sex&#x27;]:&quot;</span>, a[<span class="string">&quot;sex&quot;</span>]) <span class="comment">// a[&#x27;sex&#x27;]: male</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;Type of a:%T\n&quot;</span>, a)      <span class="comment">// Type of a:map[string]string</span></span><br><span class="line"></span><br><span class="line">b := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;</span><br><span class="line">    <span class="string">&quot;Name&quot;</span>: <span class="string">&quot;Tim&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Sex&quot;</span>:  <span class="string">&quot;male&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Year&quot;</span>: <span class="string">&quot;20&quot;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Println(<span class="string">&quot;b:&quot;</span>, b)               <span class="comment">// b: map[Name:Tim Sex:male Year:20]</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;b[&#x27;sex&#x27;]:&quot;</span>, b[<span class="string">&quot;Sex&quot;</span>]) <span class="comment">// b[&#x27;sex&#x27;]: male</span></span><br><span class="line">    fmt.Printf(<span class="string">&quot;Type of b:%T&quot;</span>, b)   <span class="comment">// Type of b:map[string]string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="判断某个键是否存在"><a href="#判断某个键是否存在" class="headerlink" title="判断某个键是否存在"></a>判断某个键是否存在</h2><p>Go语言中有个判断map中键是否存在的特殊写法，格式如下:</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">value, ok := <span class="keyword">map</span>[key]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 其中 value可以为任意接受值。而 ok 必须写</span></span><br></pre></td></tr></table></figure>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">c := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;</span><br><span class="line"><span class="string">&quot;name1&quot;</span>: <span class="string">&quot;Tom&quot;</span>,</span><br><span class="line"><span class="string">&quot;name2&quot;</span>: <span class="string">&quot;Tim&quot;</span>,</span><br><span class="line"><span class="string">&quot;name3&quot;</span>: <span class="string">&quot;Payne&quot;</span>,</span><br><span class="line"><span class="string">&quot;name4&quot;</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果key存在ok为true,v为对应的值；不存在ok为false,v为值类型的零值</span></span><br><span class="line">value, ok := c[<span class="string">&quot;name1&quot;</span>]</span><br><span class="line">fmt.Println(value, ok)     <span class="comment">// Tom true</span></span><br><span class="line"></span><br><span class="line">value, ok := c[<span class="string">&quot;name5&quot;</span>]</span><br><span class="line">fmt.Println(value, ok)     <span class="comment">// false</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> ok &#123;</span><br><span class="line">    fmt.Println(value) <span class="comment">// Tom</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">fmt.Println(<span class="string">&quot;nil&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="map遍历"><a href="#map遍历" class="headerlink" title="map遍历"></a>map遍历</h2><p>Go语言中使用<code>for range</code>遍历map。</p>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 遍历</span></span><br><span class="line">d := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;</span><br><span class="line"><span class="string">&quot;name1&quot;</span>: <span class="string">&quot;Tom&quot;</span>,</span><br><span class="line"><span class="string">&quot;name2&quot;</span>: <span class="string">&quot;Tim&quot;</span>,</span><br><span class="line"><span class="string">&quot;name3&quot;</span>: <span class="string">&quot;Payne&quot;</span>,</span><br><span class="line"><span class="string">&quot;name4&quot;</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 只遍历key</span></span><br><span class="line"><span class="keyword">for</span> d := <span class="keyword">range</span> d &#123;</span><br><span class="line">fmt.Print(d + <span class="string">&quot;,&quot;</span>)  <span class="comment">// name1,name2,name3,name4,</span></span><br><span class="line">&#125;</span><br><span class="line">fmt.Printf(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"><span class="comment">// 只遍历value</span></span><br><span class="line"><span class="keyword">for</span> _, v := <span class="keyword">range</span> d &#123;</span><br><span class="line">fmt.Print(v + <span class="string">&quot;,&quot;</span>)  <span class="comment">// Tom,Tim,Payne,John,</span></span><br><span class="line">&#125;</span><br><span class="line">fmt.Printf(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"><span class="comment">// 遍历key value</span></span><br><span class="line"><span class="keyword">for</span> k, v := <span class="keyword">range</span> d &#123;</span><br><span class="line">fmt.Print(k, <span class="string">&quot;:&quot;</span>, v, <span class="string">&quot; &quot;</span>)   <span class="comment">// name2:Tim name3:Payne name4:John name1:Tom</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="删除key"><a href="#删除key" class="headerlink" title="删除key"></a>删除key</h2><p>使用<code>delete()</code>内建函数从map中删除一组键值对，<code>delete()</code>函数的格式如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="built_in">delete</span>(<span class="keyword">map</span>, key)</span><br><span class="line"><span class="comment">// map:表示要删除键值对的map</span></span><br><span class="line"><span class="comment">// key:表示要删除的键值对</span></span><br></pre></td></tr></table></figure>
+<h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">f := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;</span><br><span class="line"><span class="string">&quot;name1&quot;</span>: <span class="string">&quot;Tom&quot;</span>,</span><br><span class="line"><span class="string">&quot;name2&quot;</span>: <span class="string">&quot;Tim&quot;</span>,</span><br><span class="line"><span class="string">&quot;name3&quot;</span>: <span class="string">&quot;Payne&quot;</span>,</span><br><span class="line"><span class="string">&quot;name4&quot;</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line">v1, ok := f[<span class="string">&quot;name1&quot;</span>]</span><br><span class="line">fmt.Println(v1, ok)  <span class="comment">// Tom true</span></span><br><span class="line"><span class="built_in">delete</span>(f, <span class="string">&quot;name1&quot;</span>)</span><br><span class="line">v2, ok := f[<span class="string">&quot;name1&quot;</span>]</span><br><span class="line">fmt.Println(v2, ok)  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h2 id="元素为map类型的切片"><a href="#元素为map类型的切片" class="headerlink" title="元素为map类型的切片"></a>元素为map类型的切片</h2><p>下面的代码演示了切片中的元素为map类型时的操作：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  mapSlice := <span class="built_in">make</span>([]<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>, <span class="number">3</span>)</span><br><span class="line">  <span class="keyword">for</span> index, value := <span class="keyword">range</span> mapSlice &#123;</span><br><span class="line">  fmt.Printf(<span class="string">&quot;index:%d value:%v\n&quot;</span>, index, value)</span><br><span class="line"> &#125;</span><br><span class="line"> fmt.Println(<span class="string">&quot;after init&quot;</span>)</span><br><span class="line"> <span class="comment">// 对切片中的map元素进行初始化</span></span><br><span class="line"> mapSlice[<span class="number">0</span>] = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>, <span class="number">10</span>)</span><br><span class="line"> mapSlice[<span class="number">0</span>][<span class="string">&quot;name&quot;</span>] = <span class="string">&quot;payne&quot;</span></span><br><span class="line"> mapSlice[<span class="number">0</span>][<span class="string">&quot;password&quot;</span>] = <span class="string">&quot;123456&quot;</span></span><br><span class="line"> mapSlice[<span class="number">0</span>][<span class="string">&quot;address&quot;</span>] = <span class="string">&quot;cs&quot;</span></span><br><span class="line"> <span class="keyword">for</span> index, value := <span class="keyword">range</span> mapSlice &#123;</span><br><span class="line"> fmt.Printf(<span class="string">&quot;index:%d value:%v\n&quot;</span>, index, value)</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index:0 value:map[]</span></span><br><span class="line"><span class="comment">// index:1 value:map[]</span></span><br><span class="line"><span class="comment">// index:2 value:map[]</span></span><br><span class="line"><span class="comment">// after init</span></span><br><span class="line"><span class="comment">// index:0 value:map[address:cs name:payne password:123456]</span></span><br><span class="line"><span class="comment">// index:1 value:map[]</span></span><br><span class="line"><span class="comment">// index:2 value:map[]</span></span><br></pre></td></tr></table></figure>
+<h2 id="值为切片类型的map"><a href="#值为切片类型的map" class="headerlink" title="值为切片类型的map"></a>值为切片类型的map</h2><p>下面的代码演示了map中值为切片类型的操作：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  sliceMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>][]<span class="keyword">string</span>, <span class="number">3</span>)</span><br><span class="line"> fmt.Println(sliceMap)</span><br><span class="line"> fmt.Println(<span class="string">&quot;after init&quot;</span>)</span><br><span class="line">key := <span class="string">&quot;中国&quot;</span></span><br><span class="line">value, ok := sliceMap[key]</span><br><span class="line"><span class="keyword">if</span> !ok &#123;</span><br><span class="line">value = <span class="built_in">make</span>([]<span class="keyword">string</span>, <span class="number">0</span>, <span class="number">2</span>)</span><br><span class="line"> &#125;</span><br><span class="line"> value = <span class="built_in">append</span>(value, <span class="string">&quot;北京&quot;</span>, <span class="string">&quot;上海&quot;</span>)</span><br><span class="line"> sliceMap[key] = value</span><br><span class="line">fmt.Println(sliceMap)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// map[]</span></span><br><span class="line"><span class="comment">// after init</span></span><br><span class="line"><span class="comment">// map[中国:[北京 上海]]</span></span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>可以map理解为key-value的容器，里面可包含基本数据类型\Map,不包含Array。包含sclice</p>
 ]]></content>
       <categories>
         <category>Go</category>
@@ -1296,69 +1325,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Golang指针-pointer</title>
-    <url>/2020/11/21/Golang%E6%8C%87%E9%92%88-pointer/</url>
-    <content><![CDATA[<p>区别于C/C++中的指针，Go语言中的指针不能进行偏移和运算，是安全指针。</p>
-<p>要搞明白Go语言中的指针需要先知道3个概念：指针地址、指针类型和指针取值。<br><a id="more"></a></p>
-<h2 id="Go语言中的指针"><a href="#Go语言中的指针" class="headerlink" title="Go语言中的指针"></a>Go语言中的指针</h2><blockquote>
-<p>任何程序数据载入内存后，在内存都有他们的地址，这就是指针。而为了保存一个数据在内存中的地址，我们就需要指针变量。</p>
-<p>比如，“永远不要高估自己”这句话，我想把它写入程序中，程序一启动这句话是要加载到内存（假设内存地址0x123456），我在程序中把这段话赋值给变量<code>A</code>，把内存地址赋值给变量<code>B</code>。这时候变量<code>B</code>就是一个指针变量。通过变量<code>A</code>和变量<code>B</code>都能找到我的座右铭。</p>
-<p>Go语言中的指针不能进行偏移和运算，因此Go语言中的指针操作非常简单，我们只需要记住两个符号：<code>&amp;</code>（取地址）和<code>*</code>（根据地址取值）。</p>
-<p>每个变量在运行时都拥有一个地址，这个地址代表变量在内存中的位置。Go语言中使用<code>&amp;</code>字符放在变量前面对变量进行“取地址”操作。 Go语言中的值类型（int、float、bool、string、array、struct）都有对应的指针类型，如：<code>*int</code>、<code>*int64</code>、<code>*string</code>等。</p>
-</blockquote>
-<p>取变量指针的语法如下：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">ptr := &amp;v    <span class="comment">// v的类型为T</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li>v:代表被取地址的变量，类型为<code>T</code></li>
-<li>ptr:用于接收地址的变量，ptr的类型就为<code>*T</code>，称做T的指针类型。*代表指针。</li>
-</ul>
-</blockquote>
-<p>注意：<code>&amp;</code>仅对基本类型适用基本类型(包含int\bool\string，不包含数组、切片等),<code>fmt.printf(%p)</code>使用于所有类型。</p>
-<p>示例如下：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;reflect&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := <span class="number">10</span></span><br><span class="line">	b := &amp;a     <span class="comment">// &amp; 取地址值操作</span></span><br><span class="line">	c := *b     <span class="comment">// * 根据地址值取值操作</span></span><br><span class="line">	fmt.Println(a, reflect.TypeOf(a))  <span class="comment">// 10 int</span></span><br><span class="line">	<span class="comment">// 每次的地址值不一定，若打印出0x开头的即成功获取到该变量地址值</span></span><br><span class="line">	fmt.Println(b, reflect.TypeOf(b))  <span class="comment">// 0xc000014080 *int</span></span><br><span class="line">	fmt.Println(c, reflect.TypeOf(c))  <span class="comment">// 10 int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>总结：</strong> 取地址操作符<code>&amp;</code>和取值操作符<code>*</code>是一对互补操作符，<code>&amp;</code>取出地址，<code>*</code>根据地址取出地址指向的值。</p>
-<p>变量、指针地址、指针变量、取地址、取值的相互关系和特性如下：</p>
-<ul>
-<li>对变量进行取地址（&amp;）操作，可以获得这个变量的指针变量。</li>
-<li>指针变量的值是指针地址。</li>
-<li>对指针变量进行取值（*）操作，可以获得指针变量指向的原变量的值。</li>
-</ul>
-</blockquote>
-<h2 id="Make-or-New"><a href="#Make-or-New" class="headerlink" title="Make or New"></a>Make or New</h2><p>导入</p>
-<blockquote>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a *<span class="keyword">int</span></span><br><span class="line">*a = <span class="number">10</span></span><br><span class="line">fmt.Println(*a)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span></span><br><span class="line">b[<span class="string">&quot;Payne&quot;</span>] = <span class="number">10</span></span><br><span class="line">fmt.Println(b)</span><br><span class="line"><span class="comment">// runtime error: invalid memory address or nil pointer dereference</span></span><br></pre></td></tr></table></figure>
-<p>执行上面的代码会引发panic，为什么呢？ </p>
-<p>在Go语言中对于引用类型的变量，我们在使用的时候不仅要声明它，还要为它分配内存空间，否则我们的值就没办法存储。</p>
-<p>而对于值类型的声明不需要分配内存空间，是因为它们在声明的时候已经默认分配好了内存空间。要分配内存，就引出来今天的new和make。 Go语言中new和make是内建的两个函数，主要用来分配内存。</p>
-</blockquote>
-<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><p>new是一个内置的函数，它的函数签名如下：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">new</span><span class="params">(Type)</span> *<span class="title">Type</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Type表示类型，new函数只接受一个参数，这个参数是一个类型</span></span><br><span class="line"><span class="comment">// *Type表示类型指针，new函数返回一个指向该类型内存地址的指针。</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := <span class="built_in">new</span>(<span class="keyword">int</span>)</span><br><span class="line">	b := <span class="built_in">new</span>(<span class="keyword">bool</span>)</span><br><span class="line">	fmt.Printf(<span class="string">&quot;%T\n&quot;</span>, a) <span class="comment">// *int</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;%T\n&quot;</span>, b) <span class="comment">// *bool</span></span><br><span class="line">	fmt.Println(*a)       <span class="comment">// 0</span></span><br><span class="line">	fmt.Println(*b)       <span class="comment">// false</span></span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>示例代码中<code>var a *int</code>只是声明了一个指针变量a但是没有初始化，指针作为引用类型需要初始化后才会拥有内存空间，才可以给它赋值。应该按照如下方式使用内置的new函数对a进行初始化之后就可以正常对其赋值了</p>
-</blockquote>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">var</span> a *<span class="keyword">int</span></span><br><span class="line">		a = <span class="built_in">new</span>(<span class="keyword">int</span>)</span><br><span class="line">		*a = <span class="number">10</span></span><br><span class="line">		fmt.Println(*a)  <span class="comment">// 10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="make"><a href="#make" class="headerlink" title="make"></a>make</h3><p>make也是用于内存分配的，区别于new，它只用于slice、map以及chan的内存创建，而且它返回的类型就是这三个类型本身，而不是他们的指针类型，因为这三种类型就是引用类型，所以就没有必要返回他们的指针了。make函数的函数签名如下：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">make</span><span class="params">(t Type, size ...IntegerType)</span> <span class="title">Type</span></span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>make函数是无可替代的，我们在使用slice、map以及channel的时候，都需要使用make进行初始化，然后才可以对它们进行操作。</p>
-</blockquote>
-<h3 id="new与make的同与异"><a href="#new与make的同与异" class="headerlink" title="new与make的同与异"></a>new与make的同与异</h3><ol>
-<li>二者都是用来做内存分配的。</li>
-<li>make只用于slice、map以及channel的初始化，返回的还是这三个引用类型本身；</li>
-<li>而new用于类型的内存分配，并且内存对应的值为类型零值，返回的是指向类型的指针。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Go</category>
-      </categories>
-      <tags>
-        <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Golang介绍</title>
     <url>/2020/11/21/Golang%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<blockquote>
@@ -1444,6 +1410,69 @@
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfxc0dxgxg30xq0ppngg.gif" alt=""></p>
 <p>第二款是老牌 IDE 公司 JetBrains 推出的 Goland，所有插件已经全部集成，更容易上手，并且功能强大，新手老手都适合，你可以通过官方网站 <a href="https://www.jetbrains.com/go/">https://www.jetbrains.com/go/</a> 下载使用。</p>
 <h2 id="第一个Golang程序"><a href="#第一个Golang程序" class="headerlink" title="第一个Golang程序"></a>第一个Golang程序</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">package main			<span class="comment"># 可执行文件必须为package main开头</span></span><br><span class="line"></span><br><span class="line">import <span class="string">&quot;fmt&quot;</span>			<span class="comment"># 导入“fmt”包，用于打印（fmt.Print（打印）、fmt.Println（换行打印）、fmt.Printf(格式化打印)等）</span></span><br><span class="line"></span><br><span class="line">func <span class="function"><span class="title">main</span></span>() &#123;			<span class="comment"># 主函数main</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;你好，我叫payne&quot;</span>)		<span class="comment"># 输入</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 你好，我叫payne</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Golang指针-pointer</title>
+    <url>/2020/11/21/Golang%E6%8C%87%E9%92%88-pointer/</url>
+    <content><![CDATA[<p>区别于C/C++中的指针，Go语言中的指针不能进行偏移和运算，是安全指针。</p>
+<p>要搞明白Go语言中的指针需要先知道3个概念：指针地址、指针类型和指针取值。<br><a id="more"></a></p>
+<h2 id="Go语言中的指针"><a href="#Go语言中的指针" class="headerlink" title="Go语言中的指针"></a>Go语言中的指针</h2><blockquote>
+<p>任何程序数据载入内存后，在内存都有他们的地址，这就是指针。而为了保存一个数据在内存中的地址，我们就需要指针变量。</p>
+<p>比如，“永远不要高估自己”这句话，我想把它写入程序中，程序一启动这句话是要加载到内存（假设内存地址0x123456），我在程序中把这段话赋值给变量<code>A</code>，把内存地址赋值给变量<code>B</code>。这时候变量<code>B</code>就是一个指针变量。通过变量<code>A</code>和变量<code>B</code>都能找到我的座右铭。</p>
+<p>Go语言中的指针不能进行偏移和运算，因此Go语言中的指针操作非常简单，我们只需要记住两个符号：<code>&amp;</code>（取地址）和<code>*</code>（根据地址取值）。</p>
+<p>每个变量在运行时都拥有一个地址，这个地址代表变量在内存中的位置。Go语言中使用<code>&amp;</code>字符放在变量前面对变量进行“取地址”操作。 Go语言中的值类型（int、float、bool、string、array、struct）都有对应的指针类型，如：<code>*int</code>、<code>*int64</code>、<code>*string</code>等。</p>
+</blockquote>
+<p>取变量指针的语法如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">ptr := &amp;v    <span class="comment">// v的类型为T</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>v:代表被取地址的变量，类型为<code>T</code></li>
+<li>ptr:用于接收地址的变量，ptr的类型就为<code>*T</code>，称做T的指针类型。*代表指针。</li>
+</ul>
+</blockquote>
+<p>注意：<code>&amp;</code>仅对基本类型适用基本类型(包含int\bool\string，不包含数组、切片等),<code>fmt.printf(%p)</code>使用于所有类型。</p>
+<p>示例如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;reflect&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := <span class="number">10</span></span><br><span class="line">	b := &amp;a     <span class="comment">// &amp; 取地址值操作</span></span><br><span class="line">	c := *b     <span class="comment">// * 根据地址值取值操作</span></span><br><span class="line">	fmt.Println(a, reflect.TypeOf(a))  <span class="comment">// 10 int</span></span><br><span class="line">	<span class="comment">// 每次的地址值不一定，若打印出0x开头的即成功获取到该变量地址值</span></span><br><span class="line">	fmt.Println(b, reflect.TypeOf(b))  <span class="comment">// 0xc000014080 *int</span></span><br><span class="line">	fmt.Println(c, reflect.TypeOf(c))  <span class="comment">// 10 int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>总结：</strong> 取地址操作符<code>&amp;</code>和取值操作符<code>*</code>是一对互补操作符，<code>&amp;</code>取出地址，<code>*</code>根据地址取出地址指向的值。</p>
+<p>变量、指针地址、指针变量、取地址、取值的相互关系和特性如下：</p>
+<ul>
+<li>对变量进行取地址（&amp;）操作，可以获得这个变量的指针变量。</li>
+<li>指针变量的值是指针地址。</li>
+<li>对指针变量进行取值（*）操作，可以获得指针变量指向的原变量的值。</li>
+</ul>
+</blockquote>
+<h2 id="Make-or-New"><a href="#Make-or-New" class="headerlink" title="Make or New"></a>Make or New</h2><p>导入</p>
+<blockquote>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a *<span class="keyword">int</span></span><br><span class="line">*a = <span class="number">10</span></span><br><span class="line">fmt.Println(*a)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span></span><br><span class="line">b[<span class="string">&quot;Payne&quot;</span>] = <span class="number">10</span></span><br><span class="line">fmt.Println(b)</span><br><span class="line"><span class="comment">// runtime error: invalid memory address or nil pointer dereference</span></span><br></pre></td></tr></table></figure>
+<p>执行上面的代码会引发panic，为什么呢？ </p>
+<p>在Go语言中对于引用类型的变量，我们在使用的时候不仅要声明它，还要为它分配内存空间，否则我们的值就没办法存储。</p>
+<p>而对于值类型的声明不需要分配内存空间，是因为它们在声明的时候已经默认分配好了内存空间。要分配内存，就引出来今天的new和make。 Go语言中new和make是内建的两个函数，主要用来分配内存。</p>
+</blockquote>
+<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><p>new是一个内置的函数，它的函数签名如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">new</span><span class="params">(Type)</span> *<span class="title">Type</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Type表示类型，new函数只接受一个参数，这个参数是一个类型</span></span><br><span class="line"><span class="comment">// *Type表示类型指针，new函数返回一个指向该类型内存地址的指针。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := <span class="built_in">new</span>(<span class="keyword">int</span>)</span><br><span class="line">	b := <span class="built_in">new</span>(<span class="keyword">bool</span>)</span><br><span class="line">	fmt.Printf(<span class="string">&quot;%T\n&quot;</span>, a) <span class="comment">// *int</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;%T\n&quot;</span>, b) <span class="comment">// *bool</span></span><br><span class="line">	fmt.Println(*a)       <span class="comment">// 0</span></span><br><span class="line">	fmt.Println(*b)       <span class="comment">// false</span></span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>示例代码中<code>var a *int</code>只是声明了一个指针变量a但是没有初始化，指针作为引用类型需要初始化后才会拥有内存空间，才可以给它赋值。应该按照如下方式使用内置的new函数对a进行初始化之后就可以正常对其赋值了</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">var</span> a *<span class="keyword">int</span></span><br><span class="line">		a = <span class="built_in">new</span>(<span class="keyword">int</span>)</span><br><span class="line">		*a = <span class="number">10</span></span><br><span class="line">		fmt.Println(*a)  <span class="comment">// 10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="make"><a href="#make" class="headerlink" title="make"></a>make</h3><p>make也是用于内存分配的，区别于new，它只用于slice、map以及chan的内存创建，而且它返回的类型就是这三个类型本身，而不是他们的指针类型，因为这三种类型就是引用类型，所以就没有必要返回他们的指针了。make函数的函数签名如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">make</span><span class="params">(t Type, size ...IntegerType)</span> <span class="title">Type</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>make函数是无可替代的，我们在使用slice、map以及channel的时候，都需要使用make进行初始化，然后才可以对它们进行操作。</p>
+</blockquote>
+<h3 id="new与make的同与异"><a href="#new与make的同与异" class="headerlink" title="new与make的同与异"></a>new与make的同与异</h3><ol>
+<li>二者都是用来做内存分配的。</li>
+<li>make只用于slice、map以及channel的初始化，返回的还是这三个引用类型本身；</li>
+<li>而new用于类型的内存分配，并且内存对应的值为类型零值，返回的是指向类型的指针。</li>
+</ol>
 ]]></content>
       <categories>
         <category>Go</category>
