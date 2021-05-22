@@ -99,3 +99,17 @@ brew update && brew upgrade && brew doctor
 ```
 git -C "/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core" remote set-url origin https://github.com/Homebrew/homebrew-core
 ```
+
+### kubectl 自动补全
+> 由于我习惯于zsh终端。这里给出zsh的，后面还有bash的
+
+```shell
+source <(kubectl completion zsh)
+```
+
+如果是`bash`
+```shell
+# Automatic completion of command
+source /usr/share/bash-completion/bash_completion
+source <(kubectl completion bash)
+```
