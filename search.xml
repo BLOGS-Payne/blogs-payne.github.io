@@ -3077,7 +3077,8 @@ DOWNLOADER_MIDDLEWARES = &#123;
   <entry>
     <title>爬虫:有什么让人眼前一亮的调试习惯与技巧</title>
     <url>/2021/05/26/%E7%88%AC%E8%99%AB-%E6%9C%89%E4%BB%80%E4%B9%88%E8%AE%A9%E4%BA%BA%E7%9C%BC%E5%89%8D%E4%B8%80%E4%BA%AE%E7%9A%84%E8%B0%83%E8%AF%95%E4%B9%A0%E6%83%AF%E4%B8%8E%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<p>在爬虫调试的时候一个良好的调试习惯,正确的调试技巧。绝对能让您在抓包，定位及JS解密与JS逆向等各种方面事半功倍。</p>
+    <content><![CDATA[<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqy39xz1a8j31hc0u077n.jpg" alt=""></p>
+<p>在爬虫调试的时候一个良好的调试习惯,正确的调试技巧。绝对能让您在抓包，定位及JS解密与JS逆向等各种方面事半功倍。</p>
 <a id="more"></a>
 <h2 id="优秀的调试习惯"><a href="#优秀的调试习惯" class="headerlink" title="优秀的调试习惯"></a>优秀的调试习惯</h2><h3 id="无痕模式"><a href="#无痕模式" class="headerlink" title="无痕模式"></a>无痕模式</h3><p>无痕浏览（<a href="https://baike.baidu.com/item/隐私浏览模式">隐私浏览模式</a>、隐身窗口、InPrevate），是指不留下上网浏览记录的互联网浏览方式。但是，用户下载的文件和建立的收藏夹或书签会保存下来。支持该模式的浏览器包括但不限于百度浏览器，Firefox火狐，搜狗浏览器，360安全浏览器，Avant browser ，世界之窗浏览器，Google Chrome，Internet Explorer 8及更新版本，Edge，Safari.</p>
 <h4 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性"></a>主要特性</h4><p> 不记录上网痕迹，保护您的个人隐私</p>
@@ -3227,6 +3228,8 @@ DOWNLOADER_MIDDLEWARES = &#123;
   <font color=red size=5px style="font-family: cursive">希望以上方法与技巧对你有所帮助</br></font>
      <font color=red size=3px style="font-family: cursive">知道的越多，不知道的越多。</font>
 </center>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqy30zuc6nj31c20mgn13.jpg" alt=""></p>
 ]]></content>
       <categories>
         <category>爬虫</category>
