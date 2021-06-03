@@ -2189,6 +2189,116 @@
       </tags>
   </entry>
   <entry>
+    <title>Tampermonkey安装与使用</title>
+    <url>/2021/06/03/Tampermonkey%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h2><p>[TOC]</p>
+<p><strong>Tampermonkey</strong> 是一款免费的浏览器扩展和最为流行的用户脚本管理器，虽然有些受支持的浏览器拥有原生的用户脚本支持，但 Tampermonkey 将在您的用户脚本管理方面提供更多的便利。 它提供了诸如便捷脚本安装、自动更新检查、标签中的脚本运行状况速览、内置的编辑器等众多功能， 同时Tampermonkey还有可能正常运行原本并不兼容的脚本。</p>
+<a id="more"></a>
+<h3 id="Tampermonkey的安装"><a href="#Tampermonkey的安装" class="headerlink" title="Tampermonkey的安装"></a>Tampermonkey的安装</h3><h4 id="方式一-Chrome商店直接下载"><a href="#方式一-Chrome商店直接下载" class="headerlink" title="方式一 Chrome商店直接下载"></a>方式一 Chrome商店直接下载</h4><p>Chrome商店 -&gt; 搜索 Tampermonkey -&gt; Tampermonkey 安装即可</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gr4arkuzzmj30yd08jdge.jpg" alt=""></p>
+<p>一般情况下是无法下载的，除非你能。。。</p>
+<h4 id="方式二：第三方网站进行插件文件下载"><a href="#方式二：第三方网站进行插件文件下载" class="headerlink" title="方式二：第三方网站进行插件文件下载"></a>方式二：第三方网站进行插件文件下载</h4><p>进入<a href="https://www.crx4chrome.com/crx/755/进行安装文件的下载，下载完成后。打开拓展程序(Chrome用户选项框">https://www.crx4chrome.com/crx/755/进行安装文件的下载，下载完成后。打开拓展程序(Chrome用户选项框</a> -&gt; 更多工具 -&gt; 拓展程序)</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gr4ay74m2aj30kd0fkt95.jpg" alt=""></p>
+<p>进入如下图所示的界面</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gr4ayxb6y3j31fo0mgwgp.jpg" alt=""></p>
+<p>打开右上角的 <strong>开发者模式</strong>，将已经下载的文件拖拽至上图所示的界面。即可完成安装。</p>
+<h3 id="使用第三方脚本"><a href="#使用第三方脚本" class="headerlink" title="使用第三方脚本"></a>使用第三方脚本</h3><p>进入greasyfork <a href="https://greasyfork.org/zh-CN/scripts">https://greasyfork.org/zh-CN/scripts</a> 获取需要的插件脚本即可</p>
+<h3 id="自定义开发脚本"><a href="#自定义开发脚本" class="headerlink" title="自定义开发脚本"></a>自定义开发脚本</h3><p>鼠标点击<strong>Tampermonkey</strong>图标呼出其选项卡，点击添加脚本。即可进入新建脚本界面。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gr4baf3mybj31fj0i3gmi.jpg" alt=""></p>
+<h4 id="语法规则"><a href="#语法规则" class="headerlink" title="语法规则"></a>语法规则</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @key value</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br></pre></td></tr></table></figure>
+<h4 id="字段释意："><a href="#字段释意：" class="headerlink" title="字段释意："></a>字段释意：</h4><h5 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h5><p>@name：脚本的名字(自定义)</p>
+<p>@author 作者。该脚本的作者。可使用默认的you，或者你的名字</p>
+<p>@description 脚本描述（类似于编程中的注释，阐述该脚本的作用等）</p>
+<h5 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h5><p>@namespace 脚本的命名空间(通常使用默认<a href="http://tampermonkey.net/，也可指定">http://tampermonkey.net/，也可指定</a>)</p>
+<p>@homepage, @homepageURL, @website and @source 在选项页面使用的作者主页，用于从脚本名称链接到给定页面。如果@namespace 标记以“<a href="http://”开头，则其内容也将用于此目的。">http://”开头，则其内容也将用于此目的。</a></p>
+<h5 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h5><p>@version 脚本版本号</p>
+<p>@updateURL：用户脚本的更新 URL。 注意：需要一个@version 标签才能使更新检查工作</p>
+<p>@downloadURL：URL定义检测到更新时下载脚本的 URL。如果使用值 none，则不会进行更新检查。</p>
+<p>@supportURL 定义用户可以报告问题并获得个人支持的 URL。</p>
+<h5 id="访问限制"><a href="#访问限制" class="headerlink" title="访问限制"></a>访问限制</h5><p>@include</p>
+<p>脚本允许运行的页面，可以是多个标签实例。 支持正则语句</p>
+<blockquote>
+<p>注意：</p>
+<p>@include 不支持 URL 哈希参数，必须匹配没有哈希参数的路径并使用</p>
+</blockquote>
+<p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         New Userscript</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       You</span></span><br><span class="line"><span class="comment">// @include      https://www.tampermonkey.net/documentation.php?ext=dhdg</span></span><br><span class="line"><span class="comment">// @icon         https://www.google.com/s2/favicons?domain=tampermonkey.net</span></span><br><span class="line"><span class="comment">// @grant        none</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    &#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="comment">// Your code here...</span></span><br><span class="line">    alert(<span class="string">&#x27;HEllo&#x27;</span>)</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>保存后，当我们访问<a href="https://www.tampermonkey.net/documentation.php?ext=dhdg的时候将会弹出Hello。如下图所示">https://www.tampermonkey.net/documentation.php?ext=dhdg的时候将会弹出Hello。如下图所示</a></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gr4c8ojzwij30x204njre.jpg" alt=""></p>
+<p>当@match 为 <strong>*</strong> 时，当访问任何一个页面都会alter出对应的内容来。如下图所示</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gr4c9uenmkj30wy04nglk.jpg" alt=""></p>
+<p>@match</p>
+<p>@match 与 @include 非常相似，然而@match更安全。它对 * 字符的含义设置了更严格的规则。</p>
+<p>@match 与 @include他们都是匹配基于一组由匹配模式定义的 URL。匹配模式本质上是以允许的方案开头的 URL。匹配模式本质上是以允许的方案（http、https、file 或 ftp，并且可以包含“*”字符）开头的 URL。特殊模式匹配以允许的方案开头的任何 URL。</p>
+<p>‘<em>‘ 的含义取决于它是在方案、主机还是路径部分。如果方案是 </em>，则它匹配 http 或 https，而不匹配 file、ftp 或 urn。如果主机只是 <em>，那么它匹配任何主机。如果主机是 </em>.<em>hostname</em>，则它匹配指定的主机或其任何子域。在路径部分，每个 ‘*’ 匹配 0 个或多个字符。</p>
+<blockquote>
+<p>@match 与 @include区别请参考</p>
+<p><a href="https://wiki.greasespot.net/Metadata_Block#.40match">https://wiki.greasespot.net/Metadata_Block#.40match</a></p>
+<p>匹配规则</p>
+<p><a href="https://developer.chrome.com/docs/extensions/mv3/match_patterns/">https://developer.chrome.com/docs/extensions/mv3/match_patterns/</a></p>
+</blockquote>
+<p><strong>简单来说推荐使用@match</strong></p>
+<p>@exclude</p>
+<p>不匹配，相当于访问黑名单。如果访问了@exclude中与之匹配的内容则不执行自定义的JavaScript代码</p>
+<p>@exclude优先权大于match和@include。如果二者都匹配了，那么默认执行@exclude规则。也就是说即是’白名单‘也是’黑名单‘那么默认为’黑名单‘</p>
+<h5 id="第三方链接"><a href="#第三方链接" class="headerlink" title="第三方链接"></a>第三方链接</h5><p>@require</p>
+<p>指向在脚本本身开始运行之前加载和执行的 JavaScript 文件。</p>
+<blockquote>
+<p>脚本中可以有任意数量的@require 键。每个 @require 在安装脚本时下载一次，并与脚本一起存储在用户的硬盘驱动器上。指定的 URL 可能与安装脚本的 URL 相关。</p>
+</blockquote>
+<p>@resource</p>
+<p>预加载可由脚本通过 GM_getResourceURL 和 GM_getResourceText 访问的资源。</p>
+<blockquote>
+<p>虽然 resourceName 是非语义的，但它应该符合 JavaScript 标识符限制。每个@resource 必须有一个唯一的名称。</p>
+<p>每个@resource 在安装脚本时下载一次，并与脚本一起存储在用户的硬盘驱动器上。指定的 URL 可能与安装脚本的 URL 相关。</p>
+<p>这些命名资源可以分别通过<a href="https://wiki.greasespot.net/GM_getResourceText">GM_getResourceText</a>和<a href="https://wiki.greasespot.net/GM_getResourceURL">GM_getResourceURL</a>访问。</p>
+</blockquote>
+<p>@connect</p>
+<p>此标签定义域（无顶级域），包括允许通过 GM_xmlhttpRequest 检索的子域</p>
+<blockquote>
+<p>可以简单的理解为发送请求。GET、POST、HEAD</p>
+</blockquote>
+<p>@run-at</p>
+<p>定义脚本被注入的时刻，与其他脚本处理程序相反， <strong>@run-at</strong> 定义了脚本想要运行的第一个可能时刻。这意味着可能会发生，使用 <strong>@require</strong> 标签的脚本可能会在文档加载后执行，导致获取所需脚本需要很长时间。无论如何，在给定注入时刻之后发生的所有 DOMNodeInserted 和 DOMContentLoaded 事件都被缓存并在注入时传递给脚本。</p>
+<p>@run-at document-start 脚本将尽快注入。<br>@run-at document-body 如果 body 元素存在，脚本将被注入<br>@run-at document-end 该脚本将在调度 DOMContentLoaded 事件时或之后注入。<br>@run-at document-idle 脚本将在 DOMContentLoaded 事件被调度后注入。如果没有给出@run-at 标签，这是默认值。<br>@run-at context-menu 如果在浏览器上下文菜单中单击该脚本（仅限基于 Chrome 的桌面浏览器），则会注入该脚本。</p>
+<blockquote>
+<p>建议使用@run-at document-start</p>
+</blockquote>
+<p>@grant</p>
+<p>@grant 用于将 GM_* 函数、unsafeWindow 对象和一些强大的窗口函数列入白名单。如果没有给出@grant 标签，TM 猜测脚本需要。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; @grant GM_setValue&#x2F;&#x2F; @grant GM_getValue&#x2F;&#x2F; @grant GM_setClipboard&#x2F;&#x2F; @grant unsafeWindow&#x2F;&#x2F; @grant window.close&#x2F;&#x2F; @grant window.focus&#x2F;&#x2F; @grant window.onurlchange</span><br></pre></td></tr></table></figure>
+<p>由于关闭和聚焦选项卡是一项强大的功能，因此也需要将其添加到 @grant 语句中。</p>
+<p>如果脚本在单页应用程序上运行，那么它可以使用 window.onurlchange 来监听 URL 更改：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&#x3D;UserScript&#x3D;&#x3D;...&#x2F;&#x2F; @grant window.onurlchange&#x2F;&#x2F; &#x3D;&#x3D;&#x2F;UserScript&#x3D;&#x3D;if (window.onurlchange &#x3D;&#x3D;&#x3D; null) &#123;  &#x2F;&#x2F; feature is supported  window.addEventListener(&#39;urlchange&#39;, (info) &#x3D;&gt; ...);&#125;</span><br></pre></td></tr></table></figure>
+<p>如果@grant 后跟“none”，则沙箱将被禁用，脚本将直接在页面上下文中运行。在此模式下，没有 GM_* 功能，但 GM_info 属性将可用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; @grant none</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>推荐使用@grant none</p>
+</blockquote>
+<p>@noframes</p>
+<p>此标记使脚本在主页上运行，但不在 iframe 上运行。</p>
+<div>
+  <center>
+      <font color=red size=5px style="font-family: cursive">Reference</br></font>
+    </center>
+</div>
+
+<ul>
+<li>Tampermonkey官方地址：<a href="https://www.tampermonkey.net/">https://www.tampermonkey.net/</a></li>
+<li><p>Tampermonkey官方文档：<a href="https://www.tampermonkey.net/documentation.php?ext=dhdg">https://www.tampermonkey.net/documentation.php?ext=dhdg</a></p>
+</li>
+<li><p><a href="https://wiki.greasespot.net/Metadata_Block#.40match">https://wiki.greasespot.net/Metadata_Block#.40match</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Tampermonkey</category>
+      </categories>
+      <tags>
+        <tag>Tampermonkey</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker 底层原理探究</title>
     <url>/2021/01/24/docker-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</url>
     <content><![CDATA[<p>Docker is written in the <a href="https://golang.org/">Go programming language</a> and takes advantage of several features of the Linux kernel to deliver its functionality.<br><a id="more"></a><br>Docker用<code>Go编程语言</code>编写，并利用Linux内核的多个功能来实现其功能。</p>
