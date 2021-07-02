@@ -20,24 +20,25 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="当第一手拿到mac，第一件事也许是去。。。 然而我想要说的是，把基本的环境搭建一下，设置调配一下">
+  <meta name="description" content="为什么需要数据防护？当今如今大数据时代，数据重要不言而喻，网页和 App 作为主流的数据载体，如果其数据没有任何的保护措施，在爬虫工程师解决了一些基本的反爬如User-Agent、cookies、验证码等的防护措施之后，那么数据依旧可被轻易的获取。 数据防护主要体现在何处？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新mac使用技巧入门指北">
-<meta property="og:url" content="http://example.com/2021/04/26/%E6%96%B0mac%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%85%A5%E9%97%A8%E6%8C%87%E5%8C%97/index.html">
+<meta property="og:title" content="网站防护总结之pc">
+<meta property="og:url" content="http://example.com/2021/07/02/%E7%BD%91%E7%AB%99%E9%98%B2%E6%8A%A4%E6%80%BB%E7%BB%93%E4%B9%8Bpc/index.html">
 <meta property="og:site_name" content="吴志鹏｜Payne-Wu">
-<meta property="og:description" content="当第一手拿到mac，第一件事也许是去。。。 然而我想要说的是，把基本的环境搭建一下，设置调配一下">
+<meta property="og:description" content="为什么需要数据防护？当今如今大数据时代，数据重要不言而喻，网页和 App 作为主流的数据载体，如果其数据没有任何的保护措施，在爬虫工程师解决了一些基本的反爬如User-Agent、cookies、验证码等的防护措施之后，那么数据依旧可被轻易的获取。 数据防护主要体现在何处？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gpxcygvyc2j31100mctht.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gpxd433qdsj317o0e0wes.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gpxee9jh16j30zc06wtb6.jpg">
-<meta property="article:published_time" content="2021-04-26T11:59:17.000Z">
-<meta property="article:modified_time" content="2021-05-22T15:05:51.421Z">
+<meta property="article:published_time" content="2021-07-02T09:25:18.000Z">
+<meta property="article:modified_time" content="2021-07-02T09:28:26.135Z">
 <meta property="article:author" content="吴志鹏">
-<meta property="article:tag" content="Mac">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="Crawler">
+<meta property="article:tag" content="JS">
+<meta property="article:tag" content="浏览器">
+<meta property="article:tag" content="调试">
+<meta property="article:tag" content="Hook">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gpxcygvyc2j31100mctht.jpg">
 
-<link rel="canonical" href="http://example.com/2021/04/26/%E6%96%B0mac%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%85%A5%E9%97%A8%E6%8C%87%E5%8C%97/">
+<link rel="canonical" href="http://example.com/2021/07/02/%E7%BD%91%E7%AB%99%E9%98%B2%E6%8A%A4%E6%80%BB%E7%BB%93%E4%B9%8Bpc/">
 
 
 <script id="page-configurations">
@@ -50,7 +51,7 @@
   };
 </script>
 
-  <title>新mac使用技巧入门指北 | 吴志鹏｜Payne-Wu</title>
+  <title>网站防护总结之pc | 吴志鹏｜Payne-Wu</title>
   
 
 
@@ -199,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/26/%E6%96%B0mac%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%85%A5%E9%97%A8%E6%8C%87%E5%8C%97/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/02/%E7%BD%91%E7%AB%99%E9%98%B2%E6%8A%A4%E6%80%BB%E7%BB%93%E4%B9%8Bpc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/favicon/android-chrome-512x512.png">
@@ -212,7 +213,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          新mac使用技巧入门指北
+          网站防护总结之pc
         </h1>
 
         <div class="post-meta">
@@ -221,23 +222,25 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-04-26 19:59:17" itemprop="dateCreated datePublished" datetime="2021-04-26T19:59:17+08:00">2021-04-26</time>
+              <time title="创建时间：2021-07-02 17:25:18 / 修改时间：17:28:26" itemprop="dateCreated datePublished" datetime="2021-07-02T17:25:18+08:00">2021-07-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-22 23:05:51" itemprop="dateModified" datetime="2021-05-22T23:05:51+08:00">2021-05-22</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac/" itemprop="url" rel="index"><span itemprop="name">Mac</span></a>
+                  <a href="/categories/%E7%88%AC%E8%99%AB/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%88%AC%E8%99%AB/%E8%B0%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">调试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%88%AC%E8%99%AB/%E8%B0%83%E8%AF%95/Hook/" itemprop="url" rel="index"><span itemprop="name">Hook</span></a>
                 </span>
             </span>
 
@@ -257,8 +260,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/04/26/%E6%96%B0mac%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%85%A5%E9%97%A8%E6%8C%87%E5%8C%97/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/04/26/%E6%96%B0mac%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%85%A5%E9%97%A8%E6%8C%87%E5%8C%97/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/07/02/%E7%BD%91%E7%AB%99%E9%98%B2%E6%8A%A4%E6%80%BB%E7%BB%93%E4%B9%8Bpc/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/02/%E7%BD%91%E7%AB%99%E9%98%B2%E6%8A%A4%E6%80%BB%E7%BB%93%E4%B9%8Bpc/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -268,14 +271,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -287,41 +290,84 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>当第一手拿到mac，第一件事也许是去。。。</p>
-<p>然而我想要说的是，把基本的环境搭建一下，设置调配一下<br><a id="more"></a></p>
-<h3 id="键盘、鼠标的灵敏度"><a href="#键盘、鼠标的灵敏度" class="headerlink" title="键盘、鼠标的灵敏度"></a>键盘、鼠标的灵敏度</h3><p>这也是个人习惯吧，我个人比较畅想那种打字、拖鼠标丝滑的感觉</p>
-<p>偏好设置 -&gt; 鼠标灵敏度看自己感觉拉。</p>
-<p>偏好设置 -&gt; 键盘</p>
-<blockquote>
-<p>个人建议拉满</p>
-</blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gpxcygvyc2j31100mctht.jpg" alt="image-20210426191253111"></p>
-<h2 id="定制zsh编辑器"><a href="#定制zsh编辑器" class="headerlink" title="定制zsh编辑器"></a>定制zsh编辑器</h2><p>原生的mac，zsh是没有命令提示的，以及显示也并没有那么好看。自定制一下</p>
-<h4 id="下载oh-my-zsh"><a href="#下载oh-my-zsh" class="headerlink" title="下载oh-my-zsh"></a>下载oh-my-zsh</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br></pre></td></tr></table></figure>
-<h4 id="复制-zshrc"><a href="#复制-zshrc" class="headerlink" title="复制 .zshrc"></a>复制 .zshrc</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br></pre></td></tr></table></figure>
-<h4 id="修改默认-shell-可选"><a href="#修改默认-shell-可选" class="headerlink" title="修改默认 shell(可选)"></a>修改默认 shell(可选)</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
-<p>在终端中新建一个窗口(快捷键：command + n），你就发现不一样的shell，如下图所示</p>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gpxd433qdsj317o0e0wes.jpg" alt="image-20210426191816929"></p>
-<h4 id="配置命令补全的插件"><a href="#配置命令补全的插件" class="headerlink" title="配置命令补全的插件"></a>配置命令补全的插件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/zsh-users/zsh-autosuggestions ～/.oh-my-zsh/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
-<h4 id="编辑-zshrc-文件"><a href="#编辑-zshrc-文件" class="headerlink" title="编辑 .zshrc 文件"></a>编辑 .zshrc 文件</h4><p>找到<code>plugins=(git)</code>,修改成<code>plugins=(git zsh-autosuggestions)</code></p>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gpxee9jh16j30zc06wtb6.jpg" alt=""></p>
-<h4 id="生效配置"><a href="#生效配置" class="headerlink" title="生效配置"></a>生效配置</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
-<p>此时你就可以看到一个全新的Terminal,快来试试吧。爽不爽自己知道</p>
-<h2 id="HomeBrew"><a href="#HomeBrew" class="headerlink" title="HomeBrew"></a>HomeBrew</h2><p><a target="_blank" rel="noopener" href="https://brew.sh/">HomeBrew官方地址</a></p>
-<p>简单来说他是类似于<code>yum、apt</code>,mac的包管理工具，使用它我们可以非常简单、丝滑的下载大部分的包、或者软件</p>
-<p>或许第一次可以尝试使用如下命令进行安装</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span><br></pre></td></tr></table></figure>
-<p>由于种种原因，如果安装不上，可以使用华科大的源进行安装</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c &quot;$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install.sh)&quot;</span><br></pre></td></tr></table></figure>
-<p>安装完成后，检查一下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew update &amp;&amp; brew upgrade &amp;&amp; brew doctor</span><br></pre></td></tr></table></figure>
-<p>设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git -C &quot;&#x2F;usr&#x2F;local&#x2F;Homebrew&#x2F;Library&#x2F;Taps&#x2F;homebrew&#x2F;homebrew-core&quot; remote set-url origin https:&#x2F;&#x2F;github.com&#x2F;Homebrew&#x2F;homebrew-core</span><br></pre></td></tr></table></figure>
-<h3 id="kubectl-自动补全"><a href="#kubectl-自动补全" class="headerlink" title="kubectl 自动补全"></a>kubectl 自动补全</h3><blockquote>
-<p>由于我习惯于zsh终端。这里给出zsh的，后面还有bash的</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source &lt;(kubectl completion zsh)</span><br></pre></td></tr></table></figure>
-<p>如果是<code>bash</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Automatic completion of <span class="built_in">command</span></span></span><br><span class="line">source /usr/share/bash-completion/bash_completion</span><br><span class="line">source &lt;(kubectl completion bash)</span><br></pre></td></tr></table></figure></p>
+        <h2 id="为什么需要数据防护？"><a href="#为什么需要数据防护？" class="headerlink" title="为什么需要数据防护？"></a>为什么需要数据防护？</h2><p>当今如今大数据时代，数据重要不言而喻，网页和 App 作为主流的数据载体，如果其数据没有任何的保护措施，在爬虫工程师解决了一些基本的反爬如User-Agent、cookies、验证码等的防护措施之后，那么数据依旧可被轻易的获取。</p>
+<h2 id="数据防护主要体现在何处？"><a href="#数据防护主要体现在何处？" class="headerlink" title="数据防护主要体现在何处？"></a>数据防护主要体现在何处？</h2><a id="more"></a>
+<p>数据防护可简略的划分为请求防护、数据内容防护、验证码</p>
+<h3 id="请求防护"><a href="#请求防护" class="headerlink" title="请求防护"></a>请求防护</h3><ul>
+<li>User-Agent</li>
+<li>Cookie</li>
+<li>签名验证</li>
+<li>握手验证</li>
+<li>协议</li>
+<li><p>。。。</p>
+<h3 id="数据内容防护"><a href="#数据内容防护" class="headerlink" title="数据内容防护"></a>数据内容防护</h3></li>
+<li><p>CSS字体偏移</p>
+</li>
+<li>SVG字体映射</li>
+<li>图片数据</li>
+<li>。。。<h3 id="验证码"><a href="#验证码" class="headerlink" title="验证码"></a>验证码</h3></li>
+</ul>
+<p>个人总结为以下几种类型，具体体现不在过多赘述。（注，几者之间无明显的分割标准，在此以侧重点划分）</p>
+<ul>
+<li>识别点选或输入型</li>
+<li>滑轨、滑块型</li>
+<li>短信或语音验证型<h2 id="思"><a href="#思" class="headerlink" title="思"></a>思</h2></li>
+</ul>
+<p>实现这一切的一切，这些究竟是基于什么实现的？这一切绝可能是凭空出现！！！</p>
+<p>其实无论是ajax，User-Agent、还是Cookie等等大部分都是基于Javascript实现。而且由于JavaScript在客户端中为完全透明，用户可以随意的查看与调试，这无异于代码裸奔。虽然以上的反爬虫虽然不错，但如果仔细分析的，这难度也仅是“工作量”的问题。</p>
+<h2 id="Javascript防护分类"><a href="#Javascript防护分类" class="headerlink" title="Javascript防护分类"></a>Javascript防护分类</h2><p>完全透明的JS代码，虽然可以有效的防止。但这还不够，其根本原因还是JavaScript为明文。而这一切的一切都是“治标不治本”，虽然可以但还不够。也正因为对JavaScript的各种防护，所以才让这些加密“动”起来，无法轻易的分析。对JavaScript“加密”可分为如下几种大类</p>
+<h3 id="代码压缩"><a href="#代码压缩" class="headerlink" title="代码压缩"></a>代码压缩</h3><p>JavaScript 压缩是指去除 JavaScript 代码中的不必要的空格、换行等内容，或者将一些可能公用的代码进行处理实现共享，最后输出的结果都被压缩为几行内容，代码可读性变差，提高分析难度同时也能提高网站加载速度。</p>
+<p>整体来说，压缩技术只能在很小的程度上起到防护作用，要想真正提高防护效果还得依靠混淆与加密技术。</p>
+<h3 id="代码混淆"><a href="#代码混淆" class="headerlink" title="代码混淆"></a>代码混淆</h3><p>代码混淆是增加分析难度而牺牲部分性能的一种方案，此方案大部分是体现在通过逻辑转换换等方式将代码转化为难以分析的代码。难以分析是混淆的目的，等价转换是需要确保混淆前后的代码需不影响运行的功能。对于混淆可以又分为如下四种：布局混淆、数据混淆、控制混淆、预防混淆</p>
+<h4 id="布局混淆"><a href="#布局混淆" class="headerlink" title="布局混淆"></a>布局混淆</h4><p>布局混淆指在源代码中删除原有无用代码，处理常量名、变量名函数名等标识符，增加对于代码的阅读与分析。</p>
+<p>无用代码：注释、调试信息、缩进、换行、无用函数与数据等</p>
+<p>处理常量名、变量名函数名等标识符：</p>
+<ul>
+<li>标识重命名：将原有代码重命名为无具体意义的字符，例如 将name 重命名为a</li>
+</ul>
+<p>注意点：</p>
+<ul>
+<li>作用域内标识符碰撞情况</li>
+</ul>
+<p><strong>小结</strong></p>
+<p>布局混淆并不会影响执行的过程、内存开销，甚至代码体积反而减少了。</p>
+<h4 id="数据混淆"><a href="#数据混淆" class="headerlink" title="数据混淆"></a>数据混淆</h4><p>JS拥有常见的7种数据类型，number、string、boolean、unfined、null、Object</p>
+<p><strong>数字混淆</strong></p>
+<p>数据混淆有常见：进制转换、数字分治、其他</p>
+<ul>
+<li>进制转换</li>
+</ul>
+<p>将十进制转化为二进制、八进制、十六进制等，从而达到“混淆”的目的</p>
+<ul>
+<li><strong>数学分治</strong></li>
+</ul>
+<p>简而言之就是将数拆开，例如 2 = 1 + 1，再辅以数学公式等</p>
+<ul>
+<li><p>其他</p>
+<p>重新赋值等</p>
+</li>
+</ul>
+<p><strong>字符串混淆</strong></p>
+<p>字符串混淆常见的有编码转换、加密。常见的有hash、base64、md5等</p>
+<p><strong>boolean</strong></p>
+<p>我们都知道Boolean值为True、False。根据对boolean的处理，变成难以显示阅读的代码。例如![] = False, !![] = True.</p>
+<p><strong>控制混淆</strong></p>
+<p>控制混淆是指对程序的控制流进行转换变化，常见的方式有插入僵尸代码、控制流平坦化</p>
+<p>插入僵尸代码：插入僵尸代码即插入无用的代码，增强调试难度</p>
+<p>控制流平坦化：控制流平坦化,将原本的的执行流程平坦化。具体可自行搜索</p>
+<p><strong>预防混淆</strong></p>
+<p>主要体现在 提高反混淆的难度或检测现有混淆器中的漏洞设计</p>
+<h3 id="代码混淆总结"><a href="#代码混淆总结" class="headerlink" title="代码混淆总结"></a>代码混淆总结</h3><p>万变不离其宗，无论是代码压缩、代码混淆都离不开一个宗旨，在不改变原有的<strong>结果</strong>情况下对代码（这里指JS）进行处理。处理的方式包含但不限于，等值转换、运算分割。</p>
+<h2 id="设备指纹防护"><a href="#设备指纹防护" class="headerlink" title="设备指纹防护"></a>设备指纹防护</h2><p>设备指纹通过收集客户端设备的特征信息对用户与“机器人”进行甄别。web设备指纹主要包含：</p>
+<p>浏览器端环境检测</p>
+<p>浏览器设别标识</p>
+<p>特征识别Hook</p>
+<p>JS特征识别</p>
+<p>做爬虫的朋友一定使用过NodeJs，这个工具。也时常借用与Nodejs来模拟JS，但Nodejs的api和指纹浏览器有不一样。如果服务端获取到客户端，那么就可以对指纹不一致的机器人，进行防范。</p>
+<p>正如你我所知的那般，知道的越多，不知道的越多。</p>
+<h2 id="推荐阅读与了解"><a href="#推荐阅读与了解" class="headerlink" title="推荐阅读与了解"></a>推荐阅读与了解</h2><p>风控要略：互联网业务反欺诈之路</p>
+<p>Jsfuck（github）：<a target="_blank" rel="noopener" href="https://github.com/aemkei/jsfuck">https://github.com/aemkei/jsfuck</a></p>
+<p>基于控制混淆和布局混淆的代码混淆系统-王岩（论文）</p>
 
     </div>
 
@@ -331,7 +377,12 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Mac/" rel="tag"># Mac</a>
+              <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag"># 爬虫</a>
+              <a href="/tags/Crawler/" rel="tag"># Crawler</a>
+              <a href="/tags/JS/" rel="tag"># JS</a>
+              <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag"># 浏览器</a>
+              <a href="/tags/%E8%B0%83%E8%AF%95/" rel="tag"># 调试</a>
+              <a href="/tags/Hook/" rel="tag"># Hook</a>
           </div>
 
         
@@ -340,13 +391,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/14/go%E4%BB%A3%E7%A0%81%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%B0%83%E4%BC%98/" rel="prev" title="go代码测试与调优">
-      <i class="fa fa-chevron-left"></i> go代码测试与调优
+    <a href="/2021/06/12/%E7%BD%91%E9%A1%B5%E8%B0%83%E8%AF%95%E4%B9%8BJSHook/" rel="prev" title="网页调试之JSHook">
+      <i class="fa fa-chevron-left"></i> 网页调试之JSHook
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/05/09/Book-List/" rel="next" title="Book List">
-      Book List <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -406,7 +454,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%AE%E7%9B%98%E3%80%81%E9%BC%A0%E6%A0%87%E7%9A%84%E7%81%B5%E6%95%8F%E5%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">键盘、鼠标的灵敏度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E5%88%B6zsh%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-number"></span> <span class="nav-text">定制zsh编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDoh-my-zsh"><span class="nav-number">0.1.</span> <span class="nav-text">下载oh-my-zsh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6-zshrc"><span class="nav-number">0.2.</span> <span class="nav-text">复制 .zshrc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4-shell-%E5%8F%AF%E9%80%89"><span class="nav-number">0.3.</span> <span class="nav-text">修改默认 shell(可选)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E8%A1%A5%E5%85%A8%E7%9A%84%E6%8F%92%E4%BB%B6"><span class="nav-number">0.4.</span> <span class="nav-text">配置命令补全的插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%BE%91-zshrc-%E6%96%87%E4%BB%B6"><span class="nav-number">0.5.</span> <span class="nav-text">编辑 .zshrc 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%95%88%E9%85%8D%E7%BD%AE"><span class="nav-number">0.6.</span> <span class="nav-text">生效配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HomeBrew"><span class="nav-number"></span> <span class="nav-text">HomeBrew</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kubectl-%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="nav-number">1.</span> <span class="nav-text">kubectl 自动补全</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%95%B0%E6%8D%AE%E9%98%B2%E6%8A%A4%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">为什么需要数据防护？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%98%B2%E6%8A%A4%E4%B8%BB%E8%A6%81%E4%BD%93%E7%8E%B0%E5%9C%A8%E4%BD%95%E5%A4%84%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">数据防护主要体现在何处？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E9%98%B2%E6%8A%A4"><span class="nav-number">2.1.</span> <span class="nav-text">请求防护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%86%85%E5%AE%B9%E9%98%B2%E6%8A%A4"><span class="nav-number">2.2.</span> <span class="nav-text">数据内容防护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="nav-number">2.3.</span> <span class="nav-text">验证码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D"><span class="nav-number">3.</span> <span class="nav-text">思</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Javascript%E9%98%B2%E6%8A%A4%E5%88%86%E7%B1%BB"><span class="nav-number">4.</span> <span class="nav-text">Javascript防护分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%8E%8B%E7%BC%A9"><span class="nav-number">4.1.</span> <span class="nav-text">代码压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86"><span class="nav-number">4.2.</span> <span class="nav-text">代码混淆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%83%E5%B1%80%E6%B7%B7%E6%B7%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">布局混淆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B7%B7%E6%B7%86"><span class="nav-number">4.2.2.</span> <span class="nav-text">数据混淆</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86%E6%80%BB%E7%BB%93"><span class="nav-number">4.3.</span> <span class="nav-text">代码混淆总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E6%8C%87%E7%BA%B9%E9%98%B2%E6%8A%A4"><span class="nav-number">5.</span> <span class="nav-text">设备指纹防护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E4%B8%8E%E4%BA%86%E8%A7%A3"><span class="nav-number">6.</span> <span class="nav-text">推荐阅读与了解</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

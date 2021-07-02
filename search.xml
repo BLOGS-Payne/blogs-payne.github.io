@@ -3569,6 +3569,102 @@ DOWNLOADER_MIDDLEWARES = &#123;
       </tags>
   </entry>
   <entry>
+    <title>网站防护总结之pc</title>
+    <url>/2021/07/02/%E7%BD%91%E7%AB%99%E9%98%B2%E6%8A%A4%E6%80%BB%E7%BB%93%E4%B9%8Bpc/</url>
+    <content><![CDATA[<h2 id="为什么需要数据防护？"><a href="#为什么需要数据防护？" class="headerlink" title="为什么需要数据防护？"></a>为什么需要数据防护？</h2><p>当今如今大数据时代，数据重要不言而喻，网页和 App 作为主流的数据载体，如果其数据没有任何的保护措施，在爬虫工程师解决了一些基本的反爬如User-Agent、cookies、验证码等的防护措施之后，那么数据依旧可被轻易的获取。</p>
+<h2 id="数据防护主要体现在何处？"><a href="#数据防护主要体现在何处？" class="headerlink" title="数据防护主要体现在何处？"></a>数据防护主要体现在何处？</h2><a id="more"></a>
+<p>数据防护可简略的划分为请求防护、数据内容防护、验证码</p>
+<h3 id="请求防护"><a href="#请求防护" class="headerlink" title="请求防护"></a>请求防护</h3><ul>
+<li>User-Agent</li>
+<li>Cookie</li>
+<li>签名验证</li>
+<li>握手验证</li>
+<li>协议</li>
+<li><p>。。。</p>
+<h3 id="数据内容防护"><a href="#数据内容防护" class="headerlink" title="数据内容防护"></a>数据内容防护</h3></li>
+<li><p>CSS字体偏移</p>
+</li>
+<li>SVG字体映射</li>
+<li>图片数据</li>
+<li>。。。<h3 id="验证码"><a href="#验证码" class="headerlink" title="验证码"></a>验证码</h3></li>
+</ul>
+<p>个人总结为以下几种类型，具体体现不在过多赘述。（注，几者之间无明显的分割标准，在此以侧重点划分）</p>
+<ul>
+<li>识别点选或输入型</li>
+<li>滑轨、滑块型</li>
+<li>短信或语音验证型<h2 id="思"><a href="#思" class="headerlink" title="思"></a>思</h2></li>
+</ul>
+<p>实现这一切的一切，这些究竟是基于什么实现的？这一切绝可能是凭空出现！！！</p>
+<p>其实无论是ajax，User-Agent、还是Cookie等等大部分都是基于Javascript实现。而且由于JavaScript在客户端中为完全透明，用户可以随意的查看与调试，这无异于代码裸奔。虽然以上的反爬虫虽然不错，但如果仔细分析的，这难度也仅是“工作量”的问题。</p>
+<h2 id="Javascript防护分类"><a href="#Javascript防护分类" class="headerlink" title="Javascript防护分类"></a>Javascript防护分类</h2><p>完全透明的JS代码，虽然可以有效的防止。但这还不够，其根本原因还是JavaScript为明文。而这一切的一切都是“治标不治本”，虽然可以但还不够。也正因为对JavaScript的各种防护，所以才让这些加密“动”起来，无法轻易的分析。对JavaScript“加密”可分为如下几种大类</p>
+<h3 id="代码压缩"><a href="#代码压缩" class="headerlink" title="代码压缩"></a>代码压缩</h3><p>JavaScript 压缩是指去除 JavaScript 代码中的不必要的空格、换行等内容，或者将一些可能公用的代码进行处理实现共享，最后输出的结果都被压缩为几行内容，代码可读性变差，提高分析难度同时也能提高网站加载速度。</p>
+<p>整体来说，压缩技术只能在很小的程度上起到防护作用，要想真正提高防护效果还得依靠混淆与加密技术。</p>
+<h3 id="代码混淆"><a href="#代码混淆" class="headerlink" title="代码混淆"></a>代码混淆</h3><p>代码混淆是增加分析难度而牺牲部分性能的一种方案，此方案大部分是体现在通过逻辑转换换等方式将代码转化为难以分析的代码。难以分析是混淆的目的，等价转换是需要确保混淆前后的代码需不影响运行的功能。对于混淆可以又分为如下四种：布局混淆、数据混淆、控制混淆、预防混淆</p>
+<h4 id="布局混淆"><a href="#布局混淆" class="headerlink" title="布局混淆"></a>布局混淆</h4><p>布局混淆指在源代码中删除原有无用代码，处理常量名、变量名函数名等标识符，增加对于代码的阅读与分析。</p>
+<p>无用代码：注释、调试信息、缩进、换行、无用函数与数据等</p>
+<p>处理常量名、变量名函数名等标识符：</p>
+<ul>
+<li>标识重命名：将原有代码重命名为无具体意义的字符，例如 将name 重命名为a</li>
+</ul>
+<p>注意点：</p>
+<ul>
+<li>作用域内标识符碰撞情况</li>
+</ul>
+<p><strong>小结</strong></p>
+<p>布局混淆并不会影响执行的过程、内存开销，甚至代码体积反而减少了。</p>
+<h4 id="数据混淆"><a href="#数据混淆" class="headerlink" title="数据混淆"></a>数据混淆</h4><p>JS拥有常见的7种数据类型，number、string、boolean、unfined、null、Object</p>
+<p><strong>数字混淆</strong></p>
+<p>数据混淆有常见：进制转换、数字分治、其他</p>
+<ul>
+<li>进制转换</li>
+</ul>
+<p>将十进制转化为二进制、八进制、十六进制等，从而达到“混淆”的目的</p>
+<ul>
+<li><strong>数学分治</strong></li>
+</ul>
+<p>简而言之就是将数拆开，例如 2 = 1 + 1，再辅以数学公式等</p>
+<ul>
+<li><p>其他</p>
+<p>重新赋值等</p>
+</li>
+</ul>
+<p><strong>字符串混淆</strong></p>
+<p>字符串混淆常见的有编码转换、加密。常见的有hash、base64、md5等</p>
+<p><strong>boolean</strong></p>
+<p>我们都知道Boolean值为True、False。根据对boolean的处理，变成难以显示阅读的代码。例如![] = False, !![] = True.</p>
+<p><strong>控制混淆</strong></p>
+<p>控制混淆是指对程序的控制流进行转换变化，常见的方式有插入僵尸代码、控制流平坦化</p>
+<p>插入僵尸代码：插入僵尸代码即插入无用的代码，增强调试难度</p>
+<p>控制流平坦化：控制流平坦化,将原本的的执行流程平坦化。具体可自行搜索</p>
+<p><strong>预防混淆</strong></p>
+<p>主要体现在 提高反混淆的难度或检测现有混淆器中的漏洞设计</p>
+<h3 id="代码混淆总结"><a href="#代码混淆总结" class="headerlink" title="代码混淆总结"></a>代码混淆总结</h3><p>万变不离其宗，无论是代码压缩、代码混淆都离不开一个宗旨，在不改变原有的<strong>结果</strong>情况下对代码（这里指JS）进行处理。处理的方式包含但不限于，等值转换、运算分割。</p>
+<h2 id="设备指纹防护"><a href="#设备指纹防护" class="headerlink" title="设备指纹防护"></a>设备指纹防护</h2><p>设备指纹通过收集客户端设备的特征信息对用户与“机器人”进行甄别。web设备指纹主要包含：</p>
+<p>浏览器端环境检测</p>
+<p>浏览器设别标识</p>
+<p>特征识别Hook</p>
+<p>JS特征识别</p>
+<p>做爬虫的朋友一定使用过NodeJs，这个工具。也时常借用与Nodejs来模拟JS，但Nodejs的api和指纹浏览器有不一样。如果服务端获取到客户端，那么就可以对指纹不一致的机器人，进行防范。</p>
+<p>正如你我所知的那般，知道的越多，不知道的越多。</p>
+<h2 id="推荐阅读与了解"><a href="#推荐阅读与了解" class="headerlink" title="推荐阅读与了解"></a>推荐阅读与了解</h2><p>风控要略：互联网业务反欺诈之路</p>
+<p>Jsfuck（github）：<a href="https://github.com/aemkei/jsfuck">https://github.com/aemkei/jsfuck</a></p>
+<p>基于控制混淆和布局混淆的代码混淆系统-王岩（论文）</p>
+]]></content>
+      <categories>
+        <category>爬虫</category>
+        <category>调试</category>
+        <category>Hook</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+        <tag>Crawler</tag>
+        <tag>JS</tag>
+        <tag>浏览器</tag>
+        <tag>调试</tag>
+        <tag>Hook</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>网页调试之JSHook</title>
     <url>/2021/06/12/%E7%BD%91%E9%A1%B5%E8%B0%83%E8%AF%95%E4%B9%8BJSHook/</url>
     <content><![CDATA[<h2 id="网页调试之JSHook"><a href="#网页调试之JSHook" class="headerlink" title="网页调试之JSHook"></a>网页调试之JSHook</h2><h3 id="什么是Hook？"><a href="#什么是Hook？" class="headerlink" title="什么是Hook？"></a>什么是Hook？</h3><p>Hook 又叫作钩子技术，它就是在程序运行的过程中，对其中的某个方法进行重写，在原有的方法前后自定义的代码。相当于在系统没有调用该函数之前，钩子程序就先捕获该消息，可以先得到控制权，这时钩子函数便可以加工处理（改变）该函数的执行行为。执行函数后释放控制权限，继续运行原有逻辑。<br><a id="more"></a></p>
