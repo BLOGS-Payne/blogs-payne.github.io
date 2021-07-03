@@ -160,8 +160,6 @@ function a() {
 }
 ```
 
-
-
 ```
 (function() {
     var eval_cache = eval;
