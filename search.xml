@@ -3683,15 +3683,44 @@ DOWNLOADER_MIDDLEWARES = &#123;
 </ol>
 <h4 id="弊端"><a href="#弊端" class="headerlink" title="弊端"></a>弊端</h4><ol>
 <li>新手难以有效的hook</li>
-<li>反hook（类似于包装类、浏览器指纹、内部类等）</li>
+<li>反hook往往需要分析与绕过（类似于包装类、浏览器指纹、内部类等）</li>
 </ol>
-<h4 id="PCHook伪装"><a href="#PCHook伪装" class="headerlink" title="PCHook伪装"></a>PCHook伪装</h4><blockquote>
+<h4 id="Hook伪装"><a href="#Hook伪装" class="headerlink" title="Hook伪装"></a>Hook伪装</h4><blockquote>
 <p>函数hook伪装</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Disguise the prototype</span></span><br><span class="line">attr.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">&quot;function btoa() &#123; [native code] &#125;&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">attr.length = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1grgwa9ysgcj31d00bcjv6.jpg" alt=""></p>
-<h3 id="常用Hook逻辑"><a href="#常用Hook逻辑" class="headerlink" title="常用Hook逻辑"></a>常用Hook逻辑</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; _$$4</span><br><span class="line">&#x2F;&#x2F; _$jx</span><br></pre></td></tr></table></figure>
-<p>具体示例请参考：<a href="https://github.com/Payne-Wu/JsHookScript">https://github.com/Payne-Wu/JsHookScript</a></p>
+<h3 id="更底层的Hook-原型链Hook"><a href="#更底层的Hook-原型链Hook" class="headerlink" title="更底层的Hook(原型链Hook)"></a>更底层的Hook(原型链Hook)</h3><p>在以上，我们对于函数进行了hook的总结，但若需要hook更加底层的函数该如何？</p>
+<p>如果想要hook 例如 字符串的split方法,match方法。该如何？使用以上的方法将无法有效的实现hook。</p>
+<p>示例：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">func = <span class="string">&quot;需Hook处&quot;</span></span><br><span class="line"></span><br><span class="line"># 常规hook思路(错误示例)</span><br><span class="line"><span class="number">1.</span>保存改写函数</span><br><span class="line"><span class="number">2.</span>重写hook函数</span><br><span class="line"><span class="number">3.</span>下<span class="keyword">debugger</span>或其他调试逻辑</span><br><span class="line"></span><br><span class="line">split = <span class="function"><span class="keyword">function</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">debugger</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gs2rfrdgp1j307p04dq2t.jpg" alt=""></p>
+<p>可正常操作</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gs2rhklerfj30830493yd.jpg" alt=""></p>
+<p>无法实现对于split的hook，常规方案无法实现hook。</p>
+<blockquote>
+<p>思考：为什么无法hook split -&gt; 没有hook到split</p>
+<p>为什么无法hook split？ -&gt; 没有hook到split</p>
+<p>Split 的“原函数”在哪里？-&gt; 原型链 -&gt; String的方法</p>
+</blockquote>
+<p>所以如果需要hook，就需要从原型链处进行入手,发现其实as.split 与 String.prototype 是同一个东西</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gs2rrew34wj307a029a9v.jpg" alt=""></p>
+<p>那么我们直接对于进行如下操作,在控制台（console）中输入</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">as</span> = “hook mark”;</span><br><span class="line"></span><br><span class="line"># rewrite</span><br><span class="line"><span class="built_in">String</span>.prototype.split = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">&#x27;val&#x27;</span>);</span><br><span class="line">		<span class="keyword">debugger</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时调用split函数，就会发现已经完成对split的hook</p>
+<p><img src="/Users/stringle-004/Library/Application Support/typora-user-images/image-20210702181800770.png" alt="image-20210702181800770"></p>
+<p>随之而来的又是一个新问题，hook的为只要字符串调用split方法就都会被debugger到。显然并不适合在实践中进行调试。如下给出完整的hook split的代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// create split cache from proto</span></span><br><span class="line"><span class="built_in">String</span>.prototype.split_cache = <span class="built_in">String</span>.prototype.split</span><br><span class="line"><span class="built_in">String</span>.prototype.split = <span class="function"><span class="keyword">function</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Gets the variable of the current scope</span></span><br><span class="line">    str = <span class="built_in">this</span>.String();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Arguments:&#x27;</span>, val)</span><br><span class="line">    <span class="keyword">debugger</span>;</span><br><span class="line">    <span class="keyword">return</span> str.split_cache(val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果感觉不明白为什么需要这样写的，或许需要复习一下js 原型链相关知识</p>
+</blockquote>
+<h3 id="Hook失败原因归纳"><a href="#Hook失败原因归纳" class="headerlink" title="Hook失败原因归纳"></a>Hook失败原因归纳</h3><p>Hook函数有时也会出现hook失败或者hook失效的情况，个人总结如下：</p>
+<ol>
+<li>函数hook一般情况下Hook不会失败，若失败一定是对于该函数的<code>__proto__</code>进行检测，此时只需要对<code>__proto__</code>,进行伪装即可</li>
+<li>当目标网站的所有逻辑都采用了<code>Object.defineProperty</code>时，属性Hook就会失效</li>
+<li>当Hook的函数为“内部”函数时，需要特殊的手段进行处理。例如将该函数加入到内存中。（当未加载页面，也会造成Hook失效）</li>
+</ol>
+<h3 id="常用Hook逻辑"><a href="#常用Hook逻辑" class="headerlink" title="常用Hook逻辑"></a>常用Hook逻辑</h3><p>具体示例请参考：<a href="https://github.com/Payne-Wu/JsHookScript">https://github.com/Payne-Wu/JsHookScript</a></p>
 ]]></content>
       <categories>
         <category>爬虫</category>
@@ -3784,6 +3813,84 @@ DOWNLOADER_MIDDLEWARES = &#123;
         <tag>JS</tag>
         <tag>浏览器</tag>
         <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网页调试干扰总结</title>
+    <url>/2021/07/03/%E7%BD%91%E9%A1%B5%E8%B0%83%E8%AF%95%E5%B9%B2%E6%89%B0%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="网页反调试总结"><a href="#网页反调试总结" class="headerlink" title="网页反调试总结"></a>网页反调试总结</h2><p>网站除了对代码进行加密进行保护，还时常携带了反调试手段。例如无限debugger；内存爆破，控制台检测。</p>
+<p>相关无限debugger进行反调试阻挠请参考上文，不在此过多赘述。本节主要学习内存爆破原理与绕过思想、控制台检测原理与绕过，<br><a id="more"></a></p>
+<h3 id="内存爆破"><a href="#内存爆破" class="headerlink" title="内存爆破"></a>内存爆破</h3><p>通俗来理解是通过“特殊手段”不断开辟新内存，造成内存存储不足，从而使程序或电脑宕机。内存爆破并没有一种具体的实现方式，如果实现了内存爆破的效果都可以称之为内存爆破。</p>
+<blockquote>
+<p>当我们在编程的时候，每当声明一个变量、初始化一个函数。都会在开辟一块内存。</p>
+</blockquote>
+<h4 id="内存爆破实现的流程"><a href="#内存爆破实现的流程" class="headerlink" title="内存爆破实现的流程"></a>内存爆破实现的流程</h4><p>检测环境</p>
+<p>实现内存爆破</p>
+<blockquote>
+<p>此处的环境为泛指，当与正常用户访问相悖或有差异均可以以此为为“入口”，开始内存爆破</p>
+</blockquote>
+<h4 id="内存爆破常见入口点"><a href="#内存爆破常见入口点" class="headerlink" title="内存爆破常见入口点"></a>内存爆破常见入口点</h4><p>hook检测</p>
+<blockquote>
+<p>监听函数情况，当函数被hook，且未完善的伪装hook时。</p>
+</blockquote>
+<p>代码格式化检测</p>
+<blockquote>
+<p>正常情况下，代码被压缩成一行或几行。但在运行时不符。</p>
+</blockquote>
+<p>浏览器指纹检测</p>
+<blockquote>
+<p>当运行环境与所规定的环境不同时</p>
+</blockquote>
+<p>控制台检测</p>
+<blockquote>
+<p>监听控制台，当控制台被打开时。</p>
+</blockquote>
+<h4 id="内存爆破特征"><a href="#内存爆破特征" class="headerlink" title="内存爆破特征"></a>内存爆破特征</h4><ol>
+<li>检测环境</li>
+<li>与预期环境不符合，死循环；符合，正常退出</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 内存爆破示例代码</span></span><br><span class="line">h = <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 检测</span></span><br><span class="line">    <span class="keyword">if</span> (a &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;正常执行&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      	<span class="comment">// 进入陷阱</span></span><br><span class="line">        <span class="keyword">while</span> (!![]) &#123;</span><br><span class="line">            c = <span class="keyword">new</span> <span class="built_in">Array</span>().push(<span class="keyword">void</span> <span class="number">0</span>);;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;内存爆破， 危！！！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在浏览器中执行<strong>内存爆破示例代码</strong>， 如下图所示</p>
+<p>符合预期，正常情况下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gs44y083cmj310o0pm75b.jpg" alt=""></p>
+<p>不符合，触发内存爆破</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gs450veqckj31lk0u0n1b.jpg" alt=""></p>
+<p>过了一小会，你就会发现，崩溃了！！！</p>
+<h4 id="内存爆破总结"><a href="#内存爆破总结" class="headerlink" title="内存爆破总结"></a>内存爆破总结</h4><p>内存爆破，更像一种陷阱。如果触发了该陷阱，有了这个“入口”，便开始内存爆破。</p>
+<h4 id="如何绕过内存爆破？"><a href="#如何绕过内存爆破？" class="headerlink" title="如何绕过内存爆破？"></a>如何绕过内存爆破？</h4><p>由于内存爆破的“入口”并不一致，所以内存爆破也并没有通用的解决方案。可提供的思路为“阻断”进入内存爆破，便为绕过。</p>
+<p>例如</p>
+<p>hook检测，伪装hook原型链即可</p>
+<p>代码格式化检测，在检测处进行处理即可</p>
+<p>浏览器指纹检测，伪装浏览器指纹，保持一致即可</p>
+<p>控制台检测，处理检测代码即可。</p>
+<h2 id="控制台检测原理与绕过"><a href="#控制台检测原理与绕过" class="headerlink" title="控制台检测原理与绕过"></a>控制台检测原理与绕过</h2><p>不知你也是否和我一样遇见过这种情况，当打开控制台时。浏览器就直接崩溃，获取其他情况。</p>
+<h4 id="控制台检测原理"><a href="#控制台检测原理" class="headerlink" title="控制台检测原理"></a>控制台检测原理</h4><p>检测原理为与“正常”浏览网站有差异</p>
+<p>当打开控制台的时候,会触发如下两种情况</p>
+<ol>
+<li>debugger可执行了</li>
+<li>div会自动获取id属性</li>
+</ol>
+<p>第一种也就是我们常说的debugger调试干扰，</p>
+<blockquote>
+<p>只要控制台打开，debugger便会执行。一直相关联的无限deugger便会随之而来（如果有）</p>
+</blockquote>
+<p>第二种，当浏览器有使用<code>document.createElement</code>创建标签时，会创建该标签。<strong>当控制台打开会自动获取其id属性</strong>。</p>
+<p>如果在绑定他，在对他进行内存爆破等操作。那么就。。。</p>
+<h4 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h4><p>滞空该标签即可</p>
+<p>pass</p>
+]]></content>
+      <categories>
+        <category>爬虫</category>
+        <category>调试</category>
+        <category>Hook</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+        <tag>Crawler</tag>
+        <tag>JS</tag>
+        <tag>浏览器</tag>
+        <tag>调试</tag>
+        <tag>Hook</tag>
       </tags>
   </entry>
   <entry>
