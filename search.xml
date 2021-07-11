@@ -335,103 +335,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Golang-结构体实现学生管理系统</title>
-    <url>/2020/11/23/Golang-%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9E%E7%8E%B0%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="基于“结构体”实现简易版学生管理系统"><a href="#基于“结构体”实现简易版学生管理系统" class="headerlink" title="基于“结构体”实现简易版学生管理系统"></a>基于“结构体”实现简易版学生管理系统</h2><p>首先咱们在做项目之前，需要对项目进行分析。切记不可贪功冒进，从而导致无用功</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
-<li>学生类</li>
-<li>管理者类</li>
-<li>菜单栏</li>
-<li>基于管理类实现功能<ol>
-<li>查看</li>
-<li>添加</li>
-<li>修改</li>
-<li>删除</li>
-<li>退出<a id="more"></a>
-结构图如下:</li>
-</ol>
-</li>
-</ol>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkzgz3v3vuj30gc0c4dhc.jpg" alt=""></p>
-<p>采用<code>自顶向下</code>的编程思维对以上分析进行复述，先整体、后细节(先全局、后详细)实现如上结构</p>
-<h3 id="定义全局的学生类"><a href="#定义全局的学生类" class="headerlink" title="定义全局的学生类"></a>定义全局的学生类</h3><p>在定义学生类之前，我们需了解学生类包含的字段。这里我只定义了Id、姓名。其中id为唯一，姓名可重复。代码如下所示</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> student <span class="keyword">struct</span> &#123;</span><br><span class="line">	id   <span class="keyword">int64</span></span><br><span class="line">	name <span class="keyword">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="定义全局的管理-即操作类"><a href="#定义全局的管理-即操作类" class="headerlink" title="定义全局的管理(即操作类)"></a>定义全局的管理(即操作类)</h3><p>由于学号为唯一，且其对照关系，非常适合使用Map的<code>Key-value</code>格式。在这里仅做定义及声明并不做初始化，代码如下所示</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> studentMgr <span class="keyword">struct</span> &#123;</span><br><span class="line">	allStudent <span class="keyword">map</span>[<span class="keyword">int64</span>]student</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>借用好的数据结构，会让您的编程效率，编码思维，事半功倍</p>
-</blockquote>
-<h3 id="定义菜单栏"><a href="#定义菜单栏" class="headerlink" title="定义菜单栏"></a>定义菜单栏</h3><p>定义菜单栏，以供使用者选择所对应的功能。根据其功能展示。并根据相对功能，定义应函数。如下</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">showMenu</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;Welcome student Manage System, TimeNow:%v&quot;</span>, time.Now())</span><br><span class="line">	fmt.Println(</span><br><span class="line">		<span class="string">` </span></span><br><span class="line"><span class="string">			1: 查看学生</span></span><br><span class="line"><span class="string">			2: 增加学生</span></span><br><span class="line"><span class="string">			3: 修改学生</span></span><br><span class="line"><span class="string">			4: 删除学生</span></span><br><span class="line"><span class="string">			5: 退出~</span></span><br><span class="line"><span class="string">				`</span>)</span><br><span class="line">	fmt.Print(<span class="string">&quot;What are you want do? Please input Serial number:&quot;</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由以上所知，我们许定义的函数有5个，他们分别是<code>查看学生</code>,<code>增加学生</code>,<code>修改学生</code>,<code>删除学生</code>,<code>退出</code>,如下所示：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	smr = studentMgr&#123;</span><br><span class="line">		allStudent: <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int64</span>]student),</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		showMenu()</span><br><span class="line">		<span class="keyword">var</span> choice <span class="keyword">int64</span></span><br><span class="line">		fmt.Scan(&amp;choice)</span><br><span class="line">		fmt.Printf(<span class="string">&quot;You select %d\n&quot;</span>, choice)</span><br><span class="line">		<span class="keyword">switch</span> choice &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">			smr.showStudent()</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">			smr.addStudent()</span><br><span class="line">		<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">			smr.editStudent()</span><br><span class="line">		<span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">			smr.delStudent()</span><br><span class="line">		<span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">			os.Exit(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			fmt.Println(<span class="string">&quot;Invalid input, please select again：&quot;</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>在这里实例化了一个全局的管理类，所有的操作都经过它。</p>
-<p>使用switch语句，进行多项的条件分支，更有利于我们编写更简洁的代码</p>
-<h3 id="定义功能函数"><a href="#定义功能函数" class="headerlink" title="定义功能函数"></a>定义功能函数</h3><p><code>查看学生</code>,<code>增加学生</code>,<code>修改学生</code>,<code>删除学生</code></p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 查看学生函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">showStudent</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line"><span class="comment">// 增加学生函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">addStudent</span><span class="params">()</span></span>	&#123;&#125;</span><br><span class="line"><span class="comment">// 修改学生函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">editStudent</span><span class="params">()</span></span>	&#123;&#125;</span><br><span class="line"><span class="comment">// 删除学生函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">delStudent</span><span class="params">()</span></span>	&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>基本的就已经做完了，基础结构就已经完成了，鼓掌～</p>
-<p>那么接下来，我们只需要一个个实现相对应的函数。即可实现功能。</p>
-<p>首先我们实现的是查看学生函数。</p>
-<h3 id="实现查看学生功能"><a href="#实现查看学生功能" class="headerlink" title="实现查看学生功能"></a>实现查看学生功能</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">showStudent</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> _, stu := <span class="keyword">range</span> s.allStudent &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;ID:%d, Name:%s\n&quot;</span>, stu.id, stu.name)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>我们只需要遍历Map中所有的键与值，即可拿到所有的学生。这里没什么好说的</p>
-</blockquote>
-<p>实现增加学生功能</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">addStudent</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> (</span><br><span class="line">		stuId   <span class="keyword">int64</span></span><br><span class="line">		stuName <span class="keyword">string</span></span><br><span class="line">	)</span><br><span class="line">	<span class="comment">// 1. 根据输入内容创建学生</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input you need ID:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;stuId)</span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input you need name:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;stuName)</span><br><span class="line">	newStu := student&#123;</span><br><span class="line">		id:   stuId,</span><br><span class="line">		name: stuName,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 将创建的学生加入stu中</span></span><br><span class="line">	s.allStudent[newStu.id] = newStu</span><br><span class="line">	fmt.Println(<span class="string">&quot;Added successfully&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这里，我们需要进行的有两步</p>
-<ol>
-<li><p>获取用户键盘输入</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">		stuId   <span class="keyword">int64</span></span><br><span class="line">		stuName <span class="keyword">string</span></span><br><span class="line">	)</span><br><span class="line">	<span class="comment">// 1. 根据输入内容创建学生</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input you need ID:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;stuId)</span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input you need name:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;stuName)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>将输入的学生信息加入到管理函数中</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">newStu := student&#123;</span><br><span class="line">		id:   stuId,</span><br><span class="line">		name: stuName,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 将创建的学生加入stu中</span></span><br><span class="line">	s.allStudent[newStu.id] = newStu</span><br><span class="line">	fmt.Println(<span class="string">&quot;Added successfully&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>添加成功则提示成功</p>
-</blockquote>
-</li>
-</ol>
-<p>做到这里，咱们就可以进行一个小小的检测，有木有点小激动以及一点小方张。反正我有，示例如下</p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkzi01hhipj30zm0u0jx0.jpg" alt=""></p>
-<p><strong>留下一个小Bug，等你去解决，提示，如果key已存在，那么该添加操作会进行？如果暂时没思路，可以继续往下看。虽然并没有直接这里告诉你，但却在下方进行的相对应的解决</strong></p>
-<h3 id="实现修改学生功能"><a href="#实现修改学生功能" class="headerlink" title="实现修改学生功能"></a>实现修改学生功能</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">editStudent</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 获取用户输入</span></span><br><span class="line">	<span class="keyword">var</span> StuId <span class="keyword">int64</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input want change student IdCode:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;StuId)</span><br><span class="line">  <span class="comment">// 检查该学号学生是否存在，没有则提示不存在</span></span><br><span class="line">	value, ok := s.allStudent[StuId]</span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;Not found&quot;</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;You want change student message:&quot;</span>+</span><br><span class="line">		<span class="string">&quot; Id: %d, Name:%s\n&quot;</span>, value.id, value.name)</span><br><span class="line">	<span class="comment">// 获取修改</span></span><br><span class="line">	<span class="keyword">var</span> newName <span class="keyword">string</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please change to new message:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;newName)</span><br><span class="line">	value.name = newName</span><br><span class="line">	<span class="comment">// 更新学生的姓名</span></span><br><span class="line">	s.allStudent[StuId] = value</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>首先我们获取用户输入</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取用户输入</span></span><br><span class="line">	<span class="keyword">var</span> StuId <span class="keyword">int64</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input want change student IdCode:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;StuId)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>拿着用户输入的学生Id，去Map里面查找相对应的学生Id</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">value, ok := s.allStudent[StuId]</span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;Not found&quot;</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;You want change student message:&quot;</span>+</span><br><span class="line">		<span class="string">&quot; Id: %d, Name:%s\n&quot;</span>, value.id, value.name)</span><br></pre></td></tr></table></figure>
-<p>若想实现修改，是需要存在的。如果不存在此学生，提示没有找到该学生，直接return掉。证明无法修改。如果存在那么它一定是唯一的一个Id，因为我们用的是Map格式的嘛，key唯一。</p>
-</li>
-<li><p>如果存在我们就需要获取到用户所修改的值，并且将原有的Name覆盖掉。即可实现修改</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> newName <span class="keyword">string</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please change to new message:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;newName)</span><br><span class="line">	value.name = newName</span><br><span class="line">	<span class="comment">// 更新学生的姓名</span></span><br><span class="line">	s.allStudent[StuId] = value</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>测试时间，示例如下：</p>
-<p>首先我是添加了一个学生在里面，<code>Id:1,Name:Payne</code>.</p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkziis5yxvj31020u044i.jpg" alt=""></p>
-<h3 id="实现删除学生功能"><a href="#实现删除学生功能" class="headerlink" title="实现删除学生功能"></a>实现删除学生功能</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">delStudent</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> studentID <span class="keyword">int64</span></span><br><span class="line">	<span class="comment">// 获取用户需删除的id</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input want delete studentId：&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;studentID)</span><br><span class="line">	<span class="comment">// 去map里面查找，若有则删除。没有则退出重新选择</span></span><br><span class="line">	value, ok := s.allStudent[studentID]</span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;Not found&quot;</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;You want delete student message:&quot;</span>+</span><br><span class="line">		<span class="string">&quot; Id: %d, Name:%s\n&quot;</span>, value.id, value.name)</span><br><span class="line">	<span class="built_in">delete</span>(s.allStudent, studentID)</span><br><span class="line">	fmt.Print(<span class="string">&quot;Deleted Successfully\n&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>首先我们需要删除，那么它是一定存在我们才能去删除。这个没毛病吧？我觉很ok。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> studentID <span class="keyword">int64</span></span><br><span class="line"><span class="comment">// 获取用户需删除的id</span></span><br><span class="line">fmt.Print(<span class="string">&quot;Please input want delete studentId：&quot;</span>)</span><br><span class="line">fmt.Scanln(&amp;studentID)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>不存在提示未找到</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">value, ok := s.allStudent[studentID]</span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;Not found&quot;</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;You want delete student message:&quot;</span>+</span><br><span class="line">		<span class="string">&quot; Id: %d, Name:%s\n&quot;</span>, value.id, value.name)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>存在进行修改</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">fmt.Printf(<span class="string">&quot;You want delete student message:&quot;</span>+</span><br><span class="line">	<span class="string">&quot; Id: %d, Name:%s\n&quot;</span>, value.id, value.name)</span><br><span class="line"><span class="built_in">delete</span>(s.allStudent, studentID)</span><br><span class="line">fmt.Print(<span class="string">&quot;Deleted Successfully\n&quot;</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Go</category>
-      </categories>
-      <tags>
-        <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Golang-自定义类型</title>
     <url>/2020/11/21/Golang-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<p>在Go语言中没有<code>类</code>，也没有相关于<code>类</code>的继承、多态的实现。却有一种”新的概念”—结构体</p>
@@ -556,6 +459,103 @@
 <li>我知道这不是一个直接的技术优势，但 Go 是由谷歌设计并支持的，谷歌拥有世界上最大的云基础设施之一，并且规模庞大。谷歌设计 Go 以解决可扩展性和有效性问题。这些是创建我们自己的服务器时都会遇到的问题。</li>
 <li>Go 更多的也是被一些大公司所使用，如 Adobe、BBC、IBM，因特尔甚至是 <a href="https://link.juejin.im/?target=https%3A%2F%2Fmedium.engineering%2Fhow-medium-goes-social-b7dbefa6d413%23.r8nqjxjpk">Medium</a>。</li>
 </ul>
+]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Golang-结构体实现学生管理系统</title>
+    <url>/2020/11/23/Golang-%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9E%E7%8E%B0%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="基于“结构体”实现简易版学生管理系统"><a href="#基于“结构体”实现简易版学生管理系统" class="headerlink" title="基于“结构体”实现简易版学生管理系统"></a>基于“结构体”实现简易版学生管理系统</h2><p>首先咱们在做项目之前，需要对项目进行分析。切记不可贪功冒进，从而导致无用功</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
+<li>学生类</li>
+<li>管理者类</li>
+<li>菜单栏</li>
+<li>基于管理类实现功能<ol>
+<li>查看</li>
+<li>添加</li>
+<li>修改</li>
+<li>删除</li>
+<li>退出<a id="more"></a>
+结构图如下:</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkzgz3v3vuj30gc0c4dhc.jpg" alt=""></p>
+<p>采用<code>自顶向下</code>的编程思维对以上分析进行复述，先整体、后细节(先全局、后详细)实现如上结构</p>
+<h3 id="定义全局的学生类"><a href="#定义全局的学生类" class="headerlink" title="定义全局的学生类"></a>定义全局的学生类</h3><p>在定义学生类之前，我们需了解学生类包含的字段。这里我只定义了Id、姓名。其中id为唯一，姓名可重复。代码如下所示</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> student <span class="keyword">struct</span> &#123;</span><br><span class="line">	id   <span class="keyword">int64</span></span><br><span class="line">	name <span class="keyword">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="定义全局的管理-即操作类"><a href="#定义全局的管理-即操作类" class="headerlink" title="定义全局的管理(即操作类)"></a>定义全局的管理(即操作类)</h3><p>由于学号为唯一，且其对照关系，非常适合使用Map的<code>Key-value</code>格式。在这里仅做定义及声明并不做初始化，代码如下所示</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> studentMgr <span class="keyword">struct</span> &#123;</span><br><span class="line">	allStudent <span class="keyword">map</span>[<span class="keyword">int64</span>]student</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>借用好的数据结构，会让您的编程效率，编码思维，事半功倍</p>
+</blockquote>
+<h3 id="定义菜单栏"><a href="#定义菜单栏" class="headerlink" title="定义菜单栏"></a>定义菜单栏</h3><p>定义菜单栏，以供使用者选择所对应的功能。根据其功能展示。并根据相对功能，定义应函数。如下</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">showMenu</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;Welcome student Manage System, TimeNow:%v&quot;</span>, time.Now())</span><br><span class="line">	fmt.Println(</span><br><span class="line">		<span class="string">` </span></span><br><span class="line"><span class="string">			1: 查看学生</span></span><br><span class="line"><span class="string">			2: 增加学生</span></span><br><span class="line"><span class="string">			3: 修改学生</span></span><br><span class="line"><span class="string">			4: 删除学生</span></span><br><span class="line"><span class="string">			5: 退出~</span></span><br><span class="line"><span class="string">				`</span>)</span><br><span class="line">	fmt.Print(<span class="string">&quot;What are you want do? Please input Serial number:&quot;</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由以上所知，我们许定义的函数有5个，他们分别是<code>查看学生</code>,<code>增加学生</code>,<code>修改学生</code>,<code>删除学生</code>,<code>退出</code>,如下所示：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	smr = studentMgr&#123;</span><br><span class="line">		allStudent: <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int64</span>]student),</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		showMenu()</span><br><span class="line">		<span class="keyword">var</span> choice <span class="keyword">int64</span></span><br><span class="line">		fmt.Scan(&amp;choice)</span><br><span class="line">		fmt.Printf(<span class="string">&quot;You select %d\n&quot;</span>, choice)</span><br><span class="line">		<span class="keyword">switch</span> choice &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">			smr.showStudent()</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">			smr.addStudent()</span><br><span class="line">		<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">			smr.editStudent()</span><br><span class="line">		<span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">			smr.delStudent()</span><br><span class="line">		<span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">			os.Exit(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			fmt.Println(<span class="string">&quot;Invalid input, please select again：&quot;</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在这里实例化了一个全局的管理类，所有的操作都经过它。</p>
+<p>使用switch语句，进行多项的条件分支，更有利于我们编写更简洁的代码</p>
+<h3 id="定义功能函数"><a href="#定义功能函数" class="headerlink" title="定义功能函数"></a>定义功能函数</h3><p><code>查看学生</code>,<code>增加学生</code>,<code>修改学生</code>,<code>删除学生</code></p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 查看学生函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">showStudent</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line"><span class="comment">// 增加学生函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">addStudent</span><span class="params">()</span></span>	&#123;&#125;</span><br><span class="line"><span class="comment">// 修改学生函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">editStudent</span><span class="params">()</span></span>	&#123;&#125;</span><br><span class="line"><span class="comment">// 删除学生函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">delStudent</span><span class="params">()</span></span>	&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>基本的就已经做完了，基础结构就已经完成了，鼓掌～</p>
+<p>那么接下来，我们只需要一个个实现相对应的函数。即可实现功能。</p>
+<p>首先我们实现的是查看学生函数。</p>
+<h3 id="实现查看学生功能"><a href="#实现查看学生功能" class="headerlink" title="实现查看学生功能"></a>实现查看学生功能</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">showStudent</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> _, stu := <span class="keyword">range</span> s.allStudent &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;ID:%d, Name:%s\n&quot;</span>, stu.id, stu.name)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>我们只需要遍历Map中所有的键与值，即可拿到所有的学生。这里没什么好说的</p>
+</blockquote>
+<p>实现增加学生功能</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">addStudent</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> (</span><br><span class="line">		stuId   <span class="keyword">int64</span></span><br><span class="line">		stuName <span class="keyword">string</span></span><br><span class="line">	)</span><br><span class="line">	<span class="comment">// 1. 根据输入内容创建学生</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input you need ID:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;stuId)</span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input you need name:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;stuName)</span><br><span class="line">	newStu := student&#123;</span><br><span class="line">		id:   stuId,</span><br><span class="line">		name: stuName,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 将创建的学生加入stu中</span></span><br><span class="line">	s.allStudent[newStu.id] = newStu</span><br><span class="line">	fmt.Println(<span class="string">&quot;Added successfully&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这里，我们需要进行的有两步</p>
+<ol>
+<li><p>获取用户键盘输入</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">		stuId   <span class="keyword">int64</span></span><br><span class="line">		stuName <span class="keyword">string</span></span><br><span class="line">	)</span><br><span class="line">	<span class="comment">// 1. 根据输入内容创建学生</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input you need ID:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;stuId)</span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input you need name:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;stuName)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>将输入的学生信息加入到管理函数中</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">newStu := student&#123;</span><br><span class="line">		id:   stuId,</span><br><span class="line">		name: stuName,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 将创建的学生加入stu中</span></span><br><span class="line">	s.allStudent[newStu.id] = newStu</span><br><span class="line">	fmt.Println(<span class="string">&quot;Added successfully&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>添加成功则提示成功</p>
+</blockquote>
+</li>
+</ol>
+<p>做到这里，咱们就可以进行一个小小的检测，有木有点小激动以及一点小方张。反正我有，示例如下</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkzi01hhipj30zm0u0jx0.jpg" alt=""></p>
+<p><strong>留下一个小Bug，等你去解决，提示，如果key已存在，那么该添加操作会进行？如果暂时没思路，可以继续往下看。虽然并没有直接这里告诉你，但却在下方进行的相对应的解决</strong></p>
+<h3 id="实现修改学生功能"><a href="#实现修改学生功能" class="headerlink" title="实现修改学生功能"></a>实现修改学生功能</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">editStudent</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 获取用户输入</span></span><br><span class="line">	<span class="keyword">var</span> StuId <span class="keyword">int64</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input want change student IdCode:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;StuId)</span><br><span class="line">  <span class="comment">// 检查该学号学生是否存在，没有则提示不存在</span></span><br><span class="line">	value, ok := s.allStudent[StuId]</span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;Not found&quot;</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;You want change student message:&quot;</span>+</span><br><span class="line">		<span class="string">&quot; Id: %d, Name:%s\n&quot;</span>, value.id, value.name)</span><br><span class="line">	<span class="comment">// 获取修改</span></span><br><span class="line">	<span class="keyword">var</span> newName <span class="keyword">string</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please change to new message:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;newName)</span><br><span class="line">	value.name = newName</span><br><span class="line">	<span class="comment">// 更新学生的姓名</span></span><br><span class="line">	s.allStudent[StuId] = value</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>首先我们获取用户输入</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取用户输入</span></span><br><span class="line">	<span class="keyword">var</span> StuId <span class="keyword">int64</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input want change student IdCode:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;StuId)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>拿着用户输入的学生Id，去Map里面查找相对应的学生Id</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">value, ok := s.allStudent[StuId]</span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;Not found&quot;</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;You want change student message:&quot;</span>+</span><br><span class="line">		<span class="string">&quot; Id: %d, Name:%s\n&quot;</span>, value.id, value.name)</span><br></pre></td></tr></table></figure>
+<p>若想实现修改，是需要存在的。如果不存在此学生，提示没有找到该学生，直接return掉。证明无法修改。如果存在那么它一定是唯一的一个Id，因为我们用的是Map格式的嘛，key唯一。</p>
+</li>
+<li><p>如果存在我们就需要获取到用户所修改的值，并且将原有的Name覆盖掉。即可实现修改</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> newName <span class="keyword">string</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please change to new message:&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;newName)</span><br><span class="line">	value.name = newName</span><br><span class="line">	<span class="comment">// 更新学生的姓名</span></span><br><span class="line">	s.allStudent[StuId] = value</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>测试时间，示例如下：</p>
+<p>首先我是添加了一个学生在里面，<code>Id:1,Name:Payne</code>.</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkziis5yxvj31020u044i.jpg" alt=""></p>
+<h3 id="实现删除学生功能"><a href="#实现删除学生功能" class="headerlink" title="实现删除学生功能"></a>实现删除学生功能</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s studentMgr)</span> <span class="title">delStudent</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> studentID <span class="keyword">int64</span></span><br><span class="line">	<span class="comment">// 获取用户需删除的id</span></span><br><span class="line">	fmt.Print(<span class="string">&quot;Please input want delete studentId：&quot;</span>)</span><br><span class="line">	fmt.Scanln(&amp;studentID)</span><br><span class="line">	<span class="comment">// 去map里面查找，若有则删除。没有则退出重新选择</span></span><br><span class="line">	value, ok := s.allStudent[studentID]</span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;Not found&quot;</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;You want delete student message:&quot;</span>+</span><br><span class="line">		<span class="string">&quot; Id: %d, Name:%s\n&quot;</span>, value.id, value.name)</span><br><span class="line">	<span class="built_in">delete</span>(s.allStudent, studentID)</span><br><span class="line">	fmt.Print(<span class="string">&quot;Deleted Successfully\n&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>首先我们需要删除，那么它是一定存在我们才能去删除。这个没毛病吧？我觉很ok。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> studentID <span class="keyword">int64</span></span><br><span class="line"><span class="comment">// 获取用户需删除的id</span></span><br><span class="line">fmt.Print(<span class="string">&quot;Please input want delete studentId：&quot;</span>)</span><br><span class="line">fmt.Scanln(&amp;studentID)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不存在提示未找到</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">value, ok := s.allStudent[studentID]</span><br><span class="line">	<span class="keyword">if</span> !ok &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;Not found&quot;</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;You want delete student message:&quot;</span>+</span><br><span class="line">		<span class="string">&quot; Id: %d, Name:%s\n&quot;</span>, value.id, value.name)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>存在进行修改</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">fmt.Printf(<span class="string">&quot;You want delete student message:&quot;</span>+</span><br><span class="line">	<span class="string">&quot; Id: %d, Name:%s\n&quot;</span>, value.id, value.name)</span><br><span class="line"><span class="built_in">delete</span>(s.allStudent, studentID)</span><br><span class="line">fmt.Print(<span class="string">&quot;Deleted Successfully\n&quot;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>Go</category>
@@ -1081,65 +1081,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Golang常量-变量-匿名变量</title>
-    <url>/2020/11/21/Golang%E5%B8%B8%E9%87%8F-%E5%8F%98%E9%87%8F-%E5%8C%BF%E5%90%8D%E5%8F%98%E9%87%8F/</url>
-    <content><![CDATA[<blockquote>
-<p>常量：一旦声明即不可被改变</p>
-<p>变量：声明后可以发生改变。若初始化后未赋值则为初始值</p>
-<p>例如：</p>
-<p>int -&gt; 0</p>
-<p>Bool -&gt; false</p>
-<p>String -&gt; 空</p>
-</blockquote>
-<h2 id="关键字与保留字"><a href="#关键字与保留字" class="headerlink" title="关键字与保留字"></a>关键字与保留字</h2><p>关键字是指编程语言中预先定义好的具有特殊含义的标识符。 关键字和保留字都不建议用作变量名。<br><a id="more"></a><br>关键字</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">break</span>        <span class="keyword">default</span>      <span class="function"><span class="keyword">func</span>         <span class="title">interface</span>    <span class="title">select</span></span></span><br><span class="line">   <span class="keyword">case</span>         <span class="keyword">defer</span>        <span class="keyword">go</span>           <span class="keyword">map</span>          <span class="keyword">struct</span></span><br><span class="line">   <span class="keyword">chan</span>         <span class="keyword">else</span>         <span class="keyword">goto</span>         <span class="keyword">package</span>      <span class="keyword">switch</span></span><br><span class="line">   <span class="keyword">const</span>        <span class="keyword">fallthrough</span>  <span class="keyword">if</span>           <span class="keyword">range</span>        <span class="keyword">type</span></span><br><span class="line">   <span class="keyword">continue</span>     <span class="keyword">for</span>          <span class="keyword">import</span>       <span class="keyword">return</span>       <span class="keyword">var</span></span><br></pre></td></tr></table></figure>
-<p>保留字</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">Constants:    <span class="literal">true</span>  <span class="literal">false</span>  <span class="literal">iota</span>  <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">    Types:    <span class="keyword">int</span>  <span class="keyword">int8</span>  <span class="keyword">int16</span>  <span class="keyword">int32</span>  <span class="keyword">int64</span>  </span><br><span class="line">              <span class="keyword">uint</span>  <span class="keyword">uint8</span>  <span class="keyword">uint16</span>  <span class="keyword">uint32</span>  <span class="keyword">uint64</span>  <span class="keyword">uintptr</span></span><br><span class="line">              <span class="keyword">float32</span>  <span class="keyword">float64</span>  <span class="keyword">complex128</span>  <span class="keyword">complex64</span></span><br><span class="line">              <span class="keyword">bool</span>  <span class="keyword">byte</span>  <span class="keyword">rune</span>  <span class="keyword">string</span>  error</span><br><span class="line"></span><br><span class="line">Functions:   <span class="built_in">make</span>  <span class="built_in">len</span>  <span class="built_in">cap</span>  <span class="built_in">new</span>  <span class="built_in">append</span>  <span class="built_in">copy</span>  <span class="built_in">close</span>  <span class="built_in">delete</span></span><br><span class="line">             <span class="built_in">complex</span>  <span class="built_in">real</span>  <span class="built_in">imag</span></span><br><span class="line">             <span class="built_in">panic</span>  <span class="built_in">recover</span></span><br></pre></td></tr></table></figure>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量的来历"><a href="#变量的来历" class="headerlink" title="变量的来历"></a>变量的来历</h3><p>程序运行过程中的数据都是保存在内存中，我们想要在代码中操作某个数据时就需要去内存上找到这个变量，但是如果我们直接在代码中通过内存地址去操作变量的话，代码的可读性会非常差而且还容易出错，所以我们就利用变量将这个数据的内存地址保存起来，以后直接通过这个变量就能找到内存上对应的数据了。</p>
-<blockquote>
-<p>相当于开辟相对应的内存，并对此内存取了个别名。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 例如：</span></span><br><span class="line"><span class="keyword">var</span> a <span class="keyword">string</span> = <span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="comment">// 申请一块内存，把字符串hello放进去</span></span><br><span class="line">并它的地址为指向变量名 a</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><p>变量（Variable）的功能是存储数据。不同的变量保存的数据类型可能会不一样。经过半个多世纪的发展，编程语言已经基本形成了一套固定的类型，常见变量的数据类型有：整型、浮点型、布尔型等。</p>
-<p>Go语言中的每一个变量都有自己的类型，并且变量必须经过声明才能开始使用。</p>
-<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><p>Go语言中的变量需要声明后才能使用，同一作用域内不支持重复声明。 并且Go语言的变量声明后必须使用。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 标准声明</span></span><br><span class="line"><span class="keyword">var</span> 变量名 类型</span><br><span class="line"><span class="comment">// 类型推到声明，必须有初始值， 否则声明失败</span></span><br><span class="line"><span class="keyword">var</span> 变量名 = 值</span><br><span class="line"><span class="comment">// 简短声明（必须在函数中）</span></span><br><span class="line">变量名 := 值</span><br><span class="line"></span><br><span class="line"><span class="comment">// 批量声明(多用于全局变量声明)，类型为必须</span></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line"> 	变量名 类型</span><br><span class="line">  	变量名 类型</span><br><span class="line">  	变量名 类型</span><br><span class="line">  。。。</span><br><span class="line">)</span><br><span class="line"><span class="comment">// 同类型批量声明</span></span><br><span class="line"><span class="keyword">var</span> 变量名<span class="number">1</span>，变量名<span class="number">2</span>，变量名<span class="number">3</span> 类型</span><br><span class="line">或</span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	变量名<span class="number">1</span>,</span><br><span class="line">	变量名<span class="number">2</span>, </span><br><span class="line">	变量名<span class="number">3</span> <span class="keyword">string</span> </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 简短批量声明 注意必须在函数中</span></span><br><span class="line">变量名<span class="number">1</span>,变量名<span class="number">2</span>, 变量名<span class="number">3</span> := 值<span class="number">1</span>，值<span class="number">2</span>， 值<span class="number">3</span> </span><br></pre></td></tr></table></figure>
- <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 标准声明</span></span><br><span class="line"><span class="keyword">var</span> name <span class="keyword">string</span> = <span class="string">&quot;Payne&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 类型推到声明</span></span><br><span class="line"><span class="keyword">var</span> age = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//批量声明</span></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	x <span class="keyword">string</span></span><br><span class="line">	y <span class="keyword">string</span></span><br><span class="line">	j <span class="keyword">bool</span></span><br><span class="line">	k <span class="keyword">byte</span></span><br><span class="line">	z <span class="keyword">int</span></span><br><span class="line">	</span><br><span class="line">)</span><br><span class="line"><span class="comment">// 同类型批量声明</span></span><br><span class="line"><span class="keyword">var</span> a, b, c, d <span class="keyword">int</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 简短声明</span></span><br><span class="line">	hobby := <span class="string">&quot;programming&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//测试输入</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;Name is :&quot;</span>, name) <span class="comment">// Name is : Payne</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;Age is :&quot;</span>, age)	<span class="comment">// Age is : 20</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;hobby &quot;</span>, hobby)	<span class="comment">// hobby  programming</span></span><br><span class="line">	fmt.Print(a)	<span class="comment">// 0 声明未赋值采用初始值。int 类型初始值为0</span></span><br><span class="line">	<span class="comment">// 批量简短声明</span></span><br><span class="line">	a, b := <span class="number">1</span>, <span class="string">&quot;string&quot;</span></span><br><span class="line">	fmt.Print(a, b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="匿名变量"><a href="#匿名变量" class="headerlink" title="匿名变量"></a>匿名变量</h3><blockquote>
-<p>匿名变量不占用命名空间，不会分配内存，所以匿名变量之间不存在重复声明。 (在<code>Lua</code>等编程语言里，匿名变量也被叫做哑元变量。)</p>
-</blockquote>
-<p>在使用多重赋值时，如果想要忽略某个值，可以使用<code>匿名变量（anonymous variable）</code>。 匿名变量用一个下划线<code>_</code>表示，例如：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这里可能会有点绕，仅仅是为了使用“_”，而使用_</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">foo</span><span class="params">()</span> <span class="params">(<span class="keyword">string</span>, <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span>  <span class="string">&quot;payne&quot;</span>, <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	name, _ := foo()</span><br><span class="line">	_, age := foo()</span><br><span class="line">	fmt.Println(<span class="string">&quot;name=&quot;</span>, name) <span class="comment">//name= payne</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;age=&quot;</span>, age)	<span class="comment">//age= 20</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意事项：</p>
-<ol>
-<li>函数外的每个语句都必须以关键字开始（var、const、func等）</li>
-<li><code>_</code>多用于占位，表示忽略值。</li>
-</ol>
-</blockquote>
-<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>常量与变量的声明基本一致，类型一致。若有声明变化的话那就是将关键字<code>var</code>， 替换成了<code>const</code>.增加了<code>iota</code>，减少了简短声明</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 常量声明声明时必须给值，否则则定义失败</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 标准声明</span></span><br><span class="line"><span class="keyword">const</span> 变量名 类型 = 值</span><br><span class="line"><span class="comment">// 类型推导</span></span><br><span class="line"><span class="keyword">const</span> 变量名  = 值</span><br></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a <span class="keyword">int</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">const</span> b = <span class="string">&quot;2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(a) <span class="comment">// 1</span></span><br><span class="line">	fmt.Println(b) <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Iota"><a href="#Iota" class="headerlink" title="Iota"></a>Iota</h3><p><code>iota</code>是go语言的常量计数器，只能在常量的表达式中使用。</p>
-<p><code>iota</code>在const关键字出现时将被重置为0。const中每新增一行常量声明将使<code>iota</code>计数一次(iota可理解为const语句块中的行索引)。 使用iota能简化定义，在定义枚举时很有用。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// `iota`在const关键字出现时将被重置为0,请牢记！！</span></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">		n1 = <span class="literal">iota</span> <span class="comment">//0</span></span><br><span class="line">		n2        <span class="comment">//1</span></span><br><span class="line">		n3        <span class="comment">//2</span></span><br><span class="line">		n4        <span class="comment">//3</span></span><br><span class="line">	)</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 使用_跳过某些值</span></span><br><span class="line">	<span class="keyword">const</span> (</span><br><span class="line">		n1 = <span class="literal">iota</span> <span class="comment">//0</span></span><br><span class="line">		n2        <span class="comment">//1</span></span><br><span class="line">		_</span><br><span class="line">		n4        <span class="comment">//3</span></span><br><span class="line">	)</span><br><span class="line"><span class="comment">// iota声明中间插队</span></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">		n1 = <span class="literal">iota</span> <span class="comment">//0</span></span><br><span class="line">		n2 = <span class="number">100</span>  <span class="comment">//100</span></span><br><span class="line">		n3 = <span class="literal">iota</span> <span class="comment">//2</span></span><br><span class="line">		n4        <span class="comment">//3</span></span><br><span class="line">	)</span><br><span class="line">	<span class="keyword">const</span> n5 = <span class="literal">iota</span> <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="常量与变量的对比示例"><a href="#常量与变量的对比示例" class="headerlink" title="常量与变量的对比示例"></a>常量与变量的对比示例</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 主要体现为 变量可以被修改</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">	fmt.Println(a)	<span class="comment">// 1</span></span><br><span class="line">	a = <span class="number">2</span></span><br><span class="line">	fmt.Println(a)	<span class="comment">// 2</span></span><br><span class="line">	<span class="keyword">const</span> b = <span class="number">3</span></span><br><span class="line">	fmt.Println(b) <span class="comment">// 3</span></span><br><span class="line">	b = <span class="number">4</span></span><br><span class="line">	fmt.Print(b)	<span class="comment">// Error: cannot assign to b</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="函数的初探"><a href="#函数的初探" class="headerlink" title="函数的初探"></a>函数的初探</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  函数的定义</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> 函数名<span class="params">(形参)</span> <span class="params">(返回值类型)</span></span> &#123;</span><br><span class="line">	表达式</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用函数</span></span><br><span class="line">函数名(实参)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 另一种方式（匿名函数）</span></span><br><span class="line"><span class="keyword">var</span> 函数名 = <span class="function"><span class="keyword">func</span> <span class="params">()</span></span> &#123;</span><br><span class="line">	表达式</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用函数</span></span><br><span class="line">函数名(实参)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 匿名立即执行函数</span></span><br><span class="line"><span class="keyword">var</span> 函数名 = <span class="function"><span class="keyword">func</span> <span class="params">()</span></span> &#123;</span><br><span class="line">	表达式</span><br><span class="line">&#125;()</span><br><span class="line"><span class="comment">// 此时的函数为结果的值</span></span><br></pre></td></tr></table></figure>
-<h3 id="函数的调用的顺序"><a href="#函数的调用的顺序" class="headerlink" title="函数的调用的顺序"></a>函数的调用的顺序</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a = <span class="number">2</span></span><br><span class="line">	fmt.Print(a) <span class="comment">//  2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>思考：</p>
-<p>为什么打印的是2？</p>
-<p>原因为<code>函数</code>参数的调用采用<code>就近的原则</code></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Go</category>
-      </categories>
-      <tags>
-        <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Golang并发深入了解</title>
     <url>/2020/12/06/Golang%E5%B9%B6%E5%8F%91%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3/</url>
     <content><![CDATA[<h2 id="协程控制需要"><a href="#协程控制需要" class="headerlink" title="协程控制需要"></a>协程控制需要</h2><p>重学编程之Golang的plan中的上一篇文章我向大家介绍了，<code>并发编程基础</code>，<code>goroutine的创建</code>，<code>channel</code>，正由于go语言的简洁性,我们可以简易快速的创建任意个协程。同时也留下了许多隐患，如果没有更加深入的学习，其实很难直接将其运用到实际项目中，实际生活中。为什么呢？并发的场景许许多多，但一味的只知道其创建，是很难有效的解决问题。例如以下场景-资源竞争<br><a id="more"></a><br><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">// 公共资源</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(i <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	sum += i</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//开启1000个协程让sum+1</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> add(<span class="number">1</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//防止提前退出</span></span><br><span class="line">	time.Sleep(<span class="number">2</span> * time.Second)</span><br><span class="line">	fmt.Println(<span class="string">&quot;和为:&quot;</span>, sum)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -1207,6 +1148,65 @@
 <p>上面的代码开启少量几个<code>goroutine</code>的时候可能没什么问题，当并发多了之后执行上面的代码就会报<code>fatal error: concurrent map writes</code>错误。</p>
 <p>像这种场景下就需要为map加锁来保证并发的安全性了，Go语言的<code>sync</code>包中提供了一个开箱即用的并发安全版map–<code>sync.Map</code>。开箱即用表示不用像内置的map一样使用make函数初始化就能直接使用。同时<code>sync.Map</code>内置了诸如<code>Store</code>、<code>Load</code>、<code>LoadOrStore</code>、<code>Delete</code>、<code>Range</code>等操作方法。</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> m = sync.Map&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	wg := sync.WaitGroup&#123;&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">20</span>; i++ &#123;</span><br><span class="line">		wg.Add(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(n <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">			key := strconv.Itoa(n)</span><br><span class="line">			m.Store(key, n)</span><br><span class="line">			value, _ := m.Load(key)</span><br><span class="line">			fmt.Printf(<span class="string">&quot;k=:%v,v:=%v\n&quot;</span>, key, value)</span><br><span class="line">			wg.Done()</span><br><span class="line">		&#125;(i)</span><br><span class="line">	&#125;</span><br><span class="line">	wg.Wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Golang常量-变量-匿名变量</title>
+    <url>/2020/11/21/Golang%E5%B8%B8%E9%87%8F-%E5%8F%98%E9%87%8F-%E5%8C%BF%E5%90%8D%E5%8F%98%E9%87%8F/</url>
+    <content><![CDATA[<blockquote>
+<p>常量：一旦声明即不可被改变</p>
+<p>变量：声明后可以发生改变。若初始化后未赋值则为初始值</p>
+<p>例如：</p>
+<p>int -&gt; 0</p>
+<p>Bool -&gt; false</p>
+<p>String -&gt; 空</p>
+</blockquote>
+<h2 id="关键字与保留字"><a href="#关键字与保留字" class="headerlink" title="关键字与保留字"></a>关键字与保留字</h2><p>关键字是指编程语言中预先定义好的具有特殊含义的标识符。 关键字和保留字都不建议用作变量名。<br><a id="more"></a><br>关键字</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">break</span>        <span class="keyword">default</span>      <span class="function"><span class="keyword">func</span>         <span class="title">interface</span>    <span class="title">select</span></span></span><br><span class="line">   <span class="keyword">case</span>         <span class="keyword">defer</span>        <span class="keyword">go</span>           <span class="keyword">map</span>          <span class="keyword">struct</span></span><br><span class="line">   <span class="keyword">chan</span>         <span class="keyword">else</span>         <span class="keyword">goto</span>         <span class="keyword">package</span>      <span class="keyword">switch</span></span><br><span class="line">   <span class="keyword">const</span>        <span class="keyword">fallthrough</span>  <span class="keyword">if</span>           <span class="keyword">range</span>        <span class="keyword">type</span></span><br><span class="line">   <span class="keyword">continue</span>     <span class="keyword">for</span>          <span class="keyword">import</span>       <span class="keyword">return</span>       <span class="keyword">var</span></span><br></pre></td></tr></table></figure>
+<p>保留字</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">Constants:    <span class="literal">true</span>  <span class="literal">false</span>  <span class="literal">iota</span>  <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">    Types:    <span class="keyword">int</span>  <span class="keyword">int8</span>  <span class="keyword">int16</span>  <span class="keyword">int32</span>  <span class="keyword">int64</span>  </span><br><span class="line">              <span class="keyword">uint</span>  <span class="keyword">uint8</span>  <span class="keyword">uint16</span>  <span class="keyword">uint32</span>  <span class="keyword">uint64</span>  <span class="keyword">uintptr</span></span><br><span class="line">              <span class="keyword">float32</span>  <span class="keyword">float64</span>  <span class="keyword">complex128</span>  <span class="keyword">complex64</span></span><br><span class="line">              <span class="keyword">bool</span>  <span class="keyword">byte</span>  <span class="keyword">rune</span>  <span class="keyword">string</span>  error</span><br><span class="line"></span><br><span class="line">Functions:   <span class="built_in">make</span>  <span class="built_in">len</span>  <span class="built_in">cap</span>  <span class="built_in">new</span>  <span class="built_in">append</span>  <span class="built_in">copy</span>  <span class="built_in">close</span>  <span class="built_in">delete</span></span><br><span class="line">             <span class="built_in">complex</span>  <span class="built_in">real</span>  <span class="built_in">imag</span></span><br><span class="line">             <span class="built_in">panic</span>  <span class="built_in">recover</span></span><br></pre></td></tr></table></figure>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量的来历"><a href="#变量的来历" class="headerlink" title="变量的来历"></a>变量的来历</h3><p>程序运行过程中的数据都是保存在内存中，我们想要在代码中操作某个数据时就需要去内存上找到这个变量，但是如果我们直接在代码中通过内存地址去操作变量的话，代码的可读性会非常差而且还容易出错，所以我们就利用变量将这个数据的内存地址保存起来，以后直接通过这个变量就能找到内存上对应的数据了。</p>
+<blockquote>
+<p>相当于开辟相对应的内存，并对此内存取了个别名。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 例如：</span></span><br><span class="line"><span class="keyword">var</span> a <span class="keyword">string</span> = <span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="comment">// 申请一块内存，把字符串hello放进去</span></span><br><span class="line">并它的地址为指向变量名 a</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><p>变量（Variable）的功能是存储数据。不同的变量保存的数据类型可能会不一样。经过半个多世纪的发展，编程语言已经基本形成了一套固定的类型，常见变量的数据类型有：整型、浮点型、布尔型等。</p>
+<p>Go语言中的每一个变量都有自己的类型，并且变量必须经过声明才能开始使用。</p>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><p>Go语言中的变量需要声明后才能使用，同一作用域内不支持重复声明。 并且Go语言的变量声明后必须使用。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 标准声明</span></span><br><span class="line"><span class="keyword">var</span> 变量名 类型</span><br><span class="line"><span class="comment">// 类型推到声明，必须有初始值， 否则声明失败</span></span><br><span class="line"><span class="keyword">var</span> 变量名 = 值</span><br><span class="line"><span class="comment">// 简短声明（必须在函数中）</span></span><br><span class="line">变量名 := 值</span><br><span class="line"></span><br><span class="line"><span class="comment">// 批量声明(多用于全局变量声明)，类型为必须</span></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line"> 	变量名 类型</span><br><span class="line">  	变量名 类型</span><br><span class="line">  	变量名 类型</span><br><span class="line">  。。。</span><br><span class="line">)</span><br><span class="line"><span class="comment">// 同类型批量声明</span></span><br><span class="line"><span class="keyword">var</span> 变量名<span class="number">1</span>，变量名<span class="number">2</span>，变量名<span class="number">3</span> 类型</span><br><span class="line">或</span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	变量名<span class="number">1</span>,</span><br><span class="line">	变量名<span class="number">2</span>, </span><br><span class="line">	变量名<span class="number">3</span> <span class="keyword">string</span> </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 简短批量声明 注意必须在函数中</span></span><br><span class="line">变量名<span class="number">1</span>,变量名<span class="number">2</span>, 变量名<span class="number">3</span> := 值<span class="number">1</span>，值<span class="number">2</span>， 值<span class="number">3</span> </span><br></pre></td></tr></table></figure>
+ <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 标准声明</span></span><br><span class="line"><span class="keyword">var</span> name <span class="keyword">string</span> = <span class="string">&quot;Payne&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 类型推到声明</span></span><br><span class="line"><span class="keyword">var</span> age = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//批量声明</span></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	x <span class="keyword">string</span></span><br><span class="line">	y <span class="keyword">string</span></span><br><span class="line">	j <span class="keyword">bool</span></span><br><span class="line">	k <span class="keyword">byte</span></span><br><span class="line">	z <span class="keyword">int</span></span><br><span class="line">	</span><br><span class="line">)</span><br><span class="line"><span class="comment">// 同类型批量声明</span></span><br><span class="line"><span class="keyword">var</span> a, b, c, d <span class="keyword">int</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 简短声明</span></span><br><span class="line">	hobby := <span class="string">&quot;programming&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//测试输入</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;Name is :&quot;</span>, name) <span class="comment">// Name is : Payne</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;Age is :&quot;</span>, age)	<span class="comment">// Age is : 20</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;hobby &quot;</span>, hobby)	<span class="comment">// hobby  programming</span></span><br><span class="line">	fmt.Print(a)	<span class="comment">// 0 声明未赋值采用初始值。int 类型初始值为0</span></span><br><span class="line">	<span class="comment">// 批量简短声明</span></span><br><span class="line">	a, b := <span class="number">1</span>, <span class="string">&quot;string&quot;</span></span><br><span class="line">	fmt.Print(a, b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="匿名变量"><a href="#匿名变量" class="headerlink" title="匿名变量"></a>匿名变量</h3><blockquote>
+<p>匿名变量不占用命名空间，不会分配内存，所以匿名变量之间不存在重复声明。 (在<code>Lua</code>等编程语言里，匿名变量也被叫做哑元变量。)</p>
+</blockquote>
+<p>在使用多重赋值时，如果想要忽略某个值，可以使用<code>匿名变量（anonymous variable）</code>。 匿名变量用一个下划线<code>_</code>表示，例如：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这里可能会有点绕，仅仅是为了使用“_”，而使用_</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">foo</span><span class="params">()</span> <span class="params">(<span class="keyword">string</span>, <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span>  <span class="string">&quot;payne&quot;</span>, <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	name, _ := foo()</span><br><span class="line">	_, age := foo()</span><br><span class="line">	fmt.Println(<span class="string">&quot;name=&quot;</span>, name) <span class="comment">//name= payne</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;age=&quot;</span>, age)	<span class="comment">//age= 20</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意事项：</p>
+<ol>
+<li>函数外的每个语句都必须以关键字开始（var、const、func等）</li>
+<li><code>_</code>多用于占位，表示忽略值。</li>
+</ol>
+</blockquote>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>常量与变量的声明基本一致，类型一致。若有声明变化的话那就是将关键字<code>var</code>， 替换成了<code>const</code>.增加了<code>iota</code>，减少了简短声明</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 常量声明声明时必须给值，否则则定义失败</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 标准声明</span></span><br><span class="line"><span class="keyword">const</span> 变量名 类型 = 值</span><br><span class="line"><span class="comment">// 类型推导</span></span><br><span class="line"><span class="keyword">const</span> 变量名  = 值</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a <span class="keyword">int</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">const</span> b = <span class="string">&quot;2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(a) <span class="comment">// 1</span></span><br><span class="line">	fmt.Println(b) <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Iota"><a href="#Iota" class="headerlink" title="Iota"></a>Iota</h3><p><code>iota</code>是go语言的常量计数器，只能在常量的表达式中使用。</p>
+<p><code>iota</code>在const关键字出现时将被重置为0。const中每新增一行常量声明将使<code>iota</code>计数一次(iota可理解为const语句块中的行索引)。 使用iota能简化定义，在定义枚举时很有用。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// `iota`在const关键字出现时将被重置为0,请牢记！！</span></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">		n1 = <span class="literal">iota</span> <span class="comment">//0</span></span><br><span class="line">		n2        <span class="comment">//1</span></span><br><span class="line">		n3        <span class="comment">//2</span></span><br><span class="line">		n4        <span class="comment">//3</span></span><br><span class="line">	)</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 使用_跳过某些值</span></span><br><span class="line">	<span class="keyword">const</span> (</span><br><span class="line">		n1 = <span class="literal">iota</span> <span class="comment">//0</span></span><br><span class="line">		n2        <span class="comment">//1</span></span><br><span class="line">		_</span><br><span class="line">		n4        <span class="comment">//3</span></span><br><span class="line">	)</span><br><span class="line"><span class="comment">// iota声明中间插队</span></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">		n1 = <span class="literal">iota</span> <span class="comment">//0</span></span><br><span class="line">		n2 = <span class="number">100</span>  <span class="comment">//100</span></span><br><span class="line">		n3 = <span class="literal">iota</span> <span class="comment">//2</span></span><br><span class="line">		n4        <span class="comment">//3</span></span><br><span class="line">	)</span><br><span class="line">	<span class="keyword">const</span> n5 = <span class="literal">iota</span> <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="常量与变量的对比示例"><a href="#常量与变量的对比示例" class="headerlink" title="常量与变量的对比示例"></a>常量与变量的对比示例</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 主要体现为 变量可以被修改</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">	fmt.Println(a)	<span class="comment">// 1</span></span><br><span class="line">	a = <span class="number">2</span></span><br><span class="line">	fmt.Println(a)	<span class="comment">// 2</span></span><br><span class="line">	<span class="keyword">const</span> b = <span class="number">3</span></span><br><span class="line">	fmt.Println(b) <span class="comment">// 3</span></span><br><span class="line">	b = <span class="number">4</span></span><br><span class="line">	fmt.Print(b)	<span class="comment">// Error: cannot assign to b</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数的初探"><a href="#函数的初探" class="headerlink" title="函数的初探"></a>函数的初探</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  函数的定义</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> 函数名<span class="params">(形参)</span> <span class="params">(返回值类型)</span></span> &#123;</span><br><span class="line">	表达式</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用函数</span></span><br><span class="line">函数名(实参)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 另一种方式（匿名函数）</span></span><br><span class="line"><span class="keyword">var</span> 函数名 = <span class="function"><span class="keyword">func</span> <span class="params">()</span></span> &#123;</span><br><span class="line">	表达式</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用函数</span></span><br><span class="line">函数名(实参)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 匿名立即执行函数</span></span><br><span class="line"><span class="keyword">var</span> 函数名 = <span class="function"><span class="keyword">func</span> <span class="params">()</span></span> &#123;</span><br><span class="line">	表达式</span><br><span class="line">&#125;()</span><br><span class="line"><span class="comment">// 此时的函数为结果的值</span></span><br></pre></td></tr></table></figure>
+<h3 id="函数的调用的顺序"><a href="#函数的调用的顺序" class="headerlink" title="函数的调用的顺序"></a>函数的调用的顺序</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a = <span class="number">2</span></span><br><span class="line">	fmt.Print(a) <span class="comment">//  2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>思考：</p>
+<p>为什么打印的是2？</p>
+<p>原因为<code>函数</code>参数的调用采用<code>就近的原则</code></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>Go</category>
@@ -2354,63 +2354,6 @@
       </tags>
   </entry>
   <entry>
-    <title>docker 底层原理探究</title>
-    <url>/2021/01/24/docker-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</url>
-    <content><![CDATA[<p>Docker is written in the <a href="https://golang.org/">Go programming language</a> and takes advantage of several features of the Linux kernel to deliver its functionality.<br><a id="more"></a><br>Docker用<code>Go编程语言</code>编写，并利用Linux内核的多个功能来实现其功能。</p>
-<h2 id="Namespaces-命名空间"><a href="#Namespaces-命名空间" class="headerlink" title="Namespaces(命名空间)"></a>Namespaces(命名空间)</h2><p>Docker uses a technology called <code>namespaces</code> to provide the isolated workspace called the <em>container</em>. When you run a container, Docker creates a set of <em>namespaces</em> for that container.</p>
-<blockquote>
-<p>Docker使用<code>命名空间</code>的技术实现容器(虚拟)独立的工作区</p>
-</blockquote>
-<p><strong>理解<code>Namespaces</code></strong></p>
-<p><strong>Namespaces</strong>,可以理解为虚拟化隔离</p>
-<p>当我们在系统上运行程序时，系统会为我们分配<code>pid</code>,<code>net</code>,<code>ipc</code>,<code>mnt</code>,<code>uts</code>等资源，当我们在Linux中运行时这些都是全局的。</p>
-<p>当我们使用命名空间即可实现隔离的机制，每个分配<code>pid</code>,<code>net</code>,<code>ipc</code>,<code>mnt</code>,<code>uts</code>都是独立的，这样我们就可以实现权限管理等</p>
-<p>These namespaces provide a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace.</p>
-<p>Docker Engine uses namespaces such as the following on Linux:</p>
-<ul>
-<li><strong>The <code>pid</code> namespace:</strong> Process isolation (PID: Process ID).</li>
-<li><strong>The <code>net</code> namespace:</strong> Managing network interfaces (NET: Networking).</li>
-<li><strong>The <code>ipc</code> namespace:</strong> Managing access to IPC resources (IPC: InterProcess Communication).</li>
-<li><strong>The <code>mnt</code> namespace:</strong> Managing filesystem mount points (MNT: Mount).</li>
-<li><strong>The <code>uts</code> namespace:</strong> Isolating kernel and version identifiers. (UTS: Unix Timesharing System).</li>
-</ul>
-<p><strong>进程ID（pid）</strong></p>
-<p>进程的<code>PID</code>命名空间提供与一组独立的从其他命名空间进程ID（PID）的处理。PID名称空间是嵌套的，这意味着在创建新进程时，它将为每个名称空间从当前名称空间到初始PID名称空间都有一个PID。因此，初始PID名称空间能够查看所有进程，尽管与其他名称空间看到的PID不同。</p>
-<p>在PID名称空间中创建的第一个进程被分配了编号为1的进程，并获得与常规进程相同的大多数特殊处理，最值得注意的是，名称空间内的<code>孤立进程</code>。这也意味着此PID 1进程的终止将立即终止其PID名称空间中的所有进程以及所有后代。</p>
-<p><strong>网络（网络）</strong></p>
-<p>网络名称空间可虚拟化<code>网络堆栈</code>。创建时，网络名称空间仅包含<code>回送</code>接口。</p>
-<p>每个<code>网络接口</code>（物理或虚拟）都存在于1个名称空间中，并且可以在名称空间之间移动。</p>
-<p>每个名称空间都有一组专用的<code>P地址</code>，自己的<code>路由表</code>，<code>套接字</code>列表，连接跟踪表，防火墙和其他与网络相关的资源。</p>
-<p>销毁网络名称空间会破坏其中的任何虚拟接口，并将其中的任何物理接口移回到初始网络名称空间。</p>
-<p><strong>进程间通信（ipc）</strong></p>
-<p>IPC名称空间将进程与<code>SysV</code>样式的进程间通信隔离开。这样可以防止不同IPC名称空间中的进程使用例如SHM系列功能在两个进程之间建立一定范围的共享内存。相反，每个进程将能够对共享内存区域使用相同的标识符，并产生两个这样的不同区域。</p>
-<p><strong>挂载（mnt）</strong></p>
-<p>安装名称空间控制安装点。创建后，会将当前安装名称空间中的安装复制到新的名称空间，但是之后创建的安装点不会在名称空间之间传播（使用共享子树，可以在名称空间之间传播安装点。</p>
-<p>用于创建这种类型的新名称空间的克隆标志是CLONE_NEWNS-“ NEW NameSpace”的缩写。该术语不是描述性的（因为它没有告诉您要创建哪种类型的名称空间），因为挂载名称空间是第一类名称空间，设计人员并不预期会有其他名称空间。</p>
-<p><strong>UTS (UNIX <a href="https://en.wikipedia.org/wiki/Time-sharing">Time-Sharing</a>)</strong> </p>
-<p>命名空间允许单个系统对不同的进程使用不同的主机名和域名。</p>
-<h2 id="Control-groups"><a href="#Control-groups" class="headerlink" title="Control groups"></a>Control groups</h2><p>Docker Engine on Linux also relies on another technology called <em>control groups</em> (<code>cgroups</code>). A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.</p>
-<blockquote>
-<p>Linux上的Docker引擎还依赖另一种称为<em>控制组</em>（<code>cgroups</code>）的技术。cgroup将应用程序限制为一组特定的资源。控制组允许Docker引擎将可用的硬件资源共享给容器，并可以选择性地实施限制和约束。例如，可以限制特定容器的可用内存。</p>
-</blockquote>
-<h2 id="Union-file-systems"><a href="#Union-file-systems" class="headerlink" title="Union file systems"></a>Union file systems</h2><p>Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker Engine uses UnionFS to provide the building blocks for containers. Docker Engine can use multiple UnionFS variants, including AUFS, btrfs, vfs, and DeviceMapper.</p>
-<blockquote>
-<p>Union文件系统（UnionFS）是通过<code>创建层</code>来操作的文件系统，使它们非常轻量级和快速。Docker引擎使用UnionFS为容器提供构建块。Docker引擎可以使用多种UnionFS变体，包括AUFS、btrfs、vfs和DeviceMapper。</p>
-</blockquote>
-<h2 id="Container-format"><a href="#Container-format" class="headerlink" title="Container format"></a>Container format</h2><p>Docker Engine combines the namespaces, control groups, and UnionFS into a wrapper called a container format. The default container format is <code>libcontainer</code>. In the future, Docker may support other container formats by integrating with technologies such as BSD Jails or Solaris Zones.</p>
-<blockquote>
-<p>Docker引擎将名称空间、控制组和UnionFS组合成一个称为容器格式的包装器。默认容器格式为“libcontainer”。将来，Docker可以通过集成BSD监狱或Solaris区域等技术来支持其他容器格式。</p>
-</blockquote>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>docker使用go语言编写，基于<strong>Namespaces</strong>进行虚拟化隔离，Control groups进行对资源的限制，联合文件Union file systems来快速构建（可复用的镜像层），</p>
-]]></content>
-      <categories>
-        <category>容器编排</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker部署控制</title>
     <url>/2020/12/13/docker%E9%83%A8%E7%BD%B2%E6%8E%A7%E5%88%B6/</url>
     <content><![CDATA[<h2 id="Docker-swarm部署控制"><a href="#Docker-swarm部署控制" class="headerlink" title="Docker swarm部署控制"></a>Docker swarm部署控制</h2><p>还记得我之前写过一片文章叫做<a href="https://mp.weixin.qq.com/s?__biz=Mzg2MzM4NTg3MA==&amp;tempkey=MTA5MF9RcFZ5c1B4QTFmSnZHd2Qxa3hMNWhpLXFoOEJYWVBBaUZyME1sRmVBQnR1QWN3V3FUZ1hfa1BnemdtOWpLY1o0RTlzVnE2OUtRblZPS1ZDV2pDSk9QU3BadDUzLTNJa3RHYmxFQXNqMjQyQ1dSNUlrcDdfTG1scDRTWVg2UDdiLTI5eWo4dE9HSHI4TlVKOVltZEdtVzZObW9NT19GN2I5eF9YbzdBfn4%3D&amp;chksm=4e78226b790fab7d1fb0283f8b6294c40456df7aebf58d947412ed03d0c3fc3aa188de79f130#rd">《Docker快速部署项目，极速搭建分布式》</a>，在那里讲述了如何去使用docker swarm，如何构建自己的私人镜像仓库。随着最近的业务量的增长，机子加多。对于docker swarm管理难度有上升的趋势。主要的问题有以下几个</p>
@@ -2518,6 +2461,63 @@
 </table>
 </div>
 <h3 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h3><p><a href="https://docs.docker.com/engine/reference/commandline/service_create/#set-service-mode---mode">此部分的官方文档</a></p>
+]]></content>
+      <categories>
+        <category>容器编排</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker 底层原理探究</title>
+    <url>/2021/01/24/docker-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</url>
+    <content><![CDATA[<p>Docker is written in the <a href="https://golang.org/">Go programming language</a> and takes advantage of several features of the Linux kernel to deliver its functionality.<br><a id="more"></a><br>Docker用<code>Go编程语言</code>编写，并利用Linux内核的多个功能来实现其功能。</p>
+<h2 id="Namespaces-命名空间"><a href="#Namespaces-命名空间" class="headerlink" title="Namespaces(命名空间)"></a>Namespaces(命名空间)</h2><p>Docker uses a technology called <code>namespaces</code> to provide the isolated workspace called the <em>container</em>. When you run a container, Docker creates a set of <em>namespaces</em> for that container.</p>
+<blockquote>
+<p>Docker使用<code>命名空间</code>的技术实现容器(虚拟)独立的工作区</p>
+</blockquote>
+<p><strong>理解<code>Namespaces</code></strong></p>
+<p><strong>Namespaces</strong>,可以理解为虚拟化隔离</p>
+<p>当我们在系统上运行程序时，系统会为我们分配<code>pid</code>,<code>net</code>,<code>ipc</code>,<code>mnt</code>,<code>uts</code>等资源，当我们在Linux中运行时这些都是全局的。</p>
+<p>当我们使用命名空间即可实现隔离的机制，每个分配<code>pid</code>,<code>net</code>,<code>ipc</code>,<code>mnt</code>,<code>uts</code>都是独立的，这样我们就可以实现权限管理等</p>
+<p>These namespaces provide a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace.</p>
+<p>Docker Engine uses namespaces such as the following on Linux:</p>
+<ul>
+<li><strong>The <code>pid</code> namespace:</strong> Process isolation (PID: Process ID).</li>
+<li><strong>The <code>net</code> namespace:</strong> Managing network interfaces (NET: Networking).</li>
+<li><strong>The <code>ipc</code> namespace:</strong> Managing access to IPC resources (IPC: InterProcess Communication).</li>
+<li><strong>The <code>mnt</code> namespace:</strong> Managing filesystem mount points (MNT: Mount).</li>
+<li><strong>The <code>uts</code> namespace:</strong> Isolating kernel and version identifiers. (UTS: Unix Timesharing System).</li>
+</ul>
+<p><strong>进程ID（pid）</strong></p>
+<p>进程的<code>PID</code>命名空间提供与一组独立的从其他命名空间进程ID（PID）的处理。PID名称空间是嵌套的，这意味着在创建新进程时，它将为每个名称空间从当前名称空间到初始PID名称空间都有一个PID。因此，初始PID名称空间能够查看所有进程，尽管与其他名称空间看到的PID不同。</p>
+<p>在PID名称空间中创建的第一个进程被分配了编号为1的进程，并获得与常规进程相同的大多数特殊处理，最值得注意的是，名称空间内的<code>孤立进程</code>。这也意味着此PID 1进程的终止将立即终止其PID名称空间中的所有进程以及所有后代。</p>
+<p><strong>网络（网络）</strong></p>
+<p>网络名称空间可虚拟化<code>网络堆栈</code>。创建时，网络名称空间仅包含<code>回送</code>接口。</p>
+<p>每个<code>网络接口</code>（物理或虚拟）都存在于1个名称空间中，并且可以在名称空间之间移动。</p>
+<p>每个名称空间都有一组专用的<code>P地址</code>，自己的<code>路由表</code>，<code>套接字</code>列表，连接跟踪表，防火墙和其他与网络相关的资源。</p>
+<p>销毁网络名称空间会破坏其中的任何虚拟接口，并将其中的任何物理接口移回到初始网络名称空间。</p>
+<p><strong>进程间通信（ipc）</strong></p>
+<p>IPC名称空间将进程与<code>SysV</code>样式的进程间通信隔离开。这样可以防止不同IPC名称空间中的进程使用例如SHM系列功能在两个进程之间建立一定范围的共享内存。相反，每个进程将能够对共享内存区域使用相同的标识符，并产生两个这样的不同区域。</p>
+<p><strong>挂载（mnt）</strong></p>
+<p>安装名称空间控制安装点。创建后，会将当前安装名称空间中的安装复制到新的名称空间，但是之后创建的安装点不会在名称空间之间传播（使用共享子树，可以在名称空间之间传播安装点。</p>
+<p>用于创建这种类型的新名称空间的克隆标志是CLONE_NEWNS-“ NEW NameSpace”的缩写。该术语不是描述性的（因为它没有告诉您要创建哪种类型的名称空间），因为挂载名称空间是第一类名称空间，设计人员并不预期会有其他名称空间。</p>
+<p><strong>UTS (UNIX <a href="https://en.wikipedia.org/wiki/Time-sharing">Time-Sharing</a>)</strong> </p>
+<p>命名空间允许单个系统对不同的进程使用不同的主机名和域名。</p>
+<h2 id="Control-groups"><a href="#Control-groups" class="headerlink" title="Control groups"></a>Control groups</h2><p>Docker Engine on Linux also relies on another technology called <em>control groups</em> (<code>cgroups</code>). A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.</p>
+<blockquote>
+<p>Linux上的Docker引擎还依赖另一种称为<em>控制组</em>（<code>cgroups</code>）的技术。cgroup将应用程序限制为一组特定的资源。控制组允许Docker引擎将可用的硬件资源共享给容器，并可以选择性地实施限制和约束。例如，可以限制特定容器的可用内存。</p>
+</blockquote>
+<h2 id="Union-file-systems"><a href="#Union-file-systems" class="headerlink" title="Union file systems"></a>Union file systems</h2><p>Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker Engine uses UnionFS to provide the building blocks for containers. Docker Engine can use multiple UnionFS variants, including AUFS, btrfs, vfs, and DeviceMapper.</p>
+<blockquote>
+<p>Union文件系统（UnionFS）是通过<code>创建层</code>来操作的文件系统，使它们非常轻量级和快速。Docker引擎使用UnionFS为容器提供构建块。Docker引擎可以使用多种UnionFS变体，包括AUFS、btrfs、vfs和DeviceMapper。</p>
+</blockquote>
+<h2 id="Container-format"><a href="#Container-format" class="headerlink" title="Container format"></a>Container format</h2><p>Docker Engine combines the namespaces, control groups, and UnionFS into a wrapper called a container format. The default container format is <code>libcontainer</code>. In the future, Docker may support other container formats by integrating with technologies such as BSD Jails or Solaris Zones.</p>
+<blockquote>
+<p>Docker引擎将名称空间、控制组和UnionFS组合成一个称为容器格式的包装器。默认容器格式为“libcontainer”。将来，Docker可以通过集成BSD监狱或Solaris区域等技术来支持其他容器格式。</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>docker使用go语言编写，基于<strong>Namespaces</strong>进行虚拟化隔离，Control groups进行对资源的限制，联合文件Union file systems来快速构建（可复用的镜像层），</p>
 ]]></content>
       <categories>
         <category>容器编排</category>
@@ -3072,6 +3072,150 @@ DOWNLOADER_MIDDLEWARES = &#123;
       </categories>
       <tags>
         <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常见安全产品(pc)</title>
+    <url>/2021/07/11/%E5%B8%B8%E8%A7%81%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81-pc/</url>
+    <content><![CDATA[<h2 id="常见安全产品介绍"><a href="#常见安全产品介绍" class="headerlink" title="常见安全产品介绍"></a>常见安全产品介绍</h2><p>在做爬虫的时候，很多时候都会遇到成熟的产品。该如何更好的识别他，对于解决有至关重要的帮助。一下一起来了解一下网站常见防护产品及特性</p>
+<blockquote>
+<p>声明：本节不射猎任何产品破解，仅介绍其特征与辨别方式</p>
+</blockquote>
+<h3 id="一线"><a href="#一线" class="headerlink" title="一线"></a>一线</h3><blockquote>
+<p>学习的对象，自研产品。安全系数高，分析较困难</p>
+</blockquote>
+<p>ali、akamai、jd、pdd、google(含无感验证码)、各种银行支付接口<br><a id="more"></a></p>
+<h4 id="ali滑块"><a href="#ali滑块" class="headerlink" title="ali滑块"></a>ali滑块</h4><p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gs4rk7k7tgj31p60qkq5m.jpg" alt=""></p>
+<p>控制台中有g.alicdn.com字样，其中/后为版本号</p>
+<h4 id="akamai"><a href="#akamai" class="headerlink" title="akamai"></a>akamai</h4><blockquote>
+<p>主要在tls指纹进行相关加密</p>
+</blockquote>
+<h4 id="jd"><a href="#jd" class="headerlink" title="jd"></a>jd</h4><blockquote>
+<p>自写的虚拟机</p>
+</blockquote>
+<h4 id="pdd"><a href="#pdd" class="headerlink" title="pdd"></a>pdd</h4><blockquote>
+<p>Web pack 打包 + 风控</p>
+</blockquote>
+<h4 id="google-含无感验证码"><a href="#google-含无感验证码" class="headerlink" title="google(含无感验证码)"></a>google(含无感验证码)</h4><p>5s 盾 + 谷歌验证码</p>
+<h3 id="二线"><a href="#二线" class="headerlink" title="二线"></a>二线</h3><blockquote>
+<p>可敬的对象</p>
+</blockquote>
+<p>加密与代码保护：瑞数信息（瑞数）、创宇超防（加速乐）、</p>
+<p>验证码：极验、数美、五秒盾、易盾、顶象</p>
+<h4 id="加密与代码保护"><a href="#加密与代码保护" class="headerlink" title="加密与代码保护"></a>加密与代码保护</h4><h5 id="瑞数信息（瑞数）"><a href="#瑞数信息（瑞数）" class="headerlink" title="瑞数信息（瑞数）"></a>瑞数信息（瑞数）</h5><ol>
+<li>未带cookie访问首先是一段神奇的页面，如下图所示</li>
+</ol>
+<p><img src="/Users/stringle-004/Library/Application Support/typora-user-images/image-20210711183607468.png" alt="image-20210711183607468"></p>
+<p>特征：</p>
+<p>1.</p>
+<p>一长段的：content。有点类似于ob的大数组</p>
+<p>script标签中带有 r=“m”的字样</p>
+<p>执行加密函数1，函数名为 <code>_$xx(xxx)</code></p>
+<p>执行加密函数2（时机加密处）</p>
+<ol>
+<li>无比恶心的乱码</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gsd76unofcj30sp02qt8m.jpg" alt="ddddd"></p>
+<ol>
+<li><p>动态js</p>
+</li>
+<li><p>版本号</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gsd8b8qfa3j305y00i0si.jpg" alt=""></p>
+<p><img src="/Users/stringle-004/Library/Application Support/typora-user-images/image-20210711192226256.png" alt="image-20210711192226256"></p>
+</li>
+</ol>
+<p>首数字开头的编号，编号常见的有4、5、6代</p>
+<h5 id="创宇超防（加速乐）"><a href="#创宇超防（加速乐）" class="headerlink" title="创宇超防（加速乐）"></a>创宇超防（加速乐）</h5><ol>
+<li>未带cookies访问，先是一段神奇的JS，设置cookie。如下图所示</li>
+</ol>
+<p><img src="/Users/stringle-004/Library/Application Support/typora-user-images/image-20210711183150521.png" alt="image-20210711183150521"></p>
+<p>实际内容如下图所示</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gsd6qt4brnj311b02qjrj.jpg" alt=""></p>
+<ol>
+<li><p>魔改ob</p>
+<p>用于cookies拼接</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gsd6wykikcj31lf0u0n36.jpg" alt=""></p>
+</li>
+</ol>
+<h4 id="验证码"><a href="#验证码" class="headerlink" title="验证码"></a>验证码</h4><h5 id="极验"><a href="#极验" class="headerlink" title="极验"></a>极验</h5><p>geetest(极验)官网：<a href="https://www.geetest.com/">https://www.geetest.com/</a></p>
+<p>demo：<a href="https://www.geetest.com/demo/">https://www.geetest.com/demo/</a></p>
+<p><img src="/Users/stringle-004/Library/Application Support/typora-user-images/image-20210711195920957.png" alt="image-20210711195920957"></p>
+<!---------->
+<h5 id="数美"><a href="#数美" class="headerlink" title="数美"></a>数美</h5><p>官网：<a href="https://www.ishumei.com/">https://www.ishumei.com/</a></p>
+<p>体验：<a href="https://www.ishumei.com/trial/captcha.html">https://www.ishumei.com/trial/captcha.html</a></p>
+<p><img src="/Users/stringle-004/Library/Application Support/typora-user-images/image-20210711195358760.png" alt="image-20210711195358760"></p>
+<h5 id="网易易盾"><a href="#网易易盾" class="headerlink" title="网易易盾"></a>网易易盾</h5><p>官网：<a href="https://dun.163.com/">https://dun.163.com/</a></p>
+<p>Demo：<a href="https://dun.163.com/trial/space-inference">https://dun.163.com/trial/space-inference</a></p>
+<p><img src="/Users/stringle-004/Library/Application Support/typora-user-images/image-20210711200120467.png" alt="image-20210711200120467"></p>
+<h5 id="Vaptcha"><a href="#Vaptcha" class="headerlink" title="Vaptcha"></a>Vaptcha</h5><p><a href="https://www.vaptcha.com/">https://www.vaptcha.com/</a></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gsd8xpb30oj30vc0g1afq.jpg" alt=""></p>
+<h5 id="顶象"><a href="#顶象" class="headerlink" title="顶象"></a>顶象</h5><p><img src="/Users/stringle-004/Library/Application Support/typora-user-images/image-20210711195702599.png" alt="image-20210711195702599"></p>
+<h3 id="三线"><a href="#三线" class="headerlink" title="三线"></a>三线</h3><blockquote>
+<p>主要来源于开源框架</p>
+</blockquote>
+<p>Ob混淆系（obfuscator、sojson、Jsaham）、Jsfuck、JJEncode、AAEncode、eval等、</p>
+<p>obfuscator: <a href="https://obfuscator.io/">https://obfuscator.io/</a></p>
+<p>sojson：<a href="https://www.sojson.com/jsjiemi.html">https://www.sojson.com/jsjiemi.html</a></p>
+<p>Jsaham：<a href="http://www.jshaman.com/#section2">http://www.jshaman.com/#section2</a></p>
+<p>jstuck:<a href="http://www.jsfuck.com/">http://www.jsfuck.com/</a>  GitHub:<a href="https://github.com/aemkei/jsfuck">https://github.com/aemkei/jsfuck</a></p>
+<p>JJEncode:<a href="http://www.atoolbox.net/Tool.php?Id=704">http://www.atoolbox.net/Tool.php?Id=704</a></p>
+<p>JJEncode:<a href="http://www.atoolbox.net/Tool.php?Id=703">http://www.atoolbox.net/Tool.php?Id=703</a></p>
+<p>Eval:<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/eval">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/eval</a>;</p>
+<p>​    分析：eval换为console.log()(前提：console.log未改写)</p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><h5 id="ob系列"><a href="#ob系列" class="headerlink" title="ob系列"></a>ob系列</h5><p>特点</p>
+<ol>
+<li>大数组</li>
+<li>数据移位（常见regex内存检测，建议不format绕过或remove regex）</li>
+<li>解密函数（常见regex内存检测，建议不format绕过或remove regex）</li>
+<li>定时器setInterval() 、setTimeout() + 无限debugger （可能含有）</li>
+<li><strong>业务代码 + 控制流平坦化：（ob强度90%取决于此代码强度、这里是加密前的逻辑）</strong></li>
+<li>控制流平坦化  + 无限debugger + 僵尸代码注入（一般不含有业务逻辑）</li>
+</ol>
+<p>Example:</p>
+<ol>
+<li>找到实际处（ob）</li>
+<li>找前三段（数组、数组移位、解密函数），剪切出去</li>
+<li>格式化控制流平坦化、实际逻辑。放回前剪切出去的内容</li>
+<li>定位加密函数</li>
+</ol>
+<h5 id="Jsfuck、JJEncode、AAEncode、表情包"><a href="#Jsfuck、JJEncode、AAEncode、表情包" class="headerlink" title="Jsfuck、JJEncode、AAEncode、表情包"></a>Jsfuck、JJEncode、AAEncode、表情包</h5><p>配合eval类型防护：</p>
+<blockquote>
+<ol>
+<li>直接放控制台console执行(报非unsafe错误)；点击错位堆栈直接完成脱壳</li>
+</ol>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gsdbgkbq35j30ix0bjwet.jpg" alt=""></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gsdbfu2amkj31ae02maa0.jpg" alt=""></p>
+<p><img src="/Users/stringle-004/Library/Application Support/typora-user-images/image-20210711211026971.png" alt="image-20210711211026971"></p>
+<blockquote>
+<p>2.控制台不报错，构建强制报错。删除一些代码（为了不干扰原本代码，建议删除括号或加无意义代码）</p>
+<p>3。控制台报unsafe错误，自写html文件运行。参考以上</p>
+</blockquote>
+<p>混淆部分数字：</p>
+<h3 id="四线"><a href="#四线" class="headerlink" title="四线"></a>四线</h3><blockquote>
+<p>工程化工具、各种加密函数魔改、辅助作用</p>
+</blockquote>
+<p>webpack、vue、react、angular</p>
+<p>webpack：<a href="https://webpack.docschina.org/">https://webpack.docschina.org/</a></p>
+<p>关键点：加载器</p>
+<p>绕过方案：点位插桩</p>
+]]></content>
+      <categories>
+        <category>爬虫</category>
+        <category>Crawler</category>
+        <category>JavaScript</category>
+        <category>技巧</category>
+        <category>JS</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+        <tag>Crawler</tag>
+        <tag>Web Spider</tag>
+        <tag>数据采集</tag>
+        <tag>JS</tag>
+        <tag>Chrome</tag>
+        <tag>JavaScript</tag>
+        <tag>技巧</tag>
       </tags>
   </entry>
   <entry>
